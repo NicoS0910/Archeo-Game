@@ -1,0 +1,204 @@
+Last login: Tue May  7 11:16:42 on ttys000
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+MacBook-Pro:~ Nico$ cd desktop
+MacBook-Pro:desktop Nico$ cd Archeo
+MacBook-Pro:Archeo Nico$ ls
+Archeo.sln		Logs			UserSettings
+Assembly-CSharp.csproj	Packages		obj
+Assets			ProjectSettings
+Library			Temp
+MacBook-Pro:Archeo Nico$ git init
+Reinitialized existing Git repository in /Users/Nico/Desktop/Archeo/.git/
+MacBook-Pro:Archeo Nico$ git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+MacBook-Pro:Archeo Nico$ git add .
+warning: CRLF will be replaced by LF in Library/PackageCache/com.unity.collab-proxy@2.2.0/.signature.
+The file will have its original line endings in your working directory.
+git-lfs filter-process: git-lfs: command not found
+fatal: The remote end hung up unexpectedly
+MacBook-Pro:Archeo Nico$ git commit -m "adding files"
+On branch master
+
+Initial commit
+
+Untracked files:
+	.gitignore.swp
+	.vs/
+	Archeo.sln
+	Assembly-CSharp.csproj
+	Assets/
+	Library/
+	Logs/
+	Packages/
+	ProjectSettings/
+	Temp/
+	UserSettings/
+	obj/
+
+nothing added to commit but untracked files present
+MacBook-Pro:Archeo Nico$ git remote add origin https://github.com/NicoS0910/Archeo-Test.git
+MacBook-Pro:Archeo Nico$ 
+MacBook-Pro:Archeo Nico$ https://github.com/NicoS0910/Archeo-Test.git
+-bash: https://github.com/NicoS0910/Archeo-Test.git: No such file or directory
+MacBook-Pro:Archeo Nico$ git remote add origin 
+usage: git remote add [<options>] <name> <url>
+
+    -f, --fetch           fetch the remote branches
+    --tags                import all tags and associated objects when fetching
+                          or do not fetch any tag at all (--no-tags)
+    -t, --track <branch>  branch(es) to track
+    -m, --master <branch>
+                          master branch
+    --mirror[=<push|fetch>]
+                          set up remote as a mirror to push to or fetch from
+
+MacBook-Pro:Archeo Nico$ git remote add origin https://github.com/NicoS0910/Archeo-Test.git
+fatal: remote origin already exists.
+MacBook-Pro:Archeo Nico$ git push -u origin master
+error: src refspec master does not match any.
+error: failed to push some refs to 'https://github.com/NicoS0910/Archeo-Test.git'
+MacBook-Pro:Archeo Nico$ git push -u origin master
+error: src refspec master does not match any.
+error: failed to push some refs to 'https://github.com/NicoS0910/Archeo-Test.git'
+MacBook-Pro:Archeo Nico$ cd
+MacBook-Pro:~ Nico$ cd desktop
+MacBook-Pro:desktop Nico$ cd Archeo
+MacBook-Pro:Archeo Nico$ touch .gitignore
+MacBook-Pro:Archeo Nico$ 
+MacBook-Pro:Archeo Nico$ nano .gitignore
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  UW PICO 5.09                                                                                                    File: .gitignore                                                                                                     Modified  
+
+# Ignore Vim swap files
+.gitignore.swp
+
+# Ignore Visual Studio files
+.vs/
+*.sln
+*.csproj
+
+# Ignore Unity files
+Library/
+Temp/
+obj/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+^G Get Help                             ^O WriteOut                             ^R Read File                            ^Y Prev Pg                              ^K Cut Text                             ^C Cur Pos                              
+^X Exit                                 ^J Justify                              ^W Where is                             ^V Next Pg                              ^U UnCut Text                           ^T To Spell                             
