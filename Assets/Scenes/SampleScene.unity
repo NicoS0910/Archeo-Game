@@ -4229,14 +4229,14 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.001234568
-    width: 1
-    height: 0.99753094
+    y: 0.0022421526
+    width: 0.9993691
+    height: 0.99551576
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 1.01
+  orthographic size: 1.11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4884,7 +4884,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -631, y: -372}
+  m_AnchoredPosition: {x: -316.25, y: -208}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &816537981
@@ -5585,9 +5585,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 806787702}
   - {fileID: 619394802}
   - {fileID: 616708453}
   - {fileID: 2108759954473878769}
   - {fileID: 691337701}
   - {fileID: 1475148166}
-  - {fileID: 806787702}
