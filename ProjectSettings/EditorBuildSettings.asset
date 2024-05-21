@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TeleportScene.unity
     guid: 31cdd7bca374a5f4f828e6aa8e8360f5
+  - enabled: 1
+    path: Assets/Scenes/CoinGameScene.unity
+    guid: b3a9aa0e80332854481dd9abb123df6b
   m_configObjects: {}
