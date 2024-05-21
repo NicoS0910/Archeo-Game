@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
-
-public class InteractableObject : MonoBehaviour
+public class ScanObjekt : MonoBehaviour
 {
     public float interactionRange = 5f;
     public GameObject popupText; // Das GameObject des Popups
