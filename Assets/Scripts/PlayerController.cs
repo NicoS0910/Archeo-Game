@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isMoving", false);
             }
 
-            //Set direction of sprite to movement direction
+            /*Set direction of sprite to movement direction
             if (movementInput.x < 0)
             {
                 spriteRenderer.flipX = true;
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
             else if (movementInput.x > 0)
             {
                 spriteRenderer.flipX = false;
-            }
+            }*/
         }
     }
 
@@ -90,6 +90,10 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
+        if(movementInput != Vector2.zero) {
+            animator.SetFloat("XInput", movementInput.x);
+            animator.SetFloat("YInput", movementInput.y);
+        }
     }
 
     void OnFire()
