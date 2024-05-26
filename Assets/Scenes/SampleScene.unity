@@ -4528,15 +4528,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.0012650221
     y: 0
-    width: 1
-    height: 1
+    width: 0.9968374
+    height: 0.99775285
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 1.29
+  orthographic size: 1.11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5774,6 +5774,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6471293565592119362, guid: e63674d245297b64bad1d4d975d56f30, type: 3}
   m_PrefabInstance: {fileID: 2108759954473878769}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1642131823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642131822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb4855425a094a178dfef570ebb2d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausePanel: {fileID: 781892075}
 --- !u!1 &1747016900
 GameObject:
   m_ObjectHideFlags: 0
@@ -6131,7 +6144,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6471293565592119362, guid: e63674d245297b64bad1d4d975d56f30, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2108759954473878777}
+      addedObject: {fileID: 1642131823}
   m_SourcePrefab: {fileID: 100100000, guid: e63674d245297b64bad1d4d975d56f30, type: 3}
 --- !u!1001 &6471646392685681231
 PrefabInstance:
