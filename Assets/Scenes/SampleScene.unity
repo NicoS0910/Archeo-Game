@@ -4529,10 +4529,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0012650221
-    y: 0
-    width: 0.99999994
-    height: 0.99999994
+    x: 0
+    y: 0.002057613
+    width: 1
+    height: 0.9958847
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -5070,7 +5070,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 2108759954473878770}
+  m_Follow: {fileID: 1805851345}
   m_Lens:
     FieldOfView: 34
     OrthographicSize: 1.5527235
@@ -6070,6 +6070,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747016900}
   m_CullTransparentMesh: 1
+--- !u!4 &1805851345 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8326261594216502083, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+  m_PrefabInstance: {fileID: 2524021528794498730}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1851281025
 GameObject:
   m_ObjectHideFlags: 0
@@ -6374,11 +6379,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1642131823}
   m_SourcePrefab: {fileID: 100100000, guid: e63674d245297b64bad1d4d975d56f30, type: 3}
---- !u!4 &2108759954473878770 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2716696785917245086, guid: e63674d245297b64bad1d4d975d56f30, type: 3}
-  m_PrefabInstance: {fileID: 2108759954473878769}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2524021528794498730
 PrefabInstance:
   m_ObjectHideFlags: 0
