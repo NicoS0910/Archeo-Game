@@ -4277,6 +4277,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 755255500598876407, guid: b446f7d972205024fade1ff048642f12, type: 3}
+      propertyPath: speed
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031296520665543820, guid: b446f7d972205024fade1ff048642f12, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2832458966109039905, guid: b446f7d972205024fade1ff048642f12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.6420579
@@ -5356,9 +5364,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.0015974441
+    y: 0
     width: 1
-    height: 0.9968051
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -6386,6 +6394,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6471293565592119362, guid: e63674d245297b64bad1d4d975d56f30, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539011882571142802, guid: e63674d245297b64bad1d4d975d56f30, type: 3}
+      propertyPath: m_BodyType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7104292798591759845, guid: e63674d245297b64bad1d4d975d56f30, type: 3}
