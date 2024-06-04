@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class DropZone : MonoBehaviour, IDropHandler
 {
-    public string correctCoinTag; // Setze dies im Inspector auf den richtigen Tag (z.B. "Coin1", "Coin2", "Coin3")
+    public string correctCoinTag;
     private MinigameManager minigameManager;
 
     void Awake()
@@ -24,7 +24,7 @@ public class DropZone : MonoBehaviour, IDropHandler
         {
             droppedObject.transform.SetParent(transform);
             droppedObject.transform.position = transform.position;
-            minigameManager.CheckCoins(); // Überprüfe, ob alle Münzen korrekt platziert sind
+            minigameManager.CheckCoins();
         }
     }
 }

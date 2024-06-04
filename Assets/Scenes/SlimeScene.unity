@@ -5350,7 +5350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15ae3b1cce274d34dbfa5c542122eddf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneBuildIndex: 0
+  sceneBuildIndex: 1
 --- !u!61 &782800593
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5804,10 +5804,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00083333335
-    y: 0
-    width: 1.2533333
-    height: 0.6577778
+    x: 0
+    y: 0.001112347
+    width: 1
+    height: 0.9966629
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
