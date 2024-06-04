@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class InteractableObject : MonoBehaviour
+public class StartPuzzleGame : MonoBehaviour
 {
     public float interactionRange = 5f;
     public GameObject popupText2; // Das GameObject des Popup-Texts
-    public GameObject CoinGame; // Das GameObject des Minispiels, das im Editor zugewiesen werden muss
+    public GameObject PuzzleGame; // Das GameObject des Minispiels, das im Editor zugewiesen werden muss
 
     private bool isInRange = false;
     private bool minigameStarted = false;
@@ -36,15 +36,15 @@ public class InteractableObject : MonoBehaviour
         Debug.Log("StartMinigame method called");
         minigameStarted = true;
 
-        // Aktiviere das CoinGame-GameObject
-        if (CoinGame != null)
+        // Aktiviere das PuzzleGame-GameObject
+        if (PuzzleGame != null)
         {
-            Debug.Log("CoinGame GameObject found: " + CoinGame.name);
-            CoinGame.SetActive(true);
+            Debug.Log("PuzzleGame GameObject found: " + PuzzleGame.name);
+            PuzzleGame.SetActive(true);
         }
         else
         {
-            Debug.LogWarning("CoinGame GameObject not assigned in the inspector");
+            Debug.LogWarning("PuzzleGame GameObject not assigned in the inspector");
         }
     }
 
