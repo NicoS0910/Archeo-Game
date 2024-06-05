@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
     bool canMove = true;
+    Vector2 lastMovementInput; // New variable to store the last movement direction
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
         {
             if (movementInput != Vector2.zero)
             {
+                lastMovementInput = movementInput; // Update the last movement direction
                 bool success = TryMove(movementInput);
 
                 if (!success)
@@ -47,16 +49,6 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("isMoving", false);
             }
-
-            /*Set direction of sprite to movement direction
-            if (movementInput.x < 0)
-            {
-                spriteRenderer.flipX = true;
-            }
-            else if (movementInput.x > 0)
-            {
-                spriteRenderer.flipX = false;
-            }*/
         }
     }
 
@@ -64,7 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         if (direction != Vector2.zero)
         {
-            //Check for collisions
+            // Check for collisions
             int count = rb.Cast(
                     direction,
                     movementFilter,
@@ -82,7 +74,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            //cant move if there is no direction to move in
+            // Can't move if there is no direction to move in
             return false;
         }
     }
@@ -90,7 +82,8 @@ public class PlayerController : MonoBehaviour
     void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
-        if(movementInput != Vector2.zero) {
+        if (movementInput != Vector2.zero)
+        {
             animator.SetFloat("XInput", movementInput.x);
             animator.SetFloat("YInput", movementInput.y);
         }
@@ -104,17 +97,26 @@ public class PlayerController : MonoBehaviour
     public void SwordAttack()
     {
         LockMovement();
-        if (spriteRenderer.flipX == true)
-        {
-            swordAttack.AttackLeft();
-        }
-        else
+        if (lastMovementInput.x > 0)
         {
             swordAttack.AttackRight();
         }
+        else if (lastMovementInput.x < 0)
+        {
+            swordAttack.AttackLeft();
+        }
+        else if (lastMovementInput.y > 0)
+        {
+            swordAttack.AttackUp();
+        }
+        else if (lastMovementInput.y < 0)
+        {
+            swordAttack.AttackDown();
+        }
     }
 
-    public void EndSwordAttack(){
+    public void EndSwordAttack()
+    {
         UnlockMovement();
         swordAttack.StopAttack();
     }
@@ -128,45 +130,4 @@ public class PlayerController : MonoBehaviour
     {
         canMove = true;
     }
-
-
-
-    /*Alter Code
-    [SerializeField] private float moveSpeed = 1f;
-
-    private PlayerControls playerControls;
-    private Vector2 movement;
-    private Rigidbody2D rb;
-
-    private void Awake()
-    {
-        playerControls = new PlayerControls();
-        rb = GetComponent<Rigidbody2D>();
-        
-    }
-
-    private void OnEnable()
-    {
-        playerControls.Enable();
-    }
-
-    private void Update()
-    {
-        PlayerInput();
-    }
-
-    private void FixedUpdate()
-    {
-        Move();
-    }
-
-    private void PlayerInput()
-    {
-        movement = playerControls.Movement.Move.ReadValue<Vector2>();
-    }
-
-    private void Move()
-    {
-        rb.MovePosition(rb.position + movement * (moveSpeed * Time.fixedDeltaTime));
-    } */
 }

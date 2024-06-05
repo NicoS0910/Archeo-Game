@@ -10,7 +10,7 @@ public class SwordAttack : MonoBehaviour
 
     private void Start()
     {
-        rightAttackOffset = transform.position;
+        rightAttackOffset = transform.localPosition;
     }
 
     public void AttackRight()
@@ -25,6 +25,18 @@ public class SwordAttack : MonoBehaviour
         swordCollider.enabled = true;
         transform.localPosition = new Vector3(rightAttackOffset.x * -1, rightAttackOffset.y);
     }
+    public void AttackDown()
+    {
+        print("Attack Down");
+        swordCollider.enabled = true;
+        transform.localPosition = new Vector3(rightAttackOffset.x * 0, rightAttackOffset.y * 2);
+    }
+    public void AttackUp()
+    {
+        print("Attack Up");
+        swordCollider.enabled = true;
+        transform.localPosition = new Vector3(rightAttackOffset.x * 0, rightAttackOffset.y * -2);
+    }
 
     public void StopAttack()
     {
@@ -35,7 +47,7 @@ public class SwordAttack : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            //Deal damage to enemy
+            // Deal damage to enemy
             Enemy enemy = other.GetComponent<Enemy>();
 
             if (enemy != null)

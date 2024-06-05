@@ -4277,14 +4277,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
-    - target: {fileID: 755255500598876407, guid: b446f7d972205024fade1ff048642f12, type: 3}
-      propertyPath: speed
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031296520665543820, guid: b446f7d972205024fade1ff048642f12, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2832458966109039905, guid: b446f7d972205024fade1ff048642f12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.6420579
@@ -4325,13 +4317,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3795202672281286400, guid: b446f7d972205024fade1ff048642f12, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 613383339547167847, guid: b446f7d972205024fade1ff048642f12, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1398528467}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b446f7d972205024fade1ff048642f12, type: 3}
 --- !u!1 &541406900
 GameObject:
@@ -5441,56 +5434,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1398528460 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 613383339547167847, guid: b446f7d972205024fade1ff048642f12, type: 3}
-  m_PrefabInstance: {fileID: 412598570}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1398528467
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398528460}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.026166946, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.42965192, y: 0.42965195}
-  m_EdgeRadius: 0
 --- !u!1 &1475148163
 GameObject:
   m_ObjectHideFlags: 0
@@ -6517,17 +6460,13 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7727610564506308300, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
-      propertyPath: m_Size.y
-      value: 0.036007524
+    - target: {fileID: 4810085981677853100, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_Name
+      value: SwordHitbox
       objectReference: {fileID: 0}
-    - target: {fileID: 7727610564506308300, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7727610564506308300, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.078837134
+    - target: {fileID: 4810085981677853100, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8326261594216502083, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
       propertyPath: m_LocalPosition.x

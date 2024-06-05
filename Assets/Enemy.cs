@@ -12,8 +12,18 @@ public class Enemy : MonoBehaviour
     // Öffentliche Eigenschaft für Health
     public float Health
     {
-        get { return health; }
-        set { health = value; }
+        set
+        {
+            health = value;
+            if (health <= 0)
+            {
+                Defeated();
+            }
+        }
+        get
+        {
+            return health;
+        }
     }
 
     private void Start()
