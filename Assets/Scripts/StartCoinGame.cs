@@ -11,23 +11,38 @@ public class StartCoinGame : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Update method called."); // Überprüfen Sie, ob die Update-Methode ausgeführt wird.
+
         // Überprüfe, ob der Spieler in Reichweite ist
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, interactionRange);
         if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
             isInRange = true;
             ShowPopup(); // Zeige den Interaktionstext an
+            Debug.Log("Player is in range.");
         }
         else
         {
             isInRange = false;
             HidePopup(); // Verstecke den Interaktionstext
+            Debug.Log("Player is out of range.");
         }
 
         // Überprüfe, ob der Spieler die Interaktionstaste drückt und das Objekt in Reichweite ist
-        if (isInRange && Input.GetKeyDown(KeyCode.E) && !minigameStarted)
+        if (isInRange)
         {
-            StartMinigame();
+            Debug.Log("Player is in interaction range."); // Bestätigen Sie, dass der Spieler in Reichweite ist.
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Debug.Log("E key was pressed."); // Bestätigen Sie, dass die E-Taste gedrückt wurde.
+            }
+
+            if (Input.GetKeyDown(KeyCode.E) && !minigameStarted)
+            {
+                Debug.Log("Starting the minigame."); // Bestätigen Sie, dass das Minigame gestartet wird.
+                StartMinigame();
+            }
         }
     }
 
