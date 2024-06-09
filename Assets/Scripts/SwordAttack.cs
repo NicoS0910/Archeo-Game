@@ -7,6 +7,7 @@ public class SwordAttack : MonoBehaviour
     public Collider2D swordCollider;
     public float damage = 3;
     Vector2 rightAttackOffset;
+    public Tool tool;
 
     private void Start()
     {
@@ -54,6 +55,10 @@ public class SwordAttack : MonoBehaviour
             {
                 enemy.Health -= damage;
             }
+        }
+        if (tool != null)
+        {
+            tool.OnSwordHit(other);
         }
     }
 }
