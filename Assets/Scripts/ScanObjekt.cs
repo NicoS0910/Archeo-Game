@@ -11,6 +11,7 @@ public class ScanObjekt : MonoBehaviour
     private bool isInRange = false;
     private SpriteRenderer spriteRenderer;
     private Sprite originalSprite;
+    private bool hasServer = false; // Neue Variable, um zu überprüfen, ob der Spieler den Server hat
 
     void Start()
     {
@@ -34,10 +35,17 @@ public class ScanObjekt : MonoBehaviour
             HidePopup(); // Verstecke das Popup-Text-Objekt, wenn der Spieler nicht in Reichweite ist
         }
 
-        // Überprüfe, ob der Spieler die Interaktionstaste drückt und das Objekt in Reichweite ist
+        // Überprüfe, ob der Spieler die Interaktionstaste drückt und das Objekt in Reichweite ist und den Server hat
         if (isInRange && Input.GetKeyDown(KeyCode.E))
         {
-            Interact();
+            if (hasServer)
+            {
+                Interact();
+            }
+            else
+            {
+                ShowPickUpServerPopup();
+            }
         }
     }
 
@@ -66,5 +74,18 @@ public class ScanObjekt : MonoBehaviour
         {
             popupText.SetActive(false); // Deaktiviere das Popup-Text-Objekt
         }
+    }
+
+    // Zeige das Popup-Text-Objekt an, wenn der Spieler versucht, mit "E" zu interagieren, bevor er den Server aufgesammelt hat
+    void ShowPickUpServerPopup()
+    {
+        Debug.Log("Zuerst den Server aufsammeln!");
+        // Hier kannst du den Popup-Text anzeigen oder eine andere Benachrichtigungsmethode verwenden
+    }
+
+    // Methode, um festzustellen, ob der Spieler den Server hat
+    public void SetHasServer(bool value)
+    {
+        hasServer = value;
     }
 }
