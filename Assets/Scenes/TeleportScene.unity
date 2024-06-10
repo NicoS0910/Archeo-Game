@@ -3094,10 +3094,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0016051364
-    y: 0.003478261
-    width: 0.99678975
-    height: 0.9913044
+    x: 0
+    y: 0
+    width: 1
+    height: 0.9978308
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -8022,7 +8022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0.57254905}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0.8627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8733,14 +8733,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.96862745, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 95759c6aaccbbe643b5a7e150d260d5c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8781,6 +8781,8 @@ GameObject:
   - component: {fileID: 6595226548261314313}
   - component: {fileID: 5265805925073337017}
   - component: {fileID: 965231408098346460}
+  - component: {fileID: 7231488278516721059}
+  - component: {fileID: 7231488278516721060}
   m_Layer: 5
   m_Name: coin1
   m_TagString: Coin1
@@ -8801,6 +8803,8 @@ GameObject:
   - component: {fileID: 5049863173061744655}
   - component: {fileID: 8798853258894728975}
   - component: {fileID: 5281482855464272222}
+  - component: {fileID: 8798853258894728977}
+  - component: {fileID: 8798853258894728976}
   m_Layer: 5
   m_Name: coin3
   m_TagString: Coin3
@@ -9299,7 +9303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateKey: 114
   rotationSpeed: 100
-  hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  hoverColor: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 1}
   fadeDuration: 1
 --- !u!114 &5049863173061744655
 MonoBehaviour:
@@ -9314,14 +9318,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.96474147, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2ddc8415daefd084f99fe26748eb0d13, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9358,7 +9362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateKey: 114
   rotationSpeed: 100
-  hoverColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  hoverColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
   fadeDuration: 1
 --- !u!225 &5281482855464272222
 CanvasGroup:
@@ -9514,6 +9518,8 @@ GameObject:
   - component: {fileID: 231543244106319723}
   - component: {fileID: 4905922841413714041}
   - component: {fileID: 6024853165240598459}
+  - component: {fileID: 6242863024672262157}
+  - component: {fileID: 6242863024672262156}
   m_Layer: 5
   m_Name: coin2
   m_TagString: Coin2
@@ -9529,6 +9535,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6198743068095602245}
   m_CullTransparentMesh: 1
+--- !u!114 &6242863024672262156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198743068095602245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5174bc586a78f64d9295c259d339c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &6242863024672262157
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6198743068095602245}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cdcd143f4212fcc43ab422db8602fa45, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6595226548261314313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9542,14 +9581,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.96862745, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 3039eb624d80af047b1de018051f38d6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9616,6 +9655,39 @@ RectTransform:
   m_AnchoredPosition: {x: -241, y: -90}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.4665941}
+--- !u!95 &7231488278516721059
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620437232645754205}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac7ba60a4e7f6ec4caa50f56468d4d40, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7231488278516721060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620437232645754205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5174bc586a78f64d9295c259d339c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &7298517470495984761
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9753,13 +9825,53 @@ GameObject:
   - component: {fileID: 3593367135650773954}
   - component: {fileID: 2979975926034820495}
   - component: {fileID: 3138568667416188286}
+  - component: {fileID: 8636937179210086954}
+  - component: {fileID: 8636937179210086953}
   m_Layer: 5
   m_Name: CoinGame
   m_TagString: MinigameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
+--- !u!114 &8636937179210086953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636937179210086952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 0.8627451}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &8636937179210086954
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8636937179210086952}
+  m_CullTransparentMesh: 1
 --- !u!114 &8798853258894728975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9774,8 +9886,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateKey: 0
   rotationSpeed: 0
-  hoverColor: {r: 1, g: 0.06434487, b: 0.015686274, a: 1}
+  hoverColor: {r: 0.62352943, g: 0.62352943, b: 0.62352943, a: 1}
   fadeDuration: 1
+--- !u!114 &8798853258894728976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718123505875939133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5174bc586a78f64d9295c259d339c51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &8798853258894728977
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 718123505875939133}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 72c913f8be5044149b852125b6829505, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &8903085220555584181
 MonoBehaviour:
   m_ObjectHideFlags: 0
