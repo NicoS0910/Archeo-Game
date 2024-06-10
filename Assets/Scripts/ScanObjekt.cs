@@ -5,7 +5,8 @@ using UnityEngine;
 public class ScanObjekt : MonoBehaviour
 {
     public float interactionRange = 5f;
-    public GameObject popupText; // Das GameObject des Popups
+    public GameObject popupText; // Das GameObject des Popups, wenn der Server aufgenommen wurde
+    public GameObject popupText1; // Das GameObject des Popups, wenn der Server noch nicht aufgenommen wurde
     public Sprite newSprite; // Das neue Sprite, das angezeigt werden soll
 
     private bool isInRange = false;
@@ -62,9 +63,19 @@ public class ScanObjekt : MonoBehaviour
 
     void ShowPopup()
     {
-        if (popupText != null)
+        if (hasServer)
         {
-            popupText.SetActive(true); // Aktiviere das Popup-Text-Objekt
+            if (popupText != null)
+            {
+                popupText.SetActive(true); // Aktiviere das Popup-Text-Objekt
+            }
+        }
+        else
+        {
+            if (popupText1 != null)
+            {
+                popupText1.SetActive(true); // Aktiviere das Popup-Text-Objekt, wenn der Server noch nicht aufgenommen wurde
+            }
         }
     }
 
@@ -73,6 +84,10 @@ public class ScanObjekt : MonoBehaviour
         if (popupText != null)
         {
             popupText.SetActive(false); // Deaktiviere das Popup-Text-Objekt
+        }
+        if (popupText1 != null)
+        {
+            popupText1.SetActive(false); // Deaktiviere das Popup-Text-Objekt, wenn der Server noch nicht aufgenommen wurde
         }
     }
 
