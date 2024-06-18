@@ -9,15 +9,17 @@ public class PlayerController : MonoBehaviour
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
+    public ScanObjekt scanObjekt; // Referenz auf das ScanObjekt-Skript hinzugefügt
 
-    Vector2 movementInput;
-    SpriteRenderer spriteRenderer;
-    Rigidbody2D rb;
-    Animator animator;
-    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    private bool hasServer = false; // Gibt an, ob der Spieler den Server hat
+    private Vector2 movementInput;
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
+    private Animator animator;
+    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
-    bool canMove = true;
-    Vector2 lastMovementInput; // New variable to store the last movement direction
+    private bool canMove = true;
+    private Vector2 lastMovementInput; // New variable to store the last movement direction
 
     void Start()
     {
@@ -49,6 +51,13 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("isMoving", false);
             }
+        }
+
+        // Taste "E" wird reserviert für zukünftige Aktionen, wenn der Server aufgesammelt wurde
+        if (Input.GetKeyDown(KeyCode.E) && hasServer)
+        {
+            Debug.Log("E Taste gedrückt und Server ist aufgesammelt.");
+            // Füge hier zukünftige Aktionen hinzu
         }
     }
 
@@ -129,5 +138,21 @@ public class PlayerController : MonoBehaviour
     public void UnlockMovement()
     {
         canMove = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Server"))
+        {
+            PickUpServer(other.gameObject);
+        }
+    }
+
+    private void PickUpServer(GameObject server)
+    {
+        hasServer = true;
+        scanObjekt.SetHasServer(true); // Aktualisiere den Status des Servers im ScanObjekt
+        Destroy(server); // Server-Objekt aus der Szene entfernen
+        Debug.Log("Server aufgenommen!");
     }
 }
