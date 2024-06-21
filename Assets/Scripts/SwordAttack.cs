@@ -7,7 +7,7 @@ public class SwordAttack : MonoBehaviour
     public Collider2D swordCollider;
     public float damage = 3;
     Vector2 rightAttackOffset;
-    public Tool tool;
+    public Harvesting tool;
 
     private void Start()
     {

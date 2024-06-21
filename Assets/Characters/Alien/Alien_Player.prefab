@@ -143,6 +143,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   swordAttack: {fileID: 191177299085397169}
+  scanObjekt: {fileID: 0}
 --- !u!50 &5659017456265019422
 Rigidbody2D:
   serializedVersion: 4
@@ -464,7 +465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb94c10cd748b04282f246b87f66d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swordCollider: {fileID: 0}
+  swordCollider: {fileID: 8916548337836897370}
+  <Tool>k__BackingField: {fileID: 11400000, guid: 89a9c1d35fa87d74daccdfaca4dee584, type: 2}
 --- !u!61 &5807482625550514661
 BoxCollider2D:
   m_ObjectHideFlags: 0

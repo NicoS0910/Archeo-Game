@@ -4,24 +4,39 @@ using UnityEngine;
 
 public class Harvestable : MonoBehaviour
 {
-    [field: SerializeField] public int ResourceCount { get; private set;}
-    [field: SerializeField] public ParticleSystem ResourceEmitPS { get; private set;}
+    [field: SerializeField] public ToolType HarvestingType { get; private set; }
+    [field: SerializeField] public int ResourceCount { get; private set; }
+    [field: SerializeField] public ParticleSystem ResourceEmitPS { get; private set; }
     private int _amountHarvested = 0;
 
-    public void Harvest(int amount)
+//Checks tool type to make sure harvesting the node is possible
+    public bool TryHarvest(ToolType harvestingType, int amount)
+    {
+        if (harvestingType == HarvestingType)
+        {
+            Harvest(amount);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void Harvest(int amount)
     {
         //cant harvest more resources than are left in the node
         int amountToSpawn = Mathf.Min(amount, ResourceCount - _amountHarvested);
 
-        if(amountToSpawn > 0)
+        if (amountToSpawn > 0)
         {
             ResourceEmitPS.Emit(amountToSpawn);
             _amountHarvested += amountToSpawn;
         }
 
-        if(_amountHarvested >= ResourceCount)
+        if (_amountHarvested >= ResourceCount)
         {
-            //Node os depleted
+            //Node is depleted
             Destroy(gameObject);
         }
     }
