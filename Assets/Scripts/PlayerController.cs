@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,23 +7,20 @@ public class PlayerController : MonoBehaviour
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
-    public ScanObjekt scanObjekt; // Referenz auf das ScanObjekt-Skript hinzugefügt
+    public ScanObjekt scanObjekt; // Referenz auf das ScanObjekt-Skript
 
-    private bool hasServer = false; // Gibt an, ob der Spieler den Server hat
+    private bool hasScanned = false;
     private Vector2 movementInput;
-    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private Animator animator;
-    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    private Vector2 lastMovementInput;
 
     private bool canMove = true;
-    private Vector2 lastMovementInput; // New variable to store the last movement direction
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -34,7 +29,7 @@ public class PlayerController : MonoBehaviour
         {
             if (movementInput != Vector2.zero)
             {
-                lastMovementInput = movementInput; // Update the last movement direction
+                lastMovementInput = movementInput;
                 bool success = TryMove(movementInput);
 
                 if (!success)
@@ -52,24 +47,16 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isMoving", false);
             }
         }
-
-        // Taste "E" wird reserviert für zukünftige Aktionen, wenn der Server aufgesammelt wurde
-        if (Input.GetKeyDown(KeyCode.E) && hasServer)
-        {
-            Debug.Log("E Taste gedrückt und Server ist aufgesammelt.");
-            // Füge hier zukünftige Aktionen hinzu
-        }
     }
 
     private bool TryMove(Vector2 direction)
     {
         if (direction != Vector2.zero)
         {
-            // Check for collisions
             int count = rb.Cast(
                     direction,
                     movementFilter,
-                    castCollisions,
+                    new RaycastHit2D[1],
                     moveSpeed * Time.fixedDeltaTime + collisionOffset);
             if (count == 0)
             {
@@ -83,7 +70,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // Can't move if there is no direction to move in
             return false;
         }
     }
@@ -150,9 +136,12 @@ public class PlayerController : MonoBehaviour
 
     private void PickUpServer(GameObject server)
     {
-        hasServer = true;
-        scanObjekt.SetHasServer(true); // Aktualisiere den Status des Servers im ScanObjekt
-        Destroy(server); // Server-Objekt aus der Szene entfernen
-        Debug.Log("Server aufgenommen!");
+        hasScanned = true;
+        scanObjekt.SetHasServer(true); // Update ScanObjekt state
+        Destroy(server); // Remove server object from scene
+        AchievementManager.Instance.SetHasServer(true); // Signal AchievementManager
+
+        // Activate the pickup achievement object
+        AchievementManager.Instance.ActivateObject("pickup_achievement", true);
     }
 }

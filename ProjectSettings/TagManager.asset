@@ -15,6 +15,10 @@ TagManager:
   - shard3
   - shard4
   - Server
+  - tz1
+  - tz2
+  - tz3
+  - tz4
   layers:
   - Default
   - TransparentFX

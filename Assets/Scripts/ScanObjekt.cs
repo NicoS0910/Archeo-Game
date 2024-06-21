@@ -1,81 +1,89 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScanObjekt : MonoBehaviour
 {
     public float interactionRange = 5f;
-    public GameObject popupText; // Das GameObject des Popups, wenn der Server aufgenommen wurde
-    public GameObject popupText1; // Das GameObject des Popups, wenn der Server noch nicht aufgenommen wurde
-    public Sprite newSprite; // Das neue Sprite, das angezeigt werden soll
+    public GameObject popupText;
+    public GameObject infoBoxObject; // Referenz auf das Info Box Objekt im Inspector
+    public Sprite newSprite; // Hier das neue Sprite im Inspector zuweisen
 
     private bool isInRange = false;
     private SpriteRenderer spriteRenderer;
     private Sprite originalSprite;
-    private bool hasServer = false; // Neue Variable, um zu überprüfen, ob der Spieler den Server hat
+    private bool hasServer = false;
+    private bool isGamePaused = false; // Variable zum Speichern des Pausenstatus
+
+    private PlayerController playerController; // Referenz auf den PlayerController
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalSprite = spriteRenderer.sprite;
-        HidePopup(); // Verstecke das Popup-Text-Objekt zu Beginn
+        HidePopup();
+
+        // PlayerController Komponente finden
+        playerController = FindObjectOfType<PlayerController>();
+        if (playerController == null)
+        {
+            Debug.LogError("PlayerController not found in the scene!");
+        }
     }
 
     void Update()
     {
-        // Überprüfe, ob der Spieler in Reichweite ist
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, interactionRange);
         if (hit.collider != null && hit.collider.CompareTag("Player"))
         {
             isInRange = true;
-            ShowPopup(); // Zeige das Popup-Text-Objekt an
+            ShowPopup();
         }
         else
         {
             isInRange = false;
-            HidePopup(); // Verstecke das Popup-Text-Objekt, wenn der Spieler nicht in Reichweite ist
+            HidePopup();
         }
 
-        // Überprüfe, ob der Spieler die Interaktionstaste drückt und das Objekt in Reichweite ist und den Server hat
         if (isInRange && Input.GetKeyDown(KeyCode.E))
         {
             if (hasServer)
             {
                 Interact();
+                // Hier das Achievement anzeigen
+                AchievementManager.Instance.ActivateObject("scan_achievement", false);
             }
             else
             {
                 ShowPickUpServerPopup();
             }
         }
+
+        // Check if 'A' key is pressed
+        if (isInRange && Input.GetKeyDown(KeyCode.F))
+        {
+            ActivateInfoBox();
+        }
     }
 
     void Interact()
     {
-        // Ändere das Sprite, wenn ein neues Sprite vorhanden ist
         if (newSprite != null)
         {
             spriteRenderer.sprite = newSprite;
+            Debug.Log("Sprite geändert");
         }
-        // Deine weitere Interaktionslogik hier
+        else
+        {
+            Debug.LogWarning("Kein neues Sprite zugewiesen!");
+        }
         Debug.Log("Interacted with object");
     }
 
     void ShowPopup()
     {
-        if (hasServer)
+        if (hasServer && popupText != null)
         {
-            if (popupText != null)
-            {
-                popupText.SetActive(true); // Aktiviere das Popup-Text-Objekt
-            }
-        }
-        else
-        {
-            if (popupText1 != null)
-            {
-                popupText1.SetActive(true); // Aktiviere das Popup-Text-Objekt, wenn der Server noch nicht aufgenommen wurde
-            }
+            popupText.SetActive(true);
         }
     }
 
@@ -83,24 +91,55 @@ public class ScanObjekt : MonoBehaviour
     {
         if (popupText != null)
         {
-            popupText.SetActive(false); // Deaktiviere das Popup-Text-Objekt
-        }
-        if (popupText1 != null)
-        {
-            popupText1.SetActive(false); // Deaktiviere das Popup-Text-Objekt, wenn der Server noch nicht aufgenommen wurde
+            popupText.SetActive(false);
         }
     }
 
-    // Zeige das Popup-Text-Objekt an, wenn der Spieler versucht, mit "E" zu interagieren, bevor er den Server aufgesammelt hat
     void ShowPickUpServerPopup()
     {
         Debug.Log("Zuerst den Server aufsammeln!");
-        // Hier kannst du den Popup-Text anzeigen oder eine andere Benachrichtigungsmethode verwenden
     }
 
-    // Methode, um festzustellen, ob der Spieler den Server hat
     public void SetHasServer(bool value)
     {
         hasServer = value;
+    }
+
+    void ActivateInfoBox()
+    {
+        if (infoBoxObject != null)
+        {
+            infoBoxObject.SetActive(true);
+            PauseGame(); // Spiel pausieren, wenn Info Box aktiviert wird
+        }
+    }
+
+    void PauseGame()
+    {
+        isGamePaused = true;
+        Time.timeScale = 0f; // Spielzeit auf Null setzen, um das Spiel zu pausieren
+        Debug.Log("Game paused");
+    }
+
+    public void UnpauseGame()
+    {
+        isGamePaused = false;
+        Time.timeScale = 1f; // Spielzeit auf Eins setzen, um das Spiel fortzusetzen
+        Debug.Log("Game unpaused");
+
+        if (playerController != null)
+        {
+            playerController.UnlockMovement(); // Spielerbewegung wieder erlauben
+        }
+    }
+
+    // Methode zum Deaktivieren des Info Box Objekts
+    public void DeactivateInfoBox()
+    {
+        if (infoBoxObject != null)
+        {
+            infoBoxObject.SetActive(false);
+            UnpauseGame(); // Sicherstellen, dass das Spiel wieder fortgesetzt wird
+        }
     }
 }

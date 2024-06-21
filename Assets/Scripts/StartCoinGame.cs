@@ -3,7 +3,7 @@ using UnityEngine;
 public class StartCoinGame : MonoBehaviour
 {
     public float interactionRange = 5f;
-    public GameObject popupText2; // Das GameObject des Popup-Texts
+    public GameObject popupText02; // Das GameObject des Popup-Texts
     public GameObject CoinGame; // Das GameObject des Minispiels, das im Editor zugewiesen werden muss
 
     private bool isInRange = false;
@@ -65,17 +65,17 @@ public class StartCoinGame : MonoBehaviour
 
     void ShowPopup()
     {
-        if (popupText2 != null)
+        if (popupText02 != null)
         {
-            popupText2.SetActive(true); // Aktiviere das Popup-Text-Objekt
+            popupText02.SetActive(true); // Aktiviere das Popup-Text-Objekt
         }
     }
 
     void HidePopup()
     {
-        if (popupText2 != null)
+        if (popupText02 != null)
         {
-            popupText2.SetActive(false); // Deaktiviere den Interaktionstext
+            popupText02.SetActive(false); // Deaktiviere den Interaktionstext
         }
     }
 }
