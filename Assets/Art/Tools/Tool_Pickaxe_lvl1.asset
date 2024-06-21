@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tool_Pickaxe_lvl1
   m_EditorClassIdentifier: 
   <DisplayName>k__BackingField: Pickaxe
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 66d0d80b2308489419c40d59119aa27a, type: 3}
   <Icon>k__BackingField: {fileID: 21300000, guid: 66d0d80b2308489419c40d59119aa27a, type: 3}
   <Description>k__BackingField: Basic Pickaxe for destroying basic rocks.
   <Type>k__BackingField: {fileID: 11400000, guid: bc4406a05346c944ebd2948d937ffef5, type: 2}
