@@ -3,7 +3,7 @@ using UnityEngine;
 public class StartPuzzleGame : MonoBehaviour
 {
     public float interactionRange = 5f;
-    public GameObject popupText2; // Das GameObject des Popup-Texts
+    public GameObject popupText03; // Das GameObject des Popup-Texts
     public GameObject PuzzleGame; // Das GameObject des Minispiels, das im Editor zugewiesen werden muss
 
     private bool isInRange = false;
@@ -50,17 +50,17 @@ public class StartPuzzleGame : MonoBehaviour
 
     void ShowPopup()
     {
-        if (popupText2 != null)
+        if (popupText03 != null)
         {
-            popupText2.SetActive(true); // Aktiviere das Popup-Text-Objekt
+            popupText03.SetActive(true); // Aktiviere das Popup-Text-Objekt
         }
     }
 
     void HidePopup()
     {
-        if (popupText2 != null)
+        if (popupText03 != null)
         {
-            popupText2.SetActive(false); // Deaktiviere den Interaktionstext
+            popupText03.SetActive(false); // Deaktiviere den Interaktionstext
         }
     }
 }
