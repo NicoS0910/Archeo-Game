@@ -24,21 +24,45 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
+    // Klasse für die Darstellung eines Achievements
+    public class Achievement
+    {
+        public string id;
+        public string description;
+        public GameObject activateOnPickup; // GameObject, das bei Pickup aktiviert werden soll
+        public GameObject activateOnScan;   // GameObject, das bei Scan aktiviert werden soll
+        public bool isAchieved;             // Ob das Achievement erreicht wurde
+        public bool hasServer;              // Zusätzliche Eigenschaft spezifisch für das Beispiel
+
+        public Achievement(string id, string description, GameObject pickupObject, GameObject scanObject)
+        {
+            this.id = id;
+            this.description = description;
+            this.activateOnPickup = pickupObject;
+            this.activateOnScan = scanObject;
+            this.isAchieved = false;
+            this.hasServer = false;
+        }
+    }
+
     // Liste aller Achievements
     public List<Achievement> achievements = new List<Achievement>();
 
-    public GameObject pickupAchievementObject; // Füge dies hinzu
-    public GameObject scanAchievementObject; // Füge dies hinzu
+    public GameObject pickupAchievementObject; // Referenz auf das GameObject für das Pickup-Achievement
+    public GameObject scanAchievementObject;   // Referenz auf das GameObject für das Scan-Achievement
+    public GameObject nokiaAchievementObject;  // Referenz auf das GameObject für das Nokia-Achievement
 
     void Start()
     {
         // Beispiel: Füge hier Achievements hinzu
         Achievement scanAchievement = new Achievement("scan_achievement", "You scanned an object!", null, scanAchievementObject);
         Achievement pickupAchievement = new Achievement("pickup_achievement", "You picked up an item!", pickupAchievementObject, null);
+        Achievement nokiaAchievement = new Achievement("nokia_achievement", "You unlocked the Nokia Achievement!", null, nokiaAchievementObject); // Neues Achievement für Nokia
 
         // Füge die Achievements der Liste hinzu
         achievements.Add(scanAchievement);
         achievements.Add(pickupAchievement);
+        achievements.Add(nokiaAchievement); // Füge das Nokia Achievement hinzu
     }
 
     public void ActivateObject(string achievementId, bool isPickup)

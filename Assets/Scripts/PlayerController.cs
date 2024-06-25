@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
     public ScanObjekt scanObjekt; // Referenz auf das ScanObjekt-Skript
+    public activateQuiz activateQuiz; // Referenz auf das activateQuiz-Skript
 
     private bool hasScanned = false;
     private Vector2 movementInput;
@@ -17,11 +18,20 @@ public class PlayerController : MonoBehaviour
 
     private bool canMove = true;
 
-    void Start()
+void Start()
+{
+    rb = GetComponent<Rigidbody2D>();
+    animator = GetComponent<Animator>();
+
+    if (scanObjekt == null)
     {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        Debug.LogError("ScanObjekt reference is missing in PlayerController.");
     }
+    if (activateQuiz == null)
+    {
+        Debug.LogError("activateQuiz reference is missing in PlayerController.");
+    }
+}
 
     private void FixedUpdate()
     {
@@ -137,7 +147,15 @@ public class PlayerController : MonoBehaviour
     private void PickUpServer(GameObject server)
     {
         hasScanned = true;
-        scanObjekt.SetHasServer(true); // Update ScanObjekt state
+        if (scanObjekt != null)
+        {
+            scanObjekt.SetHasServer(true); // Update ScanObjekt state
+        }
+        else
+        {
+            Debug.LogError("ScanObjekt reference is missing.");
+        }
+
         Destroy(server); // Remove server object from scene
         AchievementManager.Instance.SetHasServer(true); // Signal AchievementManager
 
