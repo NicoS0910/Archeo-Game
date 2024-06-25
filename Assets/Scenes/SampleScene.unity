@@ -40429,7 +40429,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 03e10c35d3933a9498943afe4fbb699f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -51307,6 +51307,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 66d0d80b2308489419c40d59119aa27a, type: 3}
+    - target: {fileID: 3284891059752501689, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3635855257827819841, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
       propertyPath: m_Name
       value: Alien_Player
