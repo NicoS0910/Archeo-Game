@@ -3006,11 +3006,11 @@ Transform:
   - {fileID: 1872421143}
   - {fileID: 424764574}
   - {fileID: 1659988386}
+  - {fileID: 913503291}
   - {fileID: 766322816}
   - {fileID: 648689726}
   - {fileID: 2230624079384315711}
   - {fileID: 1915153779}
-  - {fileID: 913503291}
   - {fileID: 984449574}
   m_Father: {fileID: 1680714162}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5568,13 +5568,14 @@ GameObject:
   - component: {fileID: 984449577}
   - component: {fileID: 984449576}
   - component: {fileID: 984449575}
+  - component: {fileID: 984449580}
   m_Layer: 5
   m_Name: NokiaQuiz
   m_TagString: MinigameUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &984449574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5702,6 +5703,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &984449580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984449573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44dcb4aacf4c8d24b85b3d93be9b0dc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  correctAnswerButton: {fileID: 560641416}
+  wrongAnswerButtons:
+  - {fileID: 483003135}
+  - {fileID: 497455234}
+  - {fileID: 679980212}
 --- !u!1 &987868708
 GameObject:
   m_ObjectHideFlags: 0
