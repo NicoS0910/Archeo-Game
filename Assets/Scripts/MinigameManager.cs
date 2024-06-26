@@ -14,11 +14,26 @@ public class MinigameManager : MonoBehaviour
     public GameObject rewardPuzzle;       
     public GameObject puzzleMinigameUI;   
 
+    private PlayerController playerController; // Referenz auf den PlayerController
+    private bool isGamePaused = false; // Variable zum Speichern des Pausenstatus
+
+    void Start()
+    {
+        // PlayerController Komponente finden
+        playerController = FindObjectOfType<PlayerController>();
+        if (playerController == null)
+        {
+            Debug.LogError("PlayerController not found in the scene!");
+        }
+    }
+    
     public void CheckCoins()
     {
         if (AllCoinsCorrectlyPlaced())
         {
             EndCoinMinigame();
+            UnpauseGame();
+
         }
     }
 
@@ -49,10 +64,24 @@ public class MinigameManager : MonoBehaviour
         {
             Debug.Log("All puzzle pieces correctly placed.");
             EndPuzzleMinigame();
+            UnpauseGame();
+
         }
         else
         {
             Debug.Log("Not all puzzle pieces correctly placed.");
+        }
+    }
+
+    public void UnpauseGame()
+    {
+        isGamePaused = false;
+        Time.timeScale = 1f; // Spielzeit auf Eins setzen, um das Spiel fortzusetzen
+        Debug.Log("Game unpaused");
+
+        if (playerController != null)
+        {
+            playerController.UnlockMovement(); // Spielerbewegung wieder erlauben
         }
     }
 

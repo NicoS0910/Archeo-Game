@@ -8,6 +8,7 @@ public class StartCoinGame : MonoBehaviour
 
     private bool isInRange = false;
     private bool minigameStarted = false;
+    private bool isGamePaused = false; // Declare isGamePaused here
 
     void Update()
     {
@@ -56,6 +57,7 @@ public class StartCoinGame : MonoBehaviour
         {
             Debug.Log("CoinGame GameObject found: " + CoinGame.name);
             CoinGame.SetActive(true);
+            PauseGame();
         }
         else
         {
@@ -77,5 +79,11 @@ public class StartCoinGame : MonoBehaviour
         {
             popupText02.SetActive(false); // Deaktiviere den Interaktionstext
         }
+    }
+        void PauseGame()
+    {
+        isGamePaused = true;
+        Time.timeScale = 0f; // Spielzeit auf Null setzen, um das Spiel zu pausieren
+        Debug.Log("Game paused");
     }
 }

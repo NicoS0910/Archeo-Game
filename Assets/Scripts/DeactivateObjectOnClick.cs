@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class DeactivateObjectOnRightClick : MonoBehaviour, IPointerClickHandler
 {
     public GameObject objectToDeactivate; // Referenz auf das zu deaktivierende Objekt
+    public MinigameManager minigameManager; // Referenz auf den MinigameManager
 
     void Start()
     {
@@ -18,6 +18,12 @@ public class DeactivateObjectOnRightClick : MonoBehaviour, IPointerClickHandler
         if (objectToDeactivate == null)
         {
             Debug.LogError("Object to deactivate not assigned and cannot be found in scene!");
+        }
+
+        // Finde den MinigameManager, falls nicht zugewiesen
+        if (minigameManager == null)
+        {
+            minigameManager = FindObjectOfType<MinigameManager>();
         }
     }
 
@@ -34,6 +40,12 @@ public class DeactivateObjectOnRightClick : MonoBehaviour, IPointerClickHandler
         if (objectToDeactivate != null)
         {
             objectToDeactivate.SetActive(false); // Deaktiviere das Objekt
+
+            // Wenn ein MinigameManager zugewiesen ist, rufe die Methode auf, um das Spiel fortzusetzen
+            if (minigameManager != null)
+            {
+                minigameManager.UnpauseGame();
+            }
         }
         else
         {

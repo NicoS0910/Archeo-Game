@@ -107,7 +107,6 @@ public class activateQuiz : MonoBehaviour
         if (infoBoxObject != null)
         {
             infoBoxObject.SetActive(false);
-            UnpauseGame(); // Sicherstellen, dass das Spiel wieder fortgesetzt wird
         }
     }
 }

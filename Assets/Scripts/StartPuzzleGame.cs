@@ -8,6 +8,8 @@ public class StartPuzzleGame : MonoBehaviour
 
     private bool isInRange = false;
     private bool minigameStarted = false;
+    private bool isGamePaused = false; // Variable zum Speichern des Pausenstatus
+
 
     void Update()
     {
@@ -41,6 +43,7 @@ public class StartPuzzleGame : MonoBehaviour
         {
             Debug.Log("PuzzleGame GameObject found: " + PuzzleGame.name);
             PuzzleGame.SetActive(true);
+            PauseGame(); // Spiel pausieren, wenn das Minispiel gestartet wird
         }
         else
         {
@@ -62,5 +65,12 @@ public class StartPuzzleGame : MonoBehaviour
         {
             popupText03.SetActive(false); // Deaktiviere den Interaktionstext
         }
+    }
+
+    void PauseGame()
+    {
+        isGamePaused = true;
+        Time.timeScale = 0f; // Spielzeit auf Null setzen, um das Spiel zu pausieren
+        Debug.Log("Game paused");
     }
 }
