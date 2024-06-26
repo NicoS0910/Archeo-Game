@@ -42668,6 +42668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 2466085529751437997, guid: b446f7d972205024fade1ff048642f12, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2832458966109039905, guid: b446f7d972205024fade1ff048642f12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.67426366
@@ -44067,7 +44071,7 @@ Transform:
   m_GameObject: {fileID: 527806393}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.84, y: -0.24379802, z: 0}
+  m_LocalPosition: {x: 3.84, y: -1.084, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44124,7 +44128,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &539062817
 GameObject:
   m_ObjectHideFlags: 0
@@ -46378,7 +46382,7 @@ Transform:
   m_GameObject: {fileID: 945256560}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.2978482, y: 1.6616876, z: 0}
+  m_LocalPosition: {x: -3.2978482, y: 0.767, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46424,7 +46428,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8212b1c9ee5736d4280a54b161e1d3c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -46435,7 +46439,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &947441952
 GameObject:
   m_ObjectHideFlags: 0
@@ -48043,7 +48047,7 @@ Transform:
   m_GameObject: {fileID: 1330281592}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.16143954, y: 1.6672018, z: 0}
+  m_LocalPosition: {x: -0.16143954, y: 2.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48089,7 +48093,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: bb61ecfaafbb874478cb6a6f1d3ff0a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -48100,7 +48104,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &1344029213
 GameObject:
   m_ObjectHideFlags: 0
@@ -59056,6 +59060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2466085529751437997, guid: b446f7d972205024fade1ff048642f12, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2832458966109039905, guid: b446f7d972205024fade1ff048642f12, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.349
@@ -60480,9 +60488,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1160162376}
     - target: {fileID: 1970816551506052371, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970816551506052371, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 66d0d80b2308489419c40d59119aa27a, type: 3}
+    - target: {fileID: 1970816551506052371, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284891059752501689, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3284891059752501689, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3635855257827819841, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
       propertyPath: m_Name
       value: Alien_Player
@@ -60517,11 +60541,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5807482625550514661, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
-      value: 0.5
+      value: 0.19027779
       objectReference: {fileID: 0}
     - target: {fileID: 5807482625550514661, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.5
+      value: 0.57361114
       objectReference: {fileID: 0}
     - target: {fileID: 5807482625550514661, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -60533,11 +60557,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6383308702537009112, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.108
+      value: -0.061
       objectReference: {fileID: 0}
     - target: {fileID: 6383308702537009112, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383308702537009112, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999454
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383308702537009112, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383308702537009112, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383308702537009112, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.010452864
+      objectReference: {fileID: 0}
+    - target: {fileID: 6383308702537009112, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -1.198
       objectReference: {fileID: 0}
     - target: {fileID: 8063083503118349418, guid: 7ac64b1dced95e54883c6db7ebb04d2a, type: 3}
       propertyPath: m_Name
