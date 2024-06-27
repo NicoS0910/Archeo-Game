@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
     public ScanObjekt scanObjekt; // Referenz auf das ScanObjekt-Skript
-    public activateQuiz activateQuiz; // Referenz auf das activateQuiz-Skript
+    public activateQuiz activateQuiz; // Referenz auf das ActivateQuiz-Skript
 
     private bool hasScanned = false;
     private Vector2 movementInput;
@@ -18,20 +18,20 @@ public class PlayerController : MonoBehaviour
 
     private bool canMove = true;
 
-void Start()
-{
-    rb = GetComponent<Rigidbody2D>();
-    animator = GetComponent<Animator>();
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
-    if (scanObjekt == null)
-    {
-        Debug.LogError("ScanObjekt reference is missing in PlayerController.");
+        if (scanObjekt == null)
+        {
+            Debug.LogError("ScanObjekt reference is missing in PlayerController.");
+        }
+        if (activateQuiz == null)
+        {
+            Debug.LogError("ActivateQuiz reference is missing in PlayerController.");
+        }
     }
-    if (activateQuiz == null)
-    {
-        Debug.LogError("activateQuiz reference is missing in PlayerController.");
-    }
-}
 
     private void FixedUpdate()
     {

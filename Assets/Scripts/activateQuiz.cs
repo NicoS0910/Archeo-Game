@@ -1,3 +1,7 @@
+
+//activateQuiz Backup
+
+
 using System.Collections;
 using UnityEngine;
 
@@ -14,6 +18,7 @@ public class activateQuiz : MonoBehaviour
 
     void Start()
     {
+
         HidePopup();
 
         // PlayerController Komponente finden
@@ -62,25 +67,48 @@ public class activateQuiz : MonoBehaviour
         if (popupText != null)
         {
             popupText.SetActive(true);
+            
         }
     }
 
     void HidePopup()
     {
+        //transform.localScale = Vector2.zero;
         if (popupText != null)
         {
             popupText.SetActive(false);
         }
     }
 
-    void ActivateInfoBox()
+void ActivateInfoBox()
+{
+    // Prüfe, ob die Infobox und der Animator vorhanden sind
+    if (infoBoxObject != null)
     {
-        if (infoBoxObject != null)
+        Animator animator = infoBoxObject.GetComponent<Animator>();
+        if (animator != null)
         {
-            infoBoxObject.SetActive(true);
-            PauseGame(); // Spiel pausieren, wenn Info Box aktiviert wird
+            // Überprüfe, ob die Animation nicht bereits abgespielt wird
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("nokia"))
+            {
+                animator.SetTrigger("Show"); // Trigger "Show" im Animator auslösen
+            }
         }
+        else
+        {
+            Debug.LogError("Animator component not found on infoBoxObject!");
+        }
+
+        //PauseGame(); // Spiel pausieren, wenn Info Box aktiviert wird
     }
+    else
+    {
+        Debug.LogError("infoBoxObject is not assigned!");
+    }
+}
+
+
+
 
     void PauseGame()
     {
@@ -102,11 +130,31 @@ public class activateQuiz : MonoBehaviour
     }
 
     // Methode zum Deaktivieren des Info Box Objekts
-    public void DeactivateInfoBox()
+void DeactivateInfoBox()
+{
+    if (infoBoxObject != null)
     {
-        if (infoBoxObject != null)
+        Animator animator = infoBoxObject.GetComponent<Animator>();
+        if (animator != null)
         {
-            infoBoxObject.SetActive(false);
+            // Hier setzen wir den Trigger zum Stoppen der Animation
+            animator.SetTrigger("StopAnimation");
+
+            // Optional: Hier könntest du sicherstellen, dass das Objekt in der gestoppten Position bleibt
+            // Zum Beispiel, indem du die Position hier nicht weiter veränderst
+
+            // Deaktiviere das Spiel pausieren, wenn die Info-Box deaktiviert wird
+            UnpauseGame();
+        }
+        else
+        {
+            Debug.LogError("Animator component not found on infoBoxObject!");
         }
     }
+    else
+    {
+        Debug.LogError("infoBoxObject is not assigned!");
+    }
+}
+
 }
