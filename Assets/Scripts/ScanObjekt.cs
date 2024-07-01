@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class ScanObjekt : MonoBehaviour
@@ -62,6 +61,12 @@ public class ScanObjekt : MonoBehaviour
         if (isInRange && Input.GetKeyDown(KeyCode.F))
         {
             ActivateInfoBox();
+        }
+
+        // Check if 'S' key is pressed for scanning (neue Aufgabe)
+        if (isInRange && Input.GetKeyDown(KeyCode.S))
+        {
+            ScanObject();
         }
     }
 
@@ -141,5 +146,13 @@ public class ScanObjekt : MonoBehaviour
             infoBoxObject.SetActive(false);
             UnpauseGame(); // Sicherstellen, dass das Spiel wieder fortgesetzt wird
         }
+    }
+
+    // Neue Methode zum Scannen des Objekts (zweite Aufgabe)
+    void ScanObject()
+    {
+        Debug.Log("Object scanned!");
+        // Hier kannst du weitere Aktionen ausführen, wenn das Objekt gescannt wird
+        // Zum Beispiel: Setze einen Status, zeige eine Benachrichtigung an usw.
     }
 }
