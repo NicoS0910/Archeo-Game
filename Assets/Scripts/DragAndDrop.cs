@@ -8,13 +8,13 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private Vector3 startPosition;
     private Transform startParent;
     private CanvasGroup canvasGroup;
-    public KeyCode rotateKey = KeyCode.R; // Taste zum Drehen
-    public float rotationSpeed = 100f; // Geschwindigkeit der Drehung
+    public KeyCode rotateKey = KeyCode.R;
+    public float rotationSpeed = 100f;
     private bool isDragging = false;
     private Image objectImage;
     private Color originalColor;
-    public Color hoverColor = Color.yellow; // Farbe beim Hovern
-    public float fadeDuration = 1f; // Dauer des Ein- und Ausblendens
+    public Color hoverColor = Color.yellow;
+    public float fadeDuration = 1f;
 
     void Start()
     {
@@ -35,7 +35,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         if (isDragging && Input.GetKey(rotateKey))
         {
             float rotation = rotationSpeed * Time.deltaTime;
-            transform.Rotate(Vector3.forward, rotation); // Drehung um die Z-Achse
+            transform.Rotate(Vector3.forward, rotation);
         }
     }
 
@@ -66,7 +66,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         if (objectImage != null)
         {
-            StopAllCoroutines(); // Stoppe vorherige Coroutine, falls vorhanden
+            StopAllCoroutines();
             StartCoroutine(FadeToColor(hoverColor));
         }
     }
@@ -75,7 +75,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         if (objectImage != null)
         {
-            StopAllCoroutines(); // Stoppe vorherige Coroutine, falls vorhanden
+            StopAllCoroutines();
             StartCoroutine(FadeToColor(originalColor));
         }
     }

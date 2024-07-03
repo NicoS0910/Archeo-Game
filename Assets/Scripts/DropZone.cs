@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class DropZone : MonoBehaviour, IDropHandler
 {
-    public string correctTag;      // Der korrekte Tag für das fallen gelassene Objekt
+    public string correctTag;
     private MinigameManager minigameManager;
 
     void Awake()
@@ -28,8 +28,8 @@ public class DropZone : MonoBehaviour, IDropHandler
                     Debug.Log("Correct Tag: " + correctTag);
                     droppedObject.transform.SetParent(transform);
                     droppedObject.transform.position = transform.position;
-                    droppedObject.transform.rotation = Quaternion.identity; // Setzt die Rotation zurück
-                    minigameManager.CheckCoins();  // Überprüft die Münzen im Minispielmanager
+                    droppedObject.transform.rotation = Quaternion.identity;
+                    minigameManager.CheckCoins();
                     minigameManager.CheckPieces();
                 }
                 else

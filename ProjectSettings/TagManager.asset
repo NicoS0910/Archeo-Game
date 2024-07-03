@@ -19,6 +19,10 @@ TagManager:
   - tz2
   - tz3
   - tz4
+  - shard5
+  - shard6
+  - tz5
+  - tz6
   layers:
   - Default
   - TransparentFX
