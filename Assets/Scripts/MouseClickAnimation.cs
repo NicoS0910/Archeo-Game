@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayAnimationOnRightClick : MonoBehaviour, IPointerClickHandler
 {
+    public GameObject objectToDeactivate;
+    public GameObject objectToActivate;
+
     private Animator animator;
     private bool isPlaying = false;
 
@@ -41,8 +45,22 @@ public class PlayAnimationOnRightClick : MonoBehaviour, IPointerClickHandler
     // Methode, die aufgerufen wird, wenn die Animation beendet ist
     void OnAnimationEnd()
     {
+        // Animation beenden und Zustand zurücksetzen
         animator.SetBool("PlayAnimation", false);
         isPlaying = false;
         Debug.Log("Animation beendet und zu DoNothing zurückgekehrt");
+
+        // Deaktiviere ein Objekt und aktiviere ein anderes
+        if (objectToDeactivate != null)
+        {
+            objectToDeactivate.SetActive(false);
+            Debug.Log("Objekt deaktiviert: " + objectToDeactivate.name);
+        }
+
+        if (objectToActivate != null)
+        {
+            objectToActivate.SetActive(true);
+            Debug.Log("Objekt aktiviert: " + objectToActivate.name);
+        }
     }
 }
