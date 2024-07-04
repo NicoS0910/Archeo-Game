@@ -23,6 +23,7 @@ TagManager:
   - shard6
   - tz5
   - tz6
+  - shard
   layers:
   - Default
   - TransparentFX
