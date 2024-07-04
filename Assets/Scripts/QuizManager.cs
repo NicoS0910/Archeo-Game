@@ -42,9 +42,11 @@ public class QuizManager : MonoBehaviour
 
     void SetButtonColor(Button button, Color color)
     {
-        // Ändern Sie die Farbe des Button-Hintergrunds
-        ColorBlock colors = button.colors;
-        colors.normalColor = color;
-        button.colors = colors;
+        // Ändern Sie die Farbe der Image-Komponente des Buttons
+        Image buttonImage = button.GetComponent<Image>();
+        if (buttonImage != null)
+        {
+            buttonImage.color = color;
+        }
     }
 }
