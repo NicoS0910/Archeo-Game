@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3100692234244064230}
   - component: {fileID: 7600129952610024422}
   - component: {fileID: 2059833448942136514}
+  - component: {fileID: 7300307968300358280}
   m_Layer: 0
   m_Name: Alien_Player
   m_TagString: Untagged
@@ -144,6 +145,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   swordAttack: {fileID: 191177299085397169}
   scanObjekt: {fileID: 0}
+  activateQuiz: {fileID: 0}
 --- !u!50 &5659017456265019422
 Rigidbody2D:
   serializedVersion: 4
@@ -206,7 +208,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.078837134}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.4}
     oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
@@ -274,6 +276,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Inventory>k__BackingField: {fileID: 7600129952610024422}
+--- !u!114 &7300307968300358280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635855257827819841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb4855425a094a178dfef570ebb2d46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausePanel: {fileID: 0}
 --- !u!1 &4810085981677853100
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordCollider: {fileID: 8916548337836897370}
-  <Tool>k__BackingField: {fileID: 11400000, guid: 89a9c1d35fa87d74daccdfaca4dee584, type: 2}
+  _tool: {fileID: 0}
 --- !u!61 &5807482625550514661
 BoxCollider2D:
   m_ObjectHideFlags: 0
