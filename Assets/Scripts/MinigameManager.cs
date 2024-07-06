@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class MinigameManager : MonoBehaviour
 {
-    public GameObject[] coins;            
-    public Transform[] coinTargetZones;   
-    public GameObject rewardCoin;         
-    public GameObject coinMinigameUI;     
+    public GameObject[] coins;
+    public Transform[] coinTargetZones;
+    public GameObject rewardCoin;
+    public GameObject coinMinigameUI;
+    public GameObject closeUIButton; // Das UI-Element für den Close-Button
 
-    public GameObject[] pieces;            // Dies muss im Inspector zugewiesen werden
-    public Transform[] pieceTargetZones;   // Dies muss im Inspector zugewiesen werden
-    public GameObject rewardPuzzle;       
-    public GameObject puzzleMinigameUI;   
+    public GameObject[] pieces;
+    public Transform[] pieceTargetZones;
+    public GameObject rewardPuzzle;
+    public GameObject puzzleMinigameUI;
 
-    public GameObject specialObject;       // Dies muss im Inspector zugewiesen werden
-    public GameObject anotherSpecialObject;// Dies muss im Inspector zugewiesen werden
+    public GameObject specialObject;
+    public GameObject anotherSpecialObject;
 
-    private PlayerController playerController; // Referenz auf den PlayerController
-    private bool isGamePaused = false; // Variable zum Speichern des Pausenstatus
+    private PlayerController playerController;
+    private bool isGamePaused = false;
 
     void Start()
     {
-        // PlayerController Komponente finden
         playerController = FindObjectOfType<PlayerController>();
         if (playerController == null)
         {
             Debug.LogError("PlayerController not found in the scene!");
         }
 
-        // Sicherstellen, dass das spezielle Objekt deaktiviert ist
         if (specialObject != null)
         {
             specialObject.SetActive(false);
@@ -39,7 +38,6 @@ public class MinigameManager : MonoBehaviour
             Debug.LogError("Special object not assigned!");
         }
 
-        // Sicherstellen, dass das andere spezielle Objekt deaktiviert ist
         if (anotherSpecialObject != null)
         {
             anotherSpecialObject.SetActive(false);
@@ -48,14 +46,36 @@ public class MinigameManager : MonoBehaviour
         {
             Debug.LogError("Another special object not assigned!");
         }
+
+        if (closeUIButton != null)
+        {
+            closeUIButton.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Close UI Button not assigned!");
+        }
     }
 
     public void CheckCoins()
     {
         if (AllCoinsCorrectlyPlaced())
         {
-            EndCoinMinigame();
-            UnpauseGame();
+            ActivateCloseButton(); // Den Close-Button aktivieren
+            //UnpauseGame();
+        }
+    }
+
+    private void ActivateCloseButton()
+    {
+        if (closeUIButton != null)
+        {
+            closeUIButton.SetActive(true);
+            Debug.Log("Close button activated.");
+        }
+        else
+        {
+            Debug.LogWarning("Close button is not assigned.");
         }
     }
 
@@ -86,8 +106,6 @@ public class MinigameManager : MonoBehaviour
         if (AllPiecesCorrectlyPlaced())
         {
             Debug.Log("All puzzle pieces correctly placed.");
-            //EndPuzzleMinigame();
-            //UnpauseGame();
 
             if (specialObject != null)
             {
@@ -129,23 +147,19 @@ public class MinigameManager : MonoBehaviour
 
     private bool AllPiecesCorrectlyPlaced()
     {
-        Debug.Log($"Checking {pieces.Length} pieces against {pieceTargetZones.Length} target zones.");
         foreach (GameObject piece in pieces)
         {
             bool foundTargetZone = false;
             foreach (Transform zone in pieceTargetZones)
             {
-                Debug.Log($"Checking piece {piece.name} against zone {zone.name}");
                 if (piece.transform.parent == zone)
                 {
-                    Debug.Log($"Piece {piece.name} is in the correct zone {zone.name}");
                     foundTargetZone = true;
                     break;
                 }
             }
             if (!foundTargetZone)
             {
-                Debug.Log($"Piece {piece.name} is not in the correct zone");
                 return false;
             }
         }
