@@ -164,6 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.3
+  health: 1
+  damageSoundClip: {fileID: 8300000, guid: 014acb9d41c744643b318dbdeece1d6b, type: 3}
 --- !u!95 &8860385374292304477
 Animator:
   serializedVersion: 5

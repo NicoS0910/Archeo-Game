@@ -141,6 +141,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4770413707077698024, guid: 56630129f2e5b5546966dbd8e1b1aa10, type: 3}
+      propertyPath: harvestSoundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fe038a5cfe2c63848b5e2ed6fbb13368, type: 3}
+    - target: {fileID: 4770413707077698024, guid: 56630129f2e5b5546966dbd8e1b1aa10, type: 3}
       propertyPath: <ResourceCount>k__BackingField
       value: 5
       objectReference: {fileID: 0}
@@ -151,6 +155,10 @@ PrefabInstance:
     - target: {fileID: 6143718341782843527, guid: 56630129f2e5b5546966dbd8e1b1aa10, type: 3}
       propertyPath: m_Name
       value: HarvestableObject_SteinErz Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6143718341782843527, guid: 56630129f2e5b5546966dbd8e1b1aa10, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
