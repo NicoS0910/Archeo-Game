@@ -31,17 +31,7 @@ public class ScanObjekt : MonoBehaviour
 
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, interactionRange);
-        if (hit.collider != null && hit.collider.CompareTag("Player"))
-        {
-            isInRange = true;
-            ShowPopup();
-        }
-        else
-        {
-            isInRange = false;
-            HidePopup();
-        }
+        CheckPlayerDistance();
 
         if (isInRange && Input.GetKeyDown(KeyCode.E))
         {
@@ -67,6 +57,25 @@ public class ScanObjekt : MonoBehaviour
         if (isInRange && Input.GetKeyDown(KeyCode.S))
         {
             ScanObject();
+        }
+    }
+
+    void CheckPlayerDistance()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            float distance = Vector2.Distance(transform.position, player.transform.position);
+            if (distance <= interactionRange)
+            {
+                isInRange = true;
+                ShowPopup();
+            }
+            else
+            {
+                isInRange = false;
+                HidePopup();
+            }
         }
     }
 
@@ -154,5 +163,11 @@ public class ScanObjekt : MonoBehaviour
         Debug.Log("Object scanned!");
         // Hier kannst du weitere Aktionen ausführen, wenn das Objekt gescannt wird
         // Zum Beispiel: Setze einen Status, zeige eine Benachrichtigung an usw.
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, interactionRange);
     }
 }

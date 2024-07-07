@@ -8,41 +8,33 @@ public class StartCoinGame : MonoBehaviour
 
     private bool isInRange = false;
     private bool minigameStarted = false;
-    private bool isGamePaused = false; // Declare isGamePaused here
+    private bool isGamePaused = false; // Variable zum Speichern des Pausenstatus
 
     void Update()
     {
-        Debug.Log("Update method called."); // Überprüfen Sie, ob die Update-Methode ausgeführt wird.
+        CheckPlayerDistance();
 
-        // Überprüfe, ob der Spieler in Reichweite ist
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, interactionRange);
-        if (hit.collider != null && hit.collider.CompareTag("Player"))
+        if (isInRange && Input.GetKeyDown(KeyCode.E) && !minigameStarted)
         {
-            isInRange = true;
-            ShowPopup(); // Zeige den Interaktionstext an
-            Debug.Log("Player is in range.");
+            StartMinigame();
         }
-        else
-        {
-            isInRange = false;
-            HidePopup(); // Verstecke den Interaktionstext
-            Debug.Log("Player is out of range.");
-        }
+    }
 
-        // Überprüfe, ob der Spieler die Interaktionstaste drückt und das Objekt in Reichweite ist
-        if (isInRange)
+    void CheckPlayerDistance()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            Debug.Log("Player is in interaction range."); // Bestätigen Sie, dass der Spieler in Reichweite ist.
-
-            if (Input.GetKeyDown(KeyCode.E))
+            float distance = Vector2.Distance(transform.position, player.transform.position);
+            if (distance <= interactionRange)
             {
-                Debug.Log("E key was pressed."); // Bestätigen Sie, dass die E-Taste gedrückt wurde.
+                isInRange = true;
+                ShowPopup();
             }
-
-            if (Input.GetKeyDown(KeyCode.E) && !minigameStarted)
+            else
             {
-                Debug.Log("Starting the minigame."); // Bestätigen Sie, dass das Minigame gestartet wird.
-                StartMinigame();
+                isInRange = false;
+                HidePopup();
             }
         }
     }
@@ -52,10 +44,8 @@ public class StartCoinGame : MonoBehaviour
         Debug.Log("StartMinigame method called");
         minigameStarted = true;
 
-        // Aktiviere das CoinGame-GameObject
         if (CoinGame != null)
         {
-            Debug.Log("CoinGame GameObject found: " + CoinGame.name);
             CoinGame.SetActive(true);
             PauseGame();
         }
@@ -80,10 +70,17 @@ public class StartCoinGame : MonoBehaviour
             popupText02.SetActive(false); // Deaktiviere den Interaktionstext
         }
     }
-        void PauseGame()
+
+    void PauseGame()
     {
         isGamePaused = true;
         Time.timeScale = 0f; // Spielzeit auf Null setzen, um das Spiel zu pausieren
         Debug.Log("Game paused");
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, interactionRange);
     }
 }

@@ -5,25 +5,31 @@ public class StartPuzzleGame : MonoBehaviour
     public float interactionRange = 5f;
     public GameObject popupText03; // Das GameObject des Popup-Texts
     public GameObject PuzzleGame; // Das GameObject des Minispiels, das im Editor zugewiesen werden muss
+    public LayerMask playerLayer; // Layer für den Spieler
 
     private bool isInRange = false;
     private bool minigameStarted = false;
     private bool isGamePaused = false; // Variable zum Speichern des Pausenstatus
 
-
     void Update()
     {
-        // Überprüfe, ob der Spieler in Reichweite ist
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, interactionRange);
-        if (hit.collider != null && hit.collider.CompareTag("Player"))
+        // Überprüfen, ob der Spieler im Interaktionsbereich ist
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, interactionRange, playerLayer);
+        isInRange = false;
+
+        foreach (Collider2D hit in hits)
         {
-            isInRange = true;
-            ShowPopup(); // Zeige den Interaktionstext an
+            if (hit.CompareTag("Player"))
+            {
+                isInRange = true;
+                ShowPopup();
+                break;
+            }
         }
-        else
+
+        if (!isInRange)
         {
-            isInRange = false;
-            HidePopup(); // Verstecke den Interaktionstext
+            HidePopup();
         }
 
         // Überprüfe, ob der Spieler die Interaktionstaste drückt und das Objekt in Reichweite ist
@@ -72,5 +78,12 @@ public class StartPuzzleGame : MonoBehaviour
         isGamePaused = true;
         Time.timeScale = 0f; // Spielzeit auf Null setzen, um das Spiel zu pausieren
         Debug.Log("Game paused");
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Zeichne eine visuelle Darstellung des Interaktionsbereichs im Editor
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, interactionRange);
     }
 }
