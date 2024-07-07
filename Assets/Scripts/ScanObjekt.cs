@@ -124,7 +124,7 @@ public class ScanObjekt : MonoBehaviour
         if (infoBoxObject != null)
         {
             infoBoxObject.SetActive(true);
-            PauseGame(); // Spiel pausieren, wenn Info Box aktiviert wird
+            //PauseGame(); // Spiel pausieren, wenn Info Box aktiviert wird
         }
     }
 
