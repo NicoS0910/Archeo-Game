@@ -23,13 +23,23 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
+        // Versuche, die Referenzen automatisch zu finden, falls sie im Inspector nicht zugewiesen wurden
         if (scanObjekt == null)
         {
-            Debug.LogError("ScanObjekt reference is missing in PlayerController.");
+            scanObjekt = FindObjectOfType<ScanObjekt>();
+            if (scanObjekt == null)
+            {
+                Debug.LogError("ScanObjekt reference is missing in PlayerController.");
+            }
         }
+
         if (activateQuiz == null)
         {
-            Debug.LogError("ActivateQuiz reference is missing in PlayerController.");
+            activateQuiz = FindObjectOfType<activateQuiz>();
+            if (activateQuiz == null)
+            {
+                Debug.LogError("ActivateQuiz reference is missing in PlayerController.");
+            }
         }
     }
 
