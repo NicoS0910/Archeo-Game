@@ -7,6 +7,7 @@ public class Harvestable : MonoBehaviour
     [field: SerializeField] public ToolType HarvestingType { get; private set; }
     [field: SerializeField] public int ResourceCount { get; private set; }
     [field: SerializeField] public ParticleSystem ResourceEmitPS { get; private set; }
+    [SerializeField] private AudioClip harvestSoundClip; //hinterlegter Sound
     private int _amountHarvested = 0;
 
 //Checks tool type to make sure harvesting the node is possible
@@ -30,6 +31,7 @@ public class Harvestable : MonoBehaviour
 
         if (amountToSpawn > 0)
         {
+            SoundFXManager.instance.PlaySoundFXClip(harvestSoundClip, transform, 1f);
             ResourceEmitPS.Emit(amountToSpawn);
             _amountHarvested += amountToSpawn;
         }
@@ -37,6 +39,7 @@ public class Harvestable : MonoBehaviour
         if (_amountHarvested >= ResourceCount)
         {
             //Node is depleted
+            SoundFXManager.instance.PlaySoundFXClip(harvestSoundClip, transform, 1f);
             Destroy(gameObject);
         }
     }

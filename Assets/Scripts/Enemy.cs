@@ -5,7 +5,8 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     private Transform target;
     public float speed;
-    private float health = 1; // Privates Feld für die Gesundheit
+    [SerializeField] private float health; // Privates Feld für die Gesundheit
+    [SerializeField] private AudioClip damageSoundClip; //hinterlegter Sound
     private Rigidbody2D rb;
     private bool isChasing = false; // Gibt an, ob die Verfolgung aktiv ist
 
@@ -71,6 +72,9 @@ public class Enemy : MonoBehaviour
 
     public void Defeated()
     {
+        //Play soundFX
+        SoundFXManager.instance.PlaySoundFXClip(damageSoundClip, transform, 1f);
+
         animator.SetTrigger("Defeated");
         rb.velocity = Vector2.zero; // Stop movement when defeated
         GetComponent<Collider2D>().enabled = false; // Disable collider
