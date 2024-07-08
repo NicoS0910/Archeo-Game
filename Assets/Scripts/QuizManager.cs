@@ -5,6 +5,7 @@ public class QuizManager : MonoBehaviour
 {
     public Button correctAnswerButton;   // Der Button, der die korrekte Antwort darstellt
     public Button[] wrongAnswerButtons;  // Die Buttons, die falsche Antworten darstellen
+    public GameObject rewardObject;      // Das Objekt, das nach der richtigen Antwort erscheinen soll
 
     void Start()
     {
@@ -15,6 +16,12 @@ public class QuizManager : MonoBehaviour
         {
             button.onClick.AddListener(() => OnWrongButtonClick(button));
         }
+
+        // Verstecken Sie das Belohnungsobjekt zu Beginn
+        if (rewardObject != null)
+        {
+            rewardObject.SetActive(false);
+        }
     }
 
     void OnCorrectButtonClick(Button clickedButton)
@@ -24,6 +31,12 @@ public class QuizManager : MonoBehaviour
 
         // Deaktiviere alle falschen Buttons
         DisableWrongButtons();
+
+        // Zeige das Belohnungsobjekt an
+        if (rewardObject != null)
+        {
+            rewardObject.SetActive(true);
+        }
     }
 
     void OnWrongButtonClick(Button clickedButton)

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class activateQuiz : MonoBehaviour
@@ -31,12 +30,7 @@ public class activateQuiz : MonoBehaviour
         if (isInRange && Input.GetKeyDown(KeyCode.E))
         {
             Interact();
-            // Hier das Achievement anzeigen
-            AchievementManager.Instance.ActivateObject("nokia_achievement", false);
-        }
-
-        if (isInRange && Input.GetKeyDown(KeyCode.F))
-        {
+            // AchievementManager.Instance.ActivateObject("nokia_achievement", false); // Diese Zeile entfernen oder auskommentieren
             ActivateInfoBox();
         }
     }

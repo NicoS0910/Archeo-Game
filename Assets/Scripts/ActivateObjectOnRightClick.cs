@@ -29,7 +29,7 @@ public class ActivateObjectOnRightClick : MonoBehaviour, IPointerClickHandler
         if (objectToActivate != null)
         {
             objectToActivate.SetActive(true); // Aktiviere das Objekt
-            PauseGame();
+            //PauseGame();
 
         }
         else

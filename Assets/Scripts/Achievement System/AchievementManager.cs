@@ -50,19 +50,16 @@ public class AchievementManager : MonoBehaviour
 
     public GameObject pickupAchievementObject; // Referenz auf das GameObject für das Pickup-Achievement
     public GameObject scanAchievementObject;   // Referenz auf das GameObject für das Scan-Achievement
-    public GameObject nokiaAchievementObject;  // Referenz auf das GameObject für das Nokia-Achievement
 
     void Start()
     {
         // Beispiel: Füge hier Achievements hinzu
         Achievement scanAchievement = new Achievement("scan_achievement", "You scanned an object!", null, scanAchievementObject);
         Achievement pickupAchievement = new Achievement("pickup_achievement", "You picked up an item!", pickupAchievementObject, null);
-        Achievement nokiaAchievement = new Achievement("nokia_achievement", "You unlocked the Nokia Achievement!", null, nokiaAchievementObject); // Neues Achievement für Nokia
 
         // Füge die Achievements der Liste hinzu
         achievements.Add(scanAchievement);
         achievements.Add(pickupAchievement);
-        achievements.Add(nokiaAchievement); // Füge das Nokia Achievement hinzu
     }
 
     public void ActivateObject(string achievementId, bool isPickup)

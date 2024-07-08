@@ -47,7 +47,7 @@ public class ScanObjekt : MonoBehaviour
             }
         }
 
-        // Check if 'A' key is pressed
+        // Check if 'F' key is pressed
         if (isInRange && Input.GetKeyDown(KeyCode.F))
         {
             ActivateInfoBox();
@@ -123,37 +123,19 @@ public class ScanObjekt : MonoBehaviour
     {
         if (infoBoxObject != null)
         {
-            infoBoxObject.SetActive(true);
-            //PauseGame(); // Spiel pausieren, wenn Info Box aktiviert wird
+            Animator animator = infoBoxObject.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetTrigger("Show"); // Hier den entsprechenden Trigger-Namen eintragen
+            }
+            else
+            {
+                Debug.LogError("Animator component not found on infoBoxObject!");
+            }
         }
-    }
-
-    void PauseGame()
-    {
-        isGamePaused = true;
-        Time.timeScale = 0f; // Spielzeit auf Null setzen, um das Spiel zu pausieren
-        Debug.Log("Game paused");
-    }
-
-    public void UnpauseGame()
-    {
-        isGamePaused = false;
-        Time.timeScale = 1f; // Spielzeit auf Eins setzen, um das Spiel fortzusetzen
-        Debug.Log("Game unpaused");
-
-        if (playerController != null)
+        else
         {
-            playerController.UnlockMovement(); // Spielerbewegung wieder erlauben
-        }
-    }
-
-    // Methode zum Deaktivieren des Info Box Objekts
-    public void DeactivateInfoBox()
-    {
-        if (infoBoxObject != null)
-        {
-            infoBoxObject.SetActive(false);
-            UnpauseGame(); // Sicherstellen, dass das Spiel wieder fortgesetzt wird
+            Debug.LogError("infoBoxObject is not assigned!");
         }
     }
 
