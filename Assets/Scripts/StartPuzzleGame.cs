@@ -49,7 +49,7 @@ public class StartPuzzleGame : MonoBehaviour
         {
             Debug.Log("PuzzleGame GameObject found: " + PuzzleGame.name);
             PuzzleGame.SetActive(true);
-            PauseGame(); // Spiel pausieren, wenn das Minispiel gestartet wird
+            //PauseGame(); // Spiel pausieren, wenn das Minispiel gestartet wird
         }
         else
         {

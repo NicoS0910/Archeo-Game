@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Vector3 startPosition;
     private Transform startParent;
@@ -11,23 +11,10 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public KeyCode rotateKey = KeyCode.R;
     public float rotationSpeed = 100f;
     private bool isDragging = false;
-    private Image objectImage;
-    private Color originalColor;
-    public Color hoverColor = Color.yellow;
-    public float fadeDuration = 1f;
 
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        objectImage = GetComponent<Image>();
-        if (objectImage != null)
-        {
-            originalColor = objectImage.color;
-        }
-        else
-        {
-            Debug.LogError("Image component not found on " + gameObject.name);
-        }
     }
 
     void Update()
@@ -60,36 +47,5 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         {
             transform.position = startPosition;
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (objectImage != null)
-        {
-            StopAllCoroutines();
-            StartCoroutine(FadeToColor(hoverColor));
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (objectImage != null)
-        {
-            StopAllCoroutines();
-            StartCoroutine(FadeToColor(originalColor));
-        }
-    }
-
-    private IEnumerator FadeToColor(Color targetColor)
-    {
-        Color currentColor = objectImage.color;
-        float timer = 0f;
-        while (timer < fadeDuration)
-        {
-            objectImage.color = Color.Lerp(currentColor, targetColor, timer / fadeDuration);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-        objectImage.color = targetColor;
     }
 }
