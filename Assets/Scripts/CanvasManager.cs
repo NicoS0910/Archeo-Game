@@ -74,7 +74,7 @@ public class CanvasManager : MonoBehaviour
         foreach (GameObject obj in objectsInScene)
         {
             SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
-            if (renderer != null && renderer.sprite != null && renderer.sprite.name == "Alien_Attack_0")
+            if (renderer != null && renderer.sprite != null && renderer.sprite.name == "Auto1.1")
             {
                 return true;
             }
