@@ -28,10 +28,10 @@ public class MusicManager : MonoBehaviour
     {
         _audiosource.volume = volume;
 
-        if(!_audiosource.isPlaying || Input.GetKeyDown(KeyCode.Space))
-        {
-            ChangeSong(Random.Range(0, songs.Length));
-        }
+        //if(!_audiosource.isPlaying || Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    ChangeSong(Random.Range(0, songs.Length));
+        //}
 
         if (_songsPlayed==songs.Length)
         {
