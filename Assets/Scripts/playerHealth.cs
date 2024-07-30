@@ -18,11 +18,11 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        // Hier kannst du den Verlust von Leben testen, z.B. durch einen Tastendruck
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(1);
-        }
+        //Verlust von Leben testen, z.B. durch einen Tastendruck
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    TakeDamage(1);
+        //}
     }
 
     public void TakeDamage(int amount)
