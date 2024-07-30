@@ -4,11 +4,14 @@ public class Enemy : MonoBehaviour
 {
     private Animator animator;
     private Transform target;
+    private PlayerHealth playerHealth; // Referenz zur PlayerHealth des Spielers
     public float speed;
     [SerializeField] private float health; // Privates Feld für die Gesundheit
-    [SerializeField] private AudioClip damageSoundClip; //hinterlegter Sound
+    [SerializeField] private AudioClip damageSoundClip; // hinterlegter Sound
     private Rigidbody2D rb;
     private bool isChasing = false; // Gibt an, ob die Verfolgung aktiv ist
+    private float lastAttackTime; // Zeitpunkt des letzten Angriffs
+    public float attackCooldown = 1f; // Abklingzeit zwischen den Angriffen
 
     // Öffentliche Eigenschaft für Health
     public float Health
@@ -32,6 +35,10 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+
+        // Initialisiere die Referenz zur PlayerHealth des Spielers
+        playerHealth = target.GetComponent<PlayerHealth>();
+        lastAttackTime = -attackCooldown; // Initialisieren damit der Gegner sofort angreifen kann
     }
 
     private void FixedUpdate()
@@ -43,6 +50,15 @@ public class Enemy : MonoBehaviour
             {
                 Vector2 direction = (target.position - transform.position).normalized;
                 rb.MovePosition((Vector2)transform.position + direction * speed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                // Angriff, wenn der Gegner in Reichweite ist und die Abklingzeit abgelaufen ist
+                if (Time.time - lastAttackTime >= attackCooldown)
+                {
+                    AttackPlayer(1); // Hier fügst du dem Spieler 1 Schaden zu
+                    lastAttackTime = Time.time; // Aktualisiere den Zeitpunkt des letzten Angriffs
+                }
             }
         }
     }
@@ -72,7 +88,7 @@ public class Enemy : MonoBehaviour
 
     public void Defeated()
     {
-        //Play soundFX
+        // Play soundFX
         SoundFXManager.instance.PlaySoundFXClip(damageSoundClip, transform, 1f);
 
         animator.SetTrigger("Defeated");
@@ -90,5 +106,14 @@ public class Enemy : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(transform.position, GetComponent<BoxCollider2D>().size);
+    }
+
+    // Neue Angriffs-Funktion
+    public void AttackPlayer(int damage)
+    {
+        if (playerHealth != null)
+        {
+            playerHealth.TakeDamage(damage);
+        }
     }
 }
