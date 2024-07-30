@@ -16,6 +16,8 @@ public class CanvasManager : MonoBehaviour
     public TextMeshProUGUI intro3TextMeshPro;
     public TextMeshProUGUI intro4TextMeshPro;
     public Button skipButton;
+    public AudioSource audioSource;
+    public AudioClip typingSound;
 
     private enum State
     {
@@ -36,26 +38,21 @@ public class CanvasManager : MonoBehaviour
 
     void Start()
     {
-        // Überprüfe, ob die Referenzen zugewiesen sind
         CheckReferences();
 
-        // Zeige den Intro-Text und den Skip-Button an, verstecke die anderen Texte
         ShowIntroText();
         HideIntro2Text();
         HideIntro3Text();
         HideIntro4Text();
         HideTaskTexts();
 
-        // Füge die OnClick-Methode des Skip-Buttons hinzu
         skipButton.onClick.AddListener(OnSkipButtonPressed);
 
-        // Initialisiere den Skip-Button Status
         UpdateSkipButtonState();
     }
 
     void Update()
     {
-        // Überprüfe, ob die aktuelle Aufgabe abgeschlossen ist, wenn wir im Aufgabenbereich sind
         switch (currentState)
         {
             case State.ServerTask:
@@ -79,12 +76,11 @@ public class CanvasManager : MonoBehaviour
                 }
                 break;
             case State.NokiaTask:
-                if (!nokiaCollected && GameObject.Find("NokiaQuiz") != null)
+                if (!nokiaCollected && (nokiaObject == null || !nokiaObject.activeInHierarchy))
                 {
                     nokiaCollected = true;
                     HideNokiaText();
                     currentState = State.Finished;
-                    // Alle Aufgaben abgeschlossen
                 }
                 break;
         }
@@ -114,6 +110,10 @@ public class CanvasManager : MonoBehaviour
             Debug.LogError("Intro4 TextMeshProUGUI component is not assigned in the inspector.");
         if (skipButton == null)
             Debug.LogError("Skip Button reference is not assigned in the inspector.");
+        if (audioSource == null)
+            Debug.LogError("AudioSource reference is not assigned in the inspector.");
+        if (typingSound == null)
+            Debug.LogError("Typing sound reference is not assigned in the inspector.");
     }
 
     void ShowIntroText()
@@ -190,6 +190,7 @@ public class CanvasManager : MonoBehaviour
         {
             serverTextMeshPro.gameObject.SetActive(true);
             StartCoroutine(StartTypingEffect(serverTextMeshPro));
+            PlaySound();
         }
     }
 
@@ -205,6 +206,7 @@ public class CanvasManager : MonoBehaviour
         {
             scanTextMeshPro.gameObject.SetActive(true);
             StartCoroutine(StartTypingEffect(scanTextMeshPro));
+            PlaySound();
         }
     }
 
@@ -220,6 +222,7 @@ public class CanvasManager : MonoBehaviour
         {
             nokiaTextMeshPro.gameObject.SetActive(true);
             StartCoroutine(StartTypingEffect(nokiaTextMeshPro));
+            PlaySound();
         }
     }
 
@@ -288,7 +291,6 @@ public class CanvasManager : MonoBehaviour
             case State.NokiaTask:
                 currentState = State.Finished;
                 HideNokiaText();
-                // Alle Aufgaben abgeschlossen
                 break;
         }
 
@@ -316,5 +318,13 @@ public class CanvasManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    void PlaySound()
+    {
+        if (audioSource != null && typingSound != null)
+        {
+            audioSource.PlayOneShot(typingSound);
+        }
     }
 }
