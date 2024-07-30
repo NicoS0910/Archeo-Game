@@ -19,6 +19,9 @@ public class CanvasManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip typingSound;
 
+    public Canvas canvas; // Reference to the Canvas
+    public GameObject panel; // Reference to the Panel
+
     private enum State
     {
         Intro1,
@@ -40,6 +43,30 @@ public class CanvasManager : MonoBehaviour
     {
         CheckReferences();
 
+        // Deactivate Canvas and Panel initially
+        if (canvas != null)
+            canvas.gameObject.SetActive(false);
+
+        if (panel != null)
+            panel.SetActive(false);
+
+        // Start coroutine with delay using Invoke
+        Invoke("ActivateCanvasAndPanel", 3f);
+    }
+
+    void ActivateCanvasAndPanel()
+    {
+        if (canvas != null)
+            canvas.gameObject.SetActive(true);
+
+        if (panel != null)
+            panel.SetActive(true);
+
+        StartCoroutine(InitializeUI());
+    }
+
+    IEnumerator InitializeUI()
+    {
         ShowIntroText();
         HideIntro2Text();
         HideIntro3Text();
@@ -47,8 +74,8 @@ public class CanvasManager : MonoBehaviour
         HideTaskTexts();
 
         skipButton.onClick.AddListener(OnSkipButtonPressed);
-
         UpdateSkipButtonState();
+        yield return null; // Just to ensure the coroutine completes in this frame
     }
 
     void Update()
@@ -114,6 +141,10 @@ public class CanvasManager : MonoBehaviour
             Debug.LogError("AudioSource reference is not assigned in the inspector.");
         if (typingSound == null)
             Debug.LogError("Typing sound reference is not assigned in the inspector.");
+        if (canvas == null)
+            Debug.LogError("Canvas reference is not assigned in the inspector.");
+        if (panel == null)
+            Debug.LogError("Panel reference is not assigned in the inspector.");
     }
 
     void ShowIntroText()

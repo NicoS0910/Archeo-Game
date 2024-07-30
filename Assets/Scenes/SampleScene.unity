@@ -47132,6 +47132,8 @@ MonoBehaviour:
   skipButton: {fileID: 536941799}
   audioSource: {fileID: 1196979999}
   typingSound: {fileID: 8300000, guid: 7372ff5b2662a437897e50dacd0170e3, type: 3}
+  canvas: {fileID: 1196979997}
+  panel: {fileID: 270322383}
 --- !u!114 &1196979995
 MonoBehaviour:
   m_ObjectHideFlags: 0
