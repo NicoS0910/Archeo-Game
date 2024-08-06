@@ -46,10 +46,10 @@ public class SwordAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "EnemyHitbox")
         {
             // Deal damage to enemy
-            Enemy enemy = other.GetComponent<Enemy>();
+            Enemy enemy = other.GetComponentInParent<Enemy>(); // Sucht den Enemy-Komponenten im Parent
 
             if (enemy != null)
             {

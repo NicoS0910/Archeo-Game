@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Animator animator;
+    SpriteRenderer spriteRenderer;
     private Transform target;
     private PlayerHealth playerHealth; // Referenz zur PlayerHealth des Spielers
     public float speed;
@@ -12,6 +13,7 @@ public class Enemy : MonoBehaviour
     private bool isChasing = false; // Gibt an, ob die Verfolgung aktiv ist
     private float lastAttackTime; // Zeitpunkt des letzten Angriffs
     public float attackCooldown = 1f; // Abklingzeit zwischen den Angriffen
+    public Collider2D enemyCollider; // Spezifischer Collider des Gegners
 
     // Öffentliche Eigenschaft für Health
     public float Health
@@ -33,6 +35,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
 
@@ -45,6 +48,7 @@ public class Enemy : MonoBehaviour
     {
         if (target != null && isChasing)
         {
+            animator.SetBool("isMoving", true);
             // Move only if not in collision with player
             if (!IsCollidingWithPlayer())
             {
@@ -61,11 +65,15 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
     }
 
     private bool IsCollidingWithPlayer()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1f);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(enemyCollider.bounds.center, enemyCollider.bounds.size, 0f);
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Player"))
@@ -113,6 +121,7 @@ public class Enemy : MonoBehaviour
     {
         if (playerHealth != null)
         {
+            animator.SetTrigger("attack");
             playerHealth.TakeDamage(damage);
         }
     }
