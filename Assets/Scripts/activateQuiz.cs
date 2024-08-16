@@ -75,28 +75,32 @@ public class activateQuiz : MonoBehaviour
         }
     }
 
-    void ActivateInfoBox()
+void ActivateInfoBox()
+{
+    
+    // Wenn infoBoxObject deaktiviert ist, aktiviere es
+    if (!infoBoxObject.activeSelf)
     {
-        if (infoBoxObject != null)
+        infoBoxObject.SetActive(true);
+    }
+
+    // Animator vom infoBoxObject holen
+    Animator animator = infoBoxObject.GetComponent<Animator>();
+    if (animator != null)
+    {
+        // Überprüfen, ob der Animator derzeit nicht den Zustand "nokia" hat
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("nokia"))
         {
-            Animator animator = infoBoxObject.GetComponent<Animator>();
-            if (animator != null)
-            {
-                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("nokia"))
-                {
-                    animator.SetTrigger("Show");
-                }
-            }
-            else
-            {
-                Debug.LogError("Animator component not found on infoBoxObject!");
-            }
-        }
-        else
-        {
-            Debug.LogError("infoBoxObject is not assigned!");
+            animator.SetTrigger("Show");
         }
     }
+    else
+    {
+        Debug.LogError("Animator component not found on infoBoxObject!");
+    }
+}
+
+
 
     void PauseGame()
     {
