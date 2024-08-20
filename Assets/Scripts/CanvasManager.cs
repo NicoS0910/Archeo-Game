@@ -8,6 +8,8 @@ public class CanvasManager : MonoBehaviour
     public GameObject serverObject;
     public GameObject scanObject;
     public GameObject nokiaObject;
+    public GameObject nutellaObject; // Nutella-Objekt
+    public GameObject eScooterObject; // Neue Referenz für das E-Scooter-Objekt
     public TextMeshProUGUI serverTextMeshPro;
     public TextMeshProUGUI scanTextMeshPro;
     public TextMeshProUGUI nokiaTextMeshPro;
@@ -15,12 +17,17 @@ public class CanvasManager : MonoBehaviour
     public TextMeshProUGUI intro2TextMeshPro;
     public TextMeshProUGUI intro3TextMeshPro;
     public TextMeshProUGUI intro4TextMeshPro;
+    public TextMeshProUGUI intro5TextMeshPro; // Intro 5 TextMeshPro
+    public TextMeshProUGUI intro6TextMeshPro; // Neue Referenz für Intro 6 TextMeshPro
+    public TextMeshProUGUI nutellaTextMeshPro; // Nutella TextMeshPro
+    public TextMeshProUGUI eScooterTextMeshPro; // Neue Referenz für E-Scooter TextMeshPro
     public Button skipButton;
+    public Button nokiaQuizStartButton; // Start-Button des Nokia-Quiz
     public AudioSource audioSource;
     public AudioClip typingSound;
 
-    public Canvas canvas; // Reference to the Canvas
-    public GameObject panel; // Reference to the Panel
+    public Canvas canvas; // Referenz zum Canvas
+    public GameObject panel; // Referenz zum Panel
 
     private enum State
     {
@@ -31,6 +38,10 @@ public class CanvasManager : MonoBehaviour
         ScanTask,
         Intro4,
         NokiaTask,
+        Intro5,
+        NutellaTask,
+        Intro6, // Neuer Zustand für Intro 6
+        E_ScooterTask, // Neuer Zustand für die E-Scooter-Aufgabe
         Finished
     }
 
@@ -38,6 +49,8 @@ public class CanvasManager : MonoBehaviour
     private bool serverCollected = false;
     private bool scanCompleted = false;
     private bool nokiaCollected = false;
+    private bool nutellaCollected = false;
+    private bool eScooterCollected = false; // Neue Variable für E-Scooter-Aufgabe
 
     void Start()
     {
@@ -52,6 +65,12 @@ public class CanvasManager : MonoBehaviour
 
         // Start coroutine with delay using Invoke
         Invoke("ActivateCanvasAndPanel", 3f);
+
+        // Add listener for Nokia Quiz Start Button
+        if (nokiaQuizStartButton != null)
+        {
+            nokiaQuizStartButton.onClick.AddListener(OnNokiaQuizStartButtonPressed);
+        }
     }
 
     void ActivateCanvasAndPanel()
@@ -71,6 +90,8 @@ public class CanvasManager : MonoBehaviour
         HideIntro2Text();
         HideIntro3Text();
         HideIntro4Text();
+        HideIntro5Text(); // Intro 5 initial verstecken
+        HideIntro6Text(); // Intro 6 initial verstecken
         HideTaskTexts();
 
         skipButton.onClick.AddListener(OnSkipButtonPressed);
@@ -107,7 +128,28 @@ public class CanvasManager : MonoBehaviour
                 {
                     nokiaCollected = true;
                     HideNokiaText();
+                    currentState = State.Intro5;
+                    ShowIntro5Text();
+                    UpdateSkipButtonState();
+                }
+                break;
+            case State.NutellaTask:
+                if (!nutellaCollected && (nutellaObject == null || !nutellaObject.activeInHierarchy))
+                {
+                    nutellaCollected = true;
+                    HideNutellaText();
+                    currentState = State.Intro6;
+                    ShowIntro6Text(); // Intro 6 anzeigen
+                    UpdateSkipButtonState();
+                }
+                break;
+            case State.E_ScooterTask:
+                if (!eScooterCollected && (eScooterObject == null || !eScooterObject.activeInHierarchy))
+                {
+                    eScooterCollected = true;
+                    HideE_ScooterText(); // E-Scooter-Text verstecken
                     currentState = State.Finished;
+                    UpdateSkipButtonState();
                 }
                 break;
         }
@@ -121,6 +163,10 @@ public class CanvasManager : MonoBehaviour
             Debug.LogError("Scan object reference is not assigned in the inspector.");
         if (nokiaObject == null)
             Debug.LogError("Nokia object reference is not assigned in the inspector.");
+        if (nutellaObject == null)
+            Debug.LogError("Nutella object reference is not assigned in the inspector.");
+        if (eScooterObject == null)
+            Debug.LogError("E-Scooter object reference is not assigned in the inspector."); // Fehlerbehebung für E-Scooter
         if (serverTextMeshPro == null)
             Debug.LogError("Server TextMeshProUGUI component is not assigned in the inspector.");
         if (scanTextMeshPro == null)
@@ -135,8 +181,18 @@ public class CanvasManager : MonoBehaviour
             Debug.LogError("Intro3 TextMeshProUGUI component is not assigned in the inspector.");
         if (intro4TextMeshPro == null)
             Debug.LogError("Intro4 TextMeshProUGUI component is not assigned in the inspector.");
+        if (intro5TextMeshPro == null)
+            Debug.LogError("Intro5 TextMeshProUGUI component is not assigned in the inspector."); // Fehlerbehebung für Intro 5
+        if (intro6TextMeshPro == null)
+            Debug.LogError("Intro6 TextMeshProUGUI component is not assigned in the inspector."); // Fehlerbehebung für Intro 6
+        if (nutellaTextMeshPro == null)
+            Debug.LogError("Nutella TextMeshProUGUI component is not assigned in the inspector."); // Fehlerbehebung für Nutella TextMeshPro
+        if (eScooterTextMeshPro == null)
+            Debug.LogError("E-Scooter TextMeshProUGUI component is not assigned in the inspector."); // Fehlerbehebung für E-Scooter TextMeshPro
         if (skipButton == null)
             Debug.LogError("Skip Button reference is not assigned in the inspector.");
+        if (nokiaQuizStartButton == null)
+            Debug.LogError("Nokia Quiz Start Button reference is not assigned in the inspector.");
         if (audioSource == null)
             Debug.LogError("AudioSource reference is not assigned in the inspector.");
         if (typingSound == null)
@@ -215,6 +271,40 @@ public class CanvasManager : MonoBehaviour
         UpdateSkipButtonState();
     }
 
+    void ShowIntro5Text()
+    {
+        if (intro5TextMeshPro != null)
+        {
+            intro5TextMeshPro.gameObject.SetActive(true);
+            StartCoroutine(StartTypingEffect(intro5TextMeshPro));
+        }
+        UpdateSkipButtonState();
+    }
+
+    void HideIntro5Text()
+    {
+        if (intro5TextMeshPro != null)
+            intro5TextMeshPro.gameObject.SetActive(false);
+        UpdateSkipButtonState();
+    }
+
+    void ShowIntro6Text()
+    {
+        if (intro6TextMeshPro != null)
+        {
+            intro6TextMeshPro.gameObject.SetActive(true);
+            StartCoroutine(StartTypingEffect(intro6TextMeshPro));
+        }
+        UpdateSkipButtonState();
+    }
+
+    void HideIntro6Text()
+    {
+        if (intro6TextMeshPro != null)
+            intro6TextMeshPro.gameObject.SetActive(false);
+        UpdateSkipButtonState();
+    }
+
     void ShowServerText()
     {
         if (serverTextMeshPro != null)
@@ -263,17 +353,52 @@ public class CanvasManager : MonoBehaviour
             nokiaTextMeshPro.gameObject.SetActive(false);
     }
 
+    void ShowNutellaText()
+    {
+        if (nutellaTextMeshPro != null)
+        {
+            nutellaTextMeshPro.gameObject.SetActive(true);
+            StartCoroutine(StartTypingEffect(nutellaTextMeshPro));
+            PlaySound();
+        }
+    }
+
+    void HideNutellaText()
+    {
+        if (nutellaTextMeshPro != null)
+            nutellaTextMeshPro.gameObject.SetActive(false);
+    }
+
+    void ShowE_ScooterText()
+    {
+        if (eScooterTextMeshPro != null)
+        {
+            eScooterTextMeshPro.gameObject.SetActive(true);
+            StartCoroutine(StartTypingEffect(eScooterTextMeshPro));
+            PlaySound();
+        }
+    }
+
+    void HideE_ScooterText()
+    {
+        if (eScooterTextMeshPro != null)
+            eScooterTextMeshPro.gameObject.SetActive(false);
+    }
+
     void HideTaskTexts()
     {
         HideServerText();
         HideScanText();
         HideNokiaText();
+        HideNutellaText(); // Nutella-Text verstecken
+        HideE_ScooterText(); // E-Scooter-Text verstecken
     }
 
     void UpdateSkipButtonState()
     {
         if (currentState == State.Intro1 || currentState == State.Intro2 || 
-            currentState == State.Intro3 || currentState == State.Intro4)
+            currentState == State.Intro3 || currentState == State.Intro4 || 
+            currentState == State.Intro5 || currentState == State.Intro6) // Intro 6 hinzufügen
         {
             if (skipButton != null)
                 skipButton.gameObject.SetActive(true);
@@ -320,12 +445,45 @@ public class CanvasManager : MonoBehaviour
                 ShowNokiaText();
                 break;
             case State.NokiaTask:
-                currentState = State.Finished;
+                currentState = State.Intro5;
                 HideNokiaText();
+                ShowIntro5Text();
+                break;
+            case State.Intro5:
+                currentState = State.NutellaTask;
+                HideIntro5Text();
+                ShowNutellaText();
+                break;
+            case State.NutellaTask:
+                currentState = State.Intro6;
+                HideNutellaText();
+                ShowIntro6Text();
+                break;
+            case State.Intro6:
+                currentState = State.E_ScooterTask; // E-Scooter-Aufgabe anzeigen
+                HideIntro6Text();
+                ShowE_ScooterText();
+                break;
+            case State.E_ScooterTask:
+                currentState = State.Finished;
+                HideE_ScooterText();
                 break;
         }
 
         UpdateSkipButtonState();
+    }
+
+    public void OnNokiaQuizStartButtonPressed()
+    {
+        // Check if the current state is NokiaTask
+        if (currentState == State.NokiaTask)
+        {
+            // Hide Nokia Text and move to Intro 5 state
+            HideNokiaText();
+            currentState = State.Intro5;
+            ShowIntro5Text();
+            UpdateSkipButtonState();
+        }
     }
 
     IEnumerator StartTypingEffect(TextMeshProUGUI textMeshPro)
