@@ -23,12 +23,14 @@ public class CanvasManager : MonoBehaviour
     public TextMeshProUGUI nutellaTextMeshPro;
     public TextMeshProUGUI eScooterTextMeshPro;
     public Button skipButton;
-    public Button nokiaQuizStartButton; // Referenz für den Nokia Quiz Start Button
+    public Button nokiaQuizStartButton;
     public AudioSource audioSource;
     public AudioClip typingSound;
 
     public Canvas canvas; // Reference to the Canvas
     public GameObject panel; // Reference to the Panel
+    public GameObject presentTimeCompletePanel; // Reference to the PresentTimeComplete Panel
+    public GameObject taskListPanel; // Reference to the Task List Panel
 
     private enum State
     {
@@ -58,12 +60,15 @@ public class CanvasManager : MonoBehaviour
     {
         CheckReferences();
 
-        // Deactivate Canvas and Panel initially
+        // Deactivate Canvas, Panel, and PresentTimeCompletePanel initially
         if (canvas != null)
             canvas.gameObject.SetActive(false);
 
         if (panel != null)
             panel.SetActive(false);
+
+        if (presentTimeCompletePanel != null)
+            presentTimeCompletePanel.SetActive(false);
 
         // Start coroutine with delay using Invoke
         Invoke("ActivateCanvasAndPanel", 3f);
@@ -88,11 +93,11 @@ public class CanvasManager : MonoBehaviour
         HideIntro4Text();
         HideIntro5Text();
         HideIntro6Text();
-        HideIntro7Text(); // Ensure Intro7 is hidden initially
+        HideIntro7Text();
         HideTaskTexts();
 
         skipButton.onClick.AddListener(OnSkipButtonPressed);
-        nokiaQuizStartButton.onClick.AddListener(OnNokiaQuizStartButtonPressed); // Add listener for Nokia Quiz Start Button
+        nokiaQuizStartButton.onClick.AddListener(OnNokiaQuizStartButtonPressed);
         UpdateSkipButtonState();
         yield return null; // Just to ensure the coroutine completes in this frame
     }
@@ -128,17 +133,15 @@ public class CanvasManager : MonoBehaviour
                     HideNokiaText();
                     currentState = State.Intro5;
                     ShowIntro5Text();
-                    UpdateSkipButtonState();
                 }
                 break;
             case State.NutellaTask:
-                if (!nutellaCollected && nutellaObject == null)
+                if (!nutellaCollected && (nutellaObject == null || !nutellaObject.activeInHierarchy))
                 {
                     nutellaCollected = true;
                     HideNutellaText();
                     currentState = State.Intro6;
                     ShowIntro6Text();
-                    UpdateSkipButtonState();
                 }
                 break;
             case State.E_ScooterTask:
@@ -148,7 +151,6 @@ public class CanvasManager : MonoBehaviour
                     HideE_ScooterText();
                     currentState = State.Intro7;
                     ShowIntro7Text();
-                    UpdateSkipButtonState();
                 }
                 break;
         }
@@ -193,7 +195,7 @@ public class CanvasManager : MonoBehaviour
         if (skipButton == null)
             Debug.LogError("Skip Button reference is not assigned in the inspector.");
         if (nokiaQuizStartButton == null)
-            Debug.LogError("Nokia Quiz Start Button reference is not assigned in the inspector."); // Check reference for Nokia Quiz Start Button
+            Debug.LogError("Nokia Quiz Start Button reference is not assigned in the inspector.");
         if (audioSource == null)
             Debug.LogError("AudioSource reference is not assigned in the inspector.");
         if (typingSound == null)
@@ -202,6 +204,10 @@ public class CanvasManager : MonoBehaviour
             Debug.LogError("Canvas reference is not assigned in the inspector.");
         if (panel == null)
             Debug.LogError("Panel reference is not assigned in the inspector.");
+        if (presentTimeCompletePanel == null)
+            Debug.LogError("PresentTimeCompletePanel reference is not assigned in the inspector.");
+        if (taskListPanel == null)
+            Debug.LogError("TaskListPanel reference is not assigned in the inspector.");
     }
 
     void ShowIntroText()
@@ -416,7 +422,7 @@ public class CanvasManager : MonoBehaviour
     {
         if (currentState == State.Intro1 || currentState == State.Intro2 || 
             currentState == State.Intro3 || currentState == State.Intro4 || 
-            currentState == State.Intro5 || currentState == State.Intro6 ||
+            currentState == State.Intro5 || currentState == State.Intro6 || 
             currentState == State.Intro7)
         {
             if (skipButton != null)
@@ -489,8 +495,12 @@ public class CanvasManager : MonoBehaviour
                 ShowIntro7Text();
                 break;
             case State.Intro7:
-                currentState = State.Finished;
                 HideIntro7Text();
+                if (taskListPanel != null)
+                    taskListPanel.SetActive(false);
+                if (presentTimeCompletePanel != null)
+                    presentTimeCompletePanel.SetActive(true);
+                currentState = State.Finished;
                 break;
         }
 
@@ -499,9 +509,14 @@ public class CanvasManager : MonoBehaviour
 
     public void OnNokiaQuizStartButtonPressed()
     {
-        HideNokiaText();
-        currentState = State.Intro5; // Or adjust as needed based on flow
-        ShowIntro5Text();
+        // Ensure this button only affects the Nokia task
+        if (currentState == State.NokiaTask)
+        {
+            nokiaCollected = true;
+            HideNokiaText();
+            currentState = State.Intro5;
+            ShowIntro5Text();
+        }
         UpdateSkipButtonState();
     }
 
