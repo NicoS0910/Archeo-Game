@@ -36649,7 +36649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &498339476
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36666,7 +36666,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 558.9998, y: 282}
+  m_AnchoredPosition: {x: 580, y: 288}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &498339477
@@ -51715,6 +51715,7 @@ MonoBehaviour:
   intro4TextMeshPro: {fileID: 830363817}
   intro5TextMeshPro: {fileID: 687077006}
   intro6TextMeshPro: {fileID: 1472542950}
+  intro7TextMeshPro: {fileID: 498339478}
   nutellaTextMeshPro: {fileID: 1280298526}
   eScooterTextMeshPro: {fileID: 1706158022}
   skipButton: {fileID: 536941799}
