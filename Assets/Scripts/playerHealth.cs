@@ -12,6 +12,10 @@ public class PlayerHealth : MonoBehaviour
     public Vector3 respawnPosition;
     [SerializeField] private AudioClip damageSoundClip;
 
+    // Neue Variablen für den Farbeffekt
+    [SerializeField] private Color damageColor = Color.red;
+    private Color originalColor;
+    private Renderer playerRenderer;
     private bool isRegenerating = false;
 
     void Start()
@@ -19,11 +23,17 @@ public class PlayerHealth : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
+        playerRenderer = GetComponent<Renderer>();
+
+        if (playerRenderer != null)
+        {
+            originalColor = playerRenderer.material.color;
+        }
     }
 
     void Update()
     {
-        //Verlust von Leben testen, z.B. durch einen Tastendruck
+        // Verlust von Leben testen, z.B. durch einen Tastendruck
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
         //    TakeDamage(1);
@@ -38,6 +48,12 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth -= amount;
             Debug.Log("Health: " + currentHealth);
+
+            // Wende den Rot-Effekt an
+            if (playerRenderer != null)
+            {
+                StartCoroutine(FlashRed());
+            }
 
             if (currentHealth <= 0)
             {
@@ -61,7 +77,15 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("Defeated", true);
         playerController.LockMovement();
 
-    }
+    // private IEnumerator FlashRed()
+    // {
+    //     if (playerRenderer != null)
+    //     {
+    //         playerRenderer.material.color = damageColor; // Ändere die Farbe auf Rot
+    //         yield return new WaitForSeconds(0.1f); // Dauer des Rot-Effekts
+    //         playerRenderer.material.color = originalColor; // Setze die Originalfarbe zurück
+    //     }
+    // }
 
     private void Respawn()
     {
