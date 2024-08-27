@@ -12,10 +12,10 @@ public class PlayerHealth : MonoBehaviour
     public Vector3 respawnPosition;
     [SerializeField] private AudioClip damageSoundClip;
 
-    // Neue Variablen für den Farbeffekt
-    [SerializeField] private Color damageColor = Color.red;
-    private Color originalColor;
-    private Renderer playerRenderer;
+    // // Neue Variablen für den Farbeffekt
+    // [SerializeField] private Color damageColor = Color.red;
+    // private Color originalColor;
+    // private Renderer playerRenderer;
     private bool isRegenerating = false;
 
     void Start()
@@ -33,11 +33,6 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        // Verlust von Leben testen, z.B. durch einen Tastendruck
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    TakeDamage(1);
-        //}
     }
 
     public void TakeDamage(int amount)
@@ -49,11 +44,11 @@ public class PlayerHealth : MonoBehaviour
             currentHealth -= amount;
             Debug.Log("Health: " + currentHealth);
 
-            // Wende den Rot-Effekt an
-            if (playerRenderer != null)
-            {
-                StartCoroutine(FlashRed());
-            }
+            // // Wende den Rot-Effekt an
+            // if (playerRenderer != null)
+            // {
+            //     StartCoroutine(FlashRed());
+            // }
 
             if (currentHealth <= 0)
             {
@@ -76,6 +71,7 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("damage", false);
         animator.SetBool("Defeated", true);
         playerController.LockMovement();
+    }
 
     // private IEnumerator FlashRed()
     // {
@@ -91,12 +87,9 @@ public class PlayerHealth : MonoBehaviour
     {
         animator.SetBool("Defeated", false);
         playerController.UnlockMovement();
-        // Setze das Leben auf das maximale Leben zurück
         currentHealth = maxHealth;
-        // Setze die Position des Spielers auf die Rücksetzposition
-        transform.position = respawnPosition; // Passe die Position an
+        transform.position = respawnPosition;
         Debug.Log("Player respawned at " + respawnPosition);
-        // Starte die Regeneration nach dem Respawn
         StartCoroutine(RegenerateHealth());
     }
 
