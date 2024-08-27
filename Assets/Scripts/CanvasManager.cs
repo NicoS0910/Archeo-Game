@@ -10,6 +10,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject nokiaObject;
     public GameObject nutellaObject;
     public GameObject eScooterObject;
+    public RawImage serverPicture;
     public TextMeshProUGUI serverTextMeshPro;
     public TextMeshProUGUI scanTextMeshPro;
     public TextMeshProUGUI nokiaTextMeshPro;
@@ -329,21 +330,29 @@ public class CanvasManager : MonoBehaviour
         UpdateSkipButtonState();
     }
 
-    void ShowServerText()
+   void ShowServerText()
+{
+    if (serverTextMeshPro != null)
     {
-        if (serverTextMeshPro != null)
-        {
-            serverTextMeshPro.gameObject.SetActive(true);
-            StartCoroutine(StartTypingEffect(serverTextMeshPro));
-            PlaySound();
-        }
+        serverTextMeshPro.gameObject.SetActive(true);
+        StartCoroutine(StartTypingEffect(serverTextMeshPro));
+        PlaySound();
     }
+    if (serverPicture != null)
+    {
+        serverPicture.gameObject.SetActive(true); // Zeige das RawImage an
+    }
+}
 
-    void HideServerText()
-    {
-        if (serverTextMeshPro != null)
-            serverTextMeshPro.gameObject.SetActive(false);
-    }
+
+void HideServerText()
+{
+    if (serverTextMeshPro != null)
+        serverTextMeshPro.gameObject.SetActive(false);
+    if (serverPicture != null)
+        serverPicture.gameObject.SetActive(false); // Verstecke das RawImage
+}
+
 
     void ShowScanText()
     {
