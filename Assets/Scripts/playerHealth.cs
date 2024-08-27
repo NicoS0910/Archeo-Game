@@ -23,12 +23,12 @@ public class PlayerHealth : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
-        playerRenderer = GetComponent<Renderer>();
+        // playerRenderer = GetComponent<Renderer>();
 
-        if (playerRenderer != null)
-        {
-            originalColor = playerRenderer.material.color;
-        }
+        // if (playerRenderer != null)
+        // {
+        //     originalColor = playerRenderer.material.color;
+        // }
     }
 
     void Update()
