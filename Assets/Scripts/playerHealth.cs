@@ -5,6 +5,9 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 3;
     public int currentHealth;
+    private Animator animator;
+    public PlayerController playerController;
+    private Rigidbody2D rb;
     public float regenerationDelay = 5f;
     public Vector3 respawnPosition;
     [SerializeField] private AudioClip damageSoundClip;
@@ -13,6 +16,8 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
     }
 
@@ -28,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int amount)
     {
         SoundFXManager.instance.PlaySoundFXClip(damageSoundClip, transform, 1f);
+        animator.SetBool("damage", true);
         if (currentHealth > 0)
         {
             currentHealth -= amount;
@@ -35,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
 
             if (currentHealth <= 0)
             {
-                Respawn();
+                Die();
             }
             else if (!isRegenerating)
             {
@@ -44,8 +50,23 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void stopDamageAnimation()
+    {
+        animator.SetBool("damage", false);
+    }
+
+    private void Die()
+    {
+        animator.SetBool("damage", false);
+        animator.SetBool("Defeated", true);
+        playerController.LockMovement();
+
+    }
+
     private void Respawn()
     {
+        animator.SetBool("Defeated", false);
+        playerController.UnlockMovement();
         // Setze das Leben auf das maximale Leben zurück
         currentHealth = maxHealth;
         // Setze die Position des Spielers auf die Rücksetzposition
@@ -68,7 +89,8 @@ public class PlayerHealth : MonoBehaviour
 
         isRegenerating = false;
 
-        if (currentHealth > maxHealth) {
+        if (currentHealth > maxHealth)
+        {
             currentHealth = 3;
         }
     }
