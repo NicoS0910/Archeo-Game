@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRange: 0.1
-  popupText: {fileID: 0}
+  popupText: {fileID: 1395111858}
   infoBoxObject: {fileID: 0}
 --- !u!1001 &15112420
 PrefabInstance:
@@ -35104,7 +35104,7 @@ GameObject:
   - component: {fileID: 395430256}
   - component: {fileID: 395430255}
   m_Layer: 5
-  m_Name: press E to interact
+  m_Name: press E to interact4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44264,7 +44264,7 @@ GameObject:
   - component: {fileID: 738305725}
   - component: {fileID: 738305724}
   m_Layer: 5
-  m_Name: press E to interact
+  m_Name: press E to interact5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47247,7 +47247,7 @@ GameObject:
   - component: {fileID: 847356518}
   - component: {fileID: 847356517}
   m_Layer: 5
-  m_Name: press E to interact
+  m_Name: press E to interact3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47480,7 +47480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRange: 0.1
-  popupText: {fileID: 0}
+  popupText: {fileID: 738305723}
   infoBoxObject: {fileID: 0}
 --- !u!1 &848787907
 GameObject:
@@ -58517,7 +58517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRange: 0.1
-  popupText: {fileID: 738305723}
+  popupText: {fileID: 1900546515}
   infoBoxObject: {fileID: 544440406}
 --- !u!212 &1316910405
 SpriteRenderer:
@@ -83275,7 +83275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionRange: 0.1
-  popupText: {fileID: 1900546515}
+  popupText: {fileID: 847356516}
   infoBoxObject: {fileID: 1857979147}
 --- !u!212 &1348290848
 SpriteRenderer:
@@ -84857,7 +84857,7 @@ GameObject:
   - component: {fileID: 1395111860}
   - component: {fileID: 1395111859}
   m_Layer: 5
-  m_Name: press E to interact
+  m_Name: press E to interact1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90525,7 +90525,7 @@ GameObject:
   - component: {fileID: 1570042853}
   - component: {fileID: 1570042852}
   m_Layer: 5
-  m_Name: press E to interact
+  m_Name: press E to interact2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94566,7 +94566,7 @@ GameObject:
   - component: {fileID: 1745583161}
   - component: {fileID: 1745583160}
   m_Layer: 5
-  m_Name: press E to interact
+  m_Name: press E to interact3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108798,7 +108798,7 @@ GameObject:
   - component: {fileID: 1858985646}
   - component: {fileID: 1858985645}
   m_Layer: 5
-  m_Name: press E to interact
+  m_Name: press E to interact1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109682,7 +109682,7 @@ GameObject:
   - component: {fileID: 1897696016}
   - component: {fileID: 1897696015}
   m_Layer: 5
-  m_Name: press E to interact
+  m_Name: press E to interact2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109822,7 +109822,7 @@ GameObject:
   - component: {fileID: 1900546517}
   - component: {fileID: 1900546516}
   m_Layer: 5
-  m_Name: press E to interact
+  m_Name: press E to interact4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
