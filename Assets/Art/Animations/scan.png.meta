@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9936cc0576dd81d4f9efe52f54d3595d
+guid: 97da43179a392594fbd778cb87da7653
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,169 +110,148 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: animation_spark_0
+      name: scan_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.24}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0de861b7c2f7b342a1a10fe832f02aa
-      internalID: 13500198
+      spriteID: 7d16aba86561b25469b2e01a1fb9c15a
+      internalID: -1341681742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation_spark_1
+      name: scan_1
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.24}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a62177b0962e88841a306065da183032
-      internalID: 1224393339
+      spriteID: 989c910fe9500e045a2d77950d534471
+      internalID: 480575122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation_spark_2
+      name: scan_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.24}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed8f76e843fe9424cabfef15eb523951
-      internalID: -1422306416
+      spriteID: 0a6529cc3daea0a48a3b2f441b1f2284
+      internalID: 1046445634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation_spark_3
+      name: scan_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.24}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a223e7ccbf3cf8f4fadde755d24da705
-      internalID: 674051599
+      spriteID: 774f948ad45676a4999f5607c4432f76
+      internalID: 997991271
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation_spark_4
+      name: scan_4
       rect:
         serializedVersion: 2
-        x: 288
+        x: 128
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.24}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cf041e2cd5b0054b8ca9d621569601e
-      internalID: 933553409
+      spriteID: 162b24651ebd617448dd16414f45f2de
+      internalID: -1215907764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation_spark_5
+      name: scan_5
       rect:
         serializedVersion: 2
-        x: 320
+        x: 160
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.24}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed80cb61d975f074fb7cb8df3a1495d3
-      internalID: 2069911299
+      spriteID: ae05f15886ab4d44db9924f4cad35ca1
+      internalID: 58807967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation_spark_6
+      name: scan_6
       rect:
         serializedVersion: 2
-        x: 352
+        x: 192
         y: 0
         width: 32
         height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.24}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8b6417e8b4bc874da1ae1d371e51984
-      internalID: 1332527143
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: animation_spark_7
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 32
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.24}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1373dbe47200f848b382113cda6a97b
-      internalID: 1147846530
+      spriteID: a7f800ac0a461414897a660c711ae759
+      internalID: 1044526429
       vertices: []
       indices: 
       edges: []
@@ -288,14 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      animation_spark_0: 13500198
-      animation_spark_1: 1224393339
-      animation_spark_2: -1422306416
-      animation_spark_3: 674051599
-      animation_spark_4: 933553409
-      animation_spark_5: 2069911299
-      animation_spark_6: 1332527143
-      animation_spark_7: 1147846530
+      scan_0: -1341681742
+      scan_1: 480575122
+      scan_2: 1046445634
+      scan_3: 997991271
+      scan_4: -1215907764
+      scan_5: 58807967
+      scan_6: 1044526429
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

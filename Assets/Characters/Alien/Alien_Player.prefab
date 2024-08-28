@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 2059833448942136514}
   - component: {fileID: 7300307968300358280}
   - component: {fileID: 8673192723572837618}
+  - component: {fileID: 662925294549239512}
   m_Layer: 0
   m_Name: Alien_Player
   m_TagString: Player
@@ -42,6 +43,7 @@ Transform:
   - {fileID: 8938162359518922832}
   - {fileID: 6383308702537009112}
   - {fileID: 8002969941211450853}
+  - {fileID: 48105726043762934}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3284891059752501689
@@ -84,7 +86,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 490775903, guid: 621cd8b352de48540a9af42c6259a90b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -95,7 +97,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &2306749808304663241
 Animator:
   serializedVersion: 5
@@ -305,9 +307,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   currentHealth: 0
+  playerController: {fileID: 4392030938972290760}
   regenerationDelay: 5
   respawnPosition: {x: -1.084, y: -1.705, z: 0}
-  damageSoundClip: {fileID: 0}
+  damageSoundClip: {fileID: 8300000, guid: 7e05fc5bfdce7734d858eafabbcfd656, type: 3}
+--- !u!114 &662925294549239512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635855257827819841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b87ac6d27c07cb49a299f641dd6c8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  harvestingScript: {fileID: 6741615158001227050}
 --- !u!1 &4810085981677853100
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +364,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4810085981677853100}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -584,6 +600,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordCollider: {fileID: 8916548337836897370}
+  playerAnimator: {fileID: 2306749808304663241}
+  scannerToolType: {fileID: 11400000, guid: f20cf2551bcfd084abd76bd7a0a0bba5, type: 2}
+  scanAnimationObject: {fileID: 8086107728755889543}
   _tool: {fileID: 11400000, guid: 89a9c1d35fa87d74daccdfaca4dee584, type: 2}
 --- !u!61 &5807482625550514661
 BoxCollider2D:
@@ -630,3 +649,87 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.24845374, y: 0.1826989}
   m_EdgeRadius: 0
+--- !u!1 &8086107728755889543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 48105726043762934}
+  - component: {fileID: 8524973903959706495}
+  m_Layer: 0
+  m_Name: ScanAnimation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &48105726043762934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8086107728755889543}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.16414511, y: 0.13921058, z: -0.00614209}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8326261594216502083}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &8524973903959706495
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8086107728755889543}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -1341681742, guid: 97da43179a392594fbd778cb87da7653, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.32, y: 0.32}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

@@ -5,6 +5,10 @@ using UnityEngine;
 public class Harvesting : MonoBehaviour
 {
     public Collider2D swordCollider;
+    public Animator playerAnimator; // Referenz zum Animator des Spielers
+
+    [SerializeField] private ToolType scannerToolType; // Referenz zum Scanner-ToolType
+    [SerializeField] private GameObject scanAnimationObject; // Das Scan-Animations-Objekt
 
     public Tool Tool
     {
@@ -22,7 +26,6 @@ public class Harvesting : MonoBehaviour
         }
     }
 
-// Update the sprite to show the sprite of the equipped tool
     private void UpdateSprite()
     {
         if (_tool != null)
@@ -42,17 +45,48 @@ public class Harvesting : MonoBehaviour
     {
         _renderer = GetComponent<SpriteRenderer>();
         UpdateSprite();
+        DeactivateScanAnimation(); // Stelle sicher, dass die Animation zu Beginn deaktiviert ist
     }
 
     public void OnSwordHit(Collider2D collision)
     {
+        // Überprüft, ob das getroffene Objekt ein "Harvestable"-Objekt ist
         Harvestable harvestable = collision.GetComponent<Harvestable>();
-
         if (harvestable != null)
         {
             int amountToHarvest = UnityEngine.Random.Range(Tool.MinHarvest, Tool.MaxHarvest);
-
             harvestable.TryHarvest(Tool.Type, amountToHarvest);
+        }
+
+        // Überprüft, ob das getroffene Objekt ein "ScanObject" ist
+        ScanObject scanObject = collision.GetComponent<ScanObject>();
+        if (scanObject != null)
+        {
+            // Überprüft, ob das aktuelle Tool vom Typ Scanner ist
+            if (Tool.Type == scannerToolType) 
+            {
+                // Spielt die Scan-Animation ab
+                playerAnimator.SetTrigger("scan");
+            }
+            scanObject.TryActivate(Tool.Type);
+        }
+    }
+
+    // Funktion zum Aktivieren des Scan-Animations-Objekts
+    public void ActivateScanAnimation()
+    {
+        if (scanAnimationObject != null)
+        {
+            scanAnimationObject.SetActive(true);
+        }
+    }
+
+    // Funktion zum Deaktivieren des Scan-Animations-Objekts
+    public void DeactivateScanAnimation()
+    {
+        if (scanAnimationObject != null)
+        {
+            scanAnimationObject.SetActive(false);
         }
     }
 }
