@@ -25,6 +25,7 @@ TagManager:
   - tz6
   - shard
   - EnemyHitbox
+  - Ground
   layers:
   - Default
   - TransparentFX
