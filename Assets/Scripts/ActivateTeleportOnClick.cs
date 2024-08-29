@@ -12,17 +12,17 @@ public class ActivateTeleportOnClick : MonoBehaviour, IPointerClickHandler
         // Überprüfen, ob die linke Maustaste gedrückt wurde
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            LoadScene();
+            LoadSceneAdditive();
         }
     }
 
-    private void LoadScene()
+    private void LoadSceneAdditive()
     {
         // Überprüfen, ob der Build-Index gültig ist
         if (sceneBuildIndex >= 0 && sceneBuildIndex < SceneManager.sceneCountInBuildSettings)
         {
-            // Lade die neue Szene basierend auf dem Build-Index
-            SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
+            // Lade die neue Szene additiv basierend auf dem Build-Index
+            SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Additive);
         }
         else
         {
