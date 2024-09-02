@@ -544,7 +544,7 @@ void HideServerText()
         foreach (GameObject obj in objectsInScene)
         {
             SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
-            if (renderer != null && renderer.sprite != null && renderer.sprite.name == "Auto1.1")
+            if (renderer != null && renderer.sprite != null && renderer.sprite.name == "hennes_64")
             {
                 return true;
             }
