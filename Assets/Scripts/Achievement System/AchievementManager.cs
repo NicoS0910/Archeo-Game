@@ -104,14 +104,25 @@ public class AchievementManager : MonoBehaviour
     public void SetHasServer(bool value)
     {
         // Setze den Zustand von hasServer im entsprechenden Achievement
-        Achievement achievement = achievements.Find(a => a.id == "pickup_achievement");
+        Achievement achievement = achievements.Find(a => a.id == "scan_achievement"); // Geändert auf das verbleibende Achievement
         if (achievement != null)
         {
             achievement.hasServer = value;
             if (value)
             {
-                ActivateObject("pickup_achievement", true); // Aktiviere das Pickup-Objekt
+                ActivateObject("scan_achievement", false); // Aktiviere das Scan-Objekt
             }
         }
+
+        // Kein Pickup Achievement mehr zu setzen, daher auskommentiert
+        // Achievement pickupAchievement = achievements.Find(a => a.id == "pickup_achievement");
+        // if (pickupAchievement != null)
+        // {
+        //     pickupAchievement.hasServer = value;
+        //     if (value)
+        //     {
+        //         ActivateObject("pickup_achievement", true); // Aktiviere das Pickup-Objekt
+        //     }
+        // }
     }
 }

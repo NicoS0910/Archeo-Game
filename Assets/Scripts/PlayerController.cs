@@ -167,9 +167,9 @@ public class PlayerController : MonoBehaviour
         }
 
         Destroy(server); // Remove server object from scene
-        AchievementManager.Instance.SetHasServer(true); // Signal AchievementManager
-
-        // Activate the pickup achievement object
-        AchievementManager.Instance.ActivateObject("pickup_achievement", true);
+        
+        // Kein Achievement mehr für das Pickup, daher auskommentiert
+        // AchievementManager.Instance.SetHasServer(true); // Signal AchievementManager
+        // AchievementManager.Instance.ActivateObject("pickup_achievement", true); // Activate the pickup achievement object
     }
 }

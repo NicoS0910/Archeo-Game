@@ -39,7 +39,7 @@ public class ScanObjekt : MonoBehaviour
             {
                 Interact();
                 // Hier das Achievement anzeigen
-                AchievementManager.Instance.ActivateObject("scan_achievement", false);
+              //  AchievementManager.Instance.ActivateObject("scan_achievement", false);
             }
             else
             {
