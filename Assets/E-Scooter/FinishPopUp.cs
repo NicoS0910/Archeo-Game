@@ -14,6 +14,21 @@ public class FinishPopUp : MonoBehaviour
             {
                 _objectToActivate.SetActive(true);
             }
+
+            // Spiel pausieren
+            PauseGame();
         }
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0f; // Pausiere das Spiel, indem die Zeit angehalten wird
+        Debug.Log("Spiel pausiert.");
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f; // Setze das Spiel fort
+        Debug.Log("Spiel fortgesetzt.");
     }
 }
