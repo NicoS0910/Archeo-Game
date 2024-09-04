@@ -16,7 +16,7 @@ public class FinishPopUp : MonoBehaviour
             }
 
             // Spiel pausieren
-            PauseGame();
+            ResumeGame();
         }
     }
 
