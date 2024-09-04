@@ -8,7 +8,7 @@ public class MinigameManager : MonoBehaviour
     public Transform[] coinTargetZones;
     public GameObject rewardCoin;
     public GameObject coinMinigameUI;
-    public GameObject closeUIButton; // Das UI-Element für den Close-Button
+    public GameObject finishButton; // Das UI-Element für den Finish-Button
 
     public GameObject[] pieces;
     public Transform[] pieceTargetZones;
@@ -47,13 +47,13 @@ public class MinigameManager : MonoBehaviour
             Debug.LogError("Another special object not assigned!");
         }
 
-        if (closeUIButton != null)
+        if (finishButton != null)
         {
-            closeUIButton.SetActive(false);
+            finishButton.SetActive(false);
         }
         else
         {
-            Debug.LogError("Close UI Button not assigned!");
+            Debug.LogError("Finish button not assigned!");
         }
     }
 
@@ -61,21 +61,21 @@ public class MinigameManager : MonoBehaviour
     {
         if (AllCoinsCorrectlyPlaced())
         {
-            ActivateCloseButton(); // Den Close-Button aktivieren
+            ActivateFinishButton(); // Den Finish-Button aktivieren
             //UnpauseGame();
         }
     }
 
-    private void ActivateCloseButton()
+    private void ActivateFinishButton()
     {
-        if (closeUIButton != null)
+        if (finishButton != null)
         {
-            closeUIButton.SetActive(true);
-            Debug.Log("Close button activated.");
+            finishButton.SetActive(true);
+            Debug.Log("Finish button activated.");
         }
         else
         {
-            Debug.LogWarning("Close button is not assigned.");
+            Debug.LogWarning("Finish button is not assigned.");
         }
     }
 
