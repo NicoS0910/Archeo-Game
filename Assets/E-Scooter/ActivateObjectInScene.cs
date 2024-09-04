@@ -29,21 +29,26 @@ public class ActivateObjectInScene : MonoBehaviour, IPointerClickHandler
             if (targetScene.isLoaded)
             {
                 // Durchlaufe alle GameObjects in der Szene und suche nach dem spezifischen Objekt
+                bool objectFound = false;
                 foreach (GameObject rootObject in targetScene.GetRootGameObjects())
                 {
                     if (rootObject.name == objectNameInTargetScene)
                     {
                         rootObject.SetActive(true); // Aktiviere das Objekt
-                        Debug.Log("Object '" + objectNameInTargetScene + "' in the target scene has been activated.");
-                        return; // Verlasse die Methode, wenn das Objekt gefunden wurde
+                        Debug.Log($"Object '{objectNameInTargetScene}' in the target scene has been activated.");
+                        objectFound = true;
+                        break; // Verlasse die Schleife, wenn das Objekt gefunden wurde
                     }
                 }
 
-                Debug.LogError("Object '" + objectNameInTargetScene + "' not found in the target scene!");
+                if (!objectFound)
+                {
+                    Debug.LogError($"Object '{objectNameInTargetScene}' not found in the target scene!");
+                }
             }
             else
             {
-                Debug.LogError("Target scene is not loaded! Please make sure the target scene is loaded before trying to activate the object.");
+                Debug.LogError($"Target scene with index {targetSceneBuildIndex} is not loaded! Please make sure the target scene is loaded before trying to activate the object.");
             }
         }
         else
