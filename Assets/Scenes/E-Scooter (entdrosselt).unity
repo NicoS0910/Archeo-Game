@@ -6478,6 +6478,7 @@ GameObject:
   - component: {fileID: 7049864605245391134}
   - component: {fileID: 922636477356093824}
   - component: {fileID: 1286573020104725162}
+  - component: {fileID: 7251349877357996246}
   - component: {fileID: 7251349877357996243}
   - component: {fileID: 7251349877357996244}
   - component: {fileID: 7251349877357996245}
@@ -6603,6 +6604,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetSceneBuildIndex: 2
   objectNameInTargetScene: "F\xFCrAnimationZuAktivierendesObjektxD"
+--- !u!114 &7251349877357996246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010772358467258945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208cfbc6de824d94bb0c06d570ccb94f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

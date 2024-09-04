@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
     public ScanObjekt scanObjekt; // Referenz auf das ScanObjekt-Skript
-    public activateQuiz activateQuiz; // Referenz auf das ActivateQuiz-Skript
+    public activateInfobox activateInfobox; // Referenz auf das activateInfobox-Skript
 
     private bool hasScanned = false;
     private Vector2 movementInput;
@@ -33,12 +33,12 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (activateQuiz == null)
+        if (activateInfobox == null)
         {
-            activateQuiz = FindObjectOfType<activateQuiz>();
-            if (activateQuiz == null)
+            activateInfobox = FindObjectOfType<activateInfobox>();
+            if (activateInfobox == null)
             {
-                Debug.LogError("ActivateQuiz reference is missing in PlayerController.");
+                Debug.LogError("activateInfobox reference is missing in PlayerController.");
             }
         }
     }

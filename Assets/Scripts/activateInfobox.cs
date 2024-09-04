@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class activateQuiz : MonoBehaviour
+public class activateInfobox : MonoBehaviour
 {
     public float interactionRange = 5f;
     public GameObject popupText;
