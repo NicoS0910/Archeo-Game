@@ -1284,7 +1284,7 @@ MonoBehaviour:
   backButton: {fileID: 258471974}
   nextSceneName: SampleScene
   videoClips:
-  - {fileID: 32900000, guid: 33ba7f2fea9a0430285755c8c70597b8, type: 3}
+  - {fileID: 32900000, guid: e8e49eb5539f14740889a2832f2cd802, type: 3}
   - {fileID: 32900000, guid: 7084dfa45bd9243f1a14cecfb0480f41, type: 3}
   - {fileID: 32900000, guid: 9d429a377a175457eb1e7cee31cf31de, type: 3}
   - {fileID: 32900000, guid: 3998e970549f74d2aa0dda6bb43fcaa5, type: 3}
