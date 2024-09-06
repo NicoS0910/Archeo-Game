@@ -17,10 +17,6 @@ public class CanvasManager : MonoBehaviour
     public TextMeshProUGUI introTextMeshPro;
     public TextMeshProUGUI intro2TextMeshPro;
     public TextMeshProUGUI intro3TextMeshPro;
-    public TextMeshProUGUI intro4TextMeshPro;
-    public TextMeshProUGUI intro5TextMeshPro;
-    public TextMeshProUGUI intro6TextMeshPro;
-    public TextMeshProUGUI intro7TextMeshPro;
     public TextMeshProUGUI nutellaTextMeshPro;
     public TextMeshProUGUI eScooterTextMeshPro;
     public Button skipButton;
@@ -28,10 +24,10 @@ public class CanvasManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip typingSound;
 
-    public Canvas canvas; // Reference to the Canvas
-    public GameObject panel; // Reference to the Panel
-    public GameObject presentTimeCompletePanel; // Reference to the PresentTimeComplete Panel
-    public GameObject taskListPanel; // Reference to the Task List Panel
+    public Canvas canvas;
+    public GameObject panel;
+    public GameObject presentTimeCompletePanel;
+    public GameObject taskListPanel;
 
     private enum State
     {
@@ -40,13 +36,9 @@ public class CanvasManager : MonoBehaviour
         ServerTask,
         Intro3,
         ScanTask,
-        Intro4,
         NokiaTask,
-        Intro5,
         NutellaTask,
-        Intro6,
         E_ScooterTask,
-        Intro7,
         Finished
     }
 
@@ -61,7 +53,6 @@ public class CanvasManager : MonoBehaviour
     {
         CheckReferences();
 
-        // Deactivate Canvas, Panel, and PresentTimeCompletePanel initially
         if (canvas != null)
             canvas.gameObject.SetActive(false);
 
@@ -71,7 +62,14 @@ public class CanvasManager : MonoBehaviour
         if (presentTimeCompletePanel != null)
             presentTimeCompletePanel.SetActive(false);
 
-        // Start coroutine with delay using Invoke
+        // Set initial visibility
+        if (serverPicture != null)
+            serverPicture.gameObject.SetActive(false);
+        if (serverTextMeshPro != null)
+            serverTextMeshPro.gameObject.SetActive(false);
+        if (scanTextMeshPro != null)
+            scanTextMeshPro.gameObject.SetActive(false);
+
         Invoke("ActivateCanvasAndPanel", 3f);
     }
 
@@ -91,16 +89,12 @@ public class CanvasManager : MonoBehaviour
         ShowIntroText();
         HideIntro2Text();
         HideIntro3Text();
-        HideIntro4Text();
-        HideIntro5Text();
-        HideIntro6Text();
-        HideIntro7Text();
         HideTaskTexts();
 
         skipButton.onClick.AddListener(OnSkipButtonPressed);
         nokiaQuizStartButton.onClick.AddListener(OnNokiaQuizStartButtonPressed);
         UpdateSkipButtonState();
-        yield return null; // Just to ensure the coroutine completes in this frame
+        yield return null;
     }
 
     void Update()
@@ -112,9 +106,9 @@ public class CanvasManager : MonoBehaviour
                 {
                     serverCollected = true;
                     HideServerText();
+                    HideServerPicture(); // Hide server picture when server is collected
                     currentState = State.Intro3;
                     ShowIntro3Text();
-                    UpdateSkipButtonState();
                 }
                 break;
             case State.ScanTask:
@@ -122,93 +116,76 @@ public class CanvasManager : MonoBehaviour
                 {
                     scanCompleted = true;
                     HideScanText();
-                    currentState = State.Intro4;
-                    ShowIntro4Text();
+                    currentState = State.NokiaTask;
+                    ShowNokiaText();
                     UpdateSkipButtonState();
                 }
                 break;
             case State.NokiaTask:
-                if (!nokiaCollected && (nokiaObject == null || !nokiaObject.activeInHierarchy))
+                if (!nokiaCollected && nokiaObject == null)
                 {
                     nokiaCollected = true;
                     HideNokiaText();
-                    currentState = State.Intro5;
-                    ShowIntro5Text();
+                    currentState = State.NutellaTask;
+                    ShowNutellaText();
                 }
                 break;
             case State.NutellaTask:
-                if (!nutellaCollected && (nutellaObject == null || !nutellaObject.activeInHierarchy))
+                if (!nutellaCollected && nutellaObject == null)
                 {
                     nutellaCollected = true;
                     HideNutellaText();
-                    currentState = State.Intro6;
-                    ShowIntro6Text();
+                    currentState = State.E_ScooterTask;
+                    ShowE_ScooterText();
                 }
                 break;
             case State.E_ScooterTask:
-                if (!eScooterCollected && (eScooterObject == null || !eScooterObject.activeInHierarchy))
+                if (!eScooterCollected && eScooterObject == null)
                 {
                     eScooterCollected = true;
                     HideE_ScooterText();
-                    currentState = State.Intro7;
-                    ShowIntro7Text();
+                    currentState = State.Finished;
+                    ShowCompletion();
                 }
                 break;
         }
     }
 
-    void CheckReferences()
+    void OnSkipButtonPressed()
     {
-        if (serverObject == null)
-            Debug.LogError("Server object reference is not assigned in the inspector.");
-        if (scanObject == null)
-            Debug.LogError("Scan object reference is not assigned in the inspector.");
-        if (nokiaObject == null)
-            Debug.LogError("Nokia object reference is not assigned in the inspector.");
-        if (nutellaObject == null)
-            Debug.LogError("Nutella object reference is not assigned in the inspector.");
-        if (eScooterObject == null)
-            Debug.LogError("E-Scooter object reference is not assigned in the inspector.");
-        if (serverTextMeshPro == null)
-            Debug.LogError("Server TextMeshProUGUI component is not assigned in the inspector.");
-        if (scanTextMeshPro == null)
-            Debug.LogError("Scan TextMeshProUGUI component is not assigned in the inspector.");
-        if (nokiaTextMeshPro == null)
-            Debug.LogError("Nokia TextMeshProUGUI component is not assigned in the inspector.");
-        if (introTextMeshPro == null)
-            Debug.LogError("Intro TextMeshProUGUI component is not assigned in the inspector.");
-        if (intro2TextMeshPro == null)
-            Debug.LogError("Intro2 TextMeshProUGUI component is not assigned in the inspector.");
-        if (intro3TextMeshPro == null)
-            Debug.LogError("Intro3 TextMeshProUGUI component is not assigned in the inspector.");
-        if (intro4TextMeshPro == null)
-            Debug.LogError("Intro4 TextMeshProUGUI component is not assigned in the inspector.");
-        if (intro5TextMeshPro == null)
-            Debug.LogError("Intro5 TextMeshProUGUI component is not assigned in the inspector.");
-        if (intro6TextMeshPro == null)
-            Debug.LogError("Intro6 TextMeshProUGUI component is not assigned in the inspector.");
-        if (intro7TextMeshPro == null)
-            Debug.LogError("Intro7 TextMeshProUGUI component is not assigned in the inspector.");
-        if (nutellaTextMeshPro == null)
-            Debug.LogError("Nutella TextMeshProUGUI component is not assigned in the inspector.");
-        if (eScooterTextMeshPro == null)
-            Debug.LogError("E-Scooter TextMeshProUGUI component is not assigned in the inspector.");
-        if (skipButton == null)
-            Debug.LogError("Skip Button reference is not assigned in the inspector.");
-        if (nokiaQuizStartButton == null)
-            Debug.LogError("Nokia Quiz Start Button reference is not assigned in the inspector.");
-        if (audioSource == null)
-            Debug.LogError("AudioSource reference is not assigned in the inspector.");
-        if (typingSound == null)
-            Debug.LogError("Typing sound reference is not assigned in the inspector.");
-        if (canvas == null)
-            Debug.LogError("Canvas reference is not assigned in the inspector.");
-        if (panel == null)
-            Debug.LogError("Panel reference is not assigned in the inspector.");
-        if (presentTimeCompletePanel == null)
-            Debug.LogError("PresentTimeCompletePanel reference is not assigned in the inspector.");
-        if (taskListPanel == null)
-            Debug.LogError("TaskListPanel reference is not assigned in the inspector.");
+        switch (currentState)
+        {
+            case State.Intro1:
+                HideIntroText();
+                ShowIntro2Text();
+                currentState = State.Intro2;
+                break;
+            case State.Intro2:
+                HideIntro2Text();
+                currentState = State.ServerTask;
+                ShowServerText();
+                ShowServerPicture(); // Show server picture with the server text
+                break;
+            case State.Intro3:
+                HideIntro3Text();
+                currentState = State.ScanTask;
+                ShowScanText(); // Show scan text after Intro 3
+                break;
+        }
+        UpdateSkipButtonState();
+    }
+
+    void UpdateSkipButtonState()
+    {
+        if (skipButton != null)
+        {
+            bool isTextActive = introTextMeshPro.gameObject.activeInHierarchy ||
+                                intro2TextMeshPro.gameObject.activeInHierarchy ||
+                                intro3TextMeshPro.gameObject.activeInHierarchy ||
+                                scanTextMeshPro.gameObject.activeInHierarchy;
+
+            skipButton.gameObject.SetActive(isTextActive);
+        }
     }
 
     void ShowIntroText()
@@ -262,97 +239,35 @@ public class CanvasManager : MonoBehaviour
         UpdateSkipButtonState();
     }
 
-    void ShowIntro4Text()
+    void ShowServerText()
     {
-        if (intro4TextMeshPro != null)
+        if (serverTextMeshPro != null)
         {
-            intro4TextMeshPro.gameObject.SetActive(true);
-            StartCoroutine(StartTypingEffect(intro4TextMeshPro));
+            serverTextMeshPro.gameObject.SetActive(true);
+            StartCoroutine(StartTypingEffect(serverTextMeshPro));
+            PlaySound();
         }
-        UpdateSkipButtonState();
     }
 
-    void HideIntro4Text()
+    void HideServerText()
     {
-        if (intro4TextMeshPro != null)
-            intro4TextMeshPro.gameObject.SetActive(false);
-        UpdateSkipButtonState();
+        if (serverTextMeshPro != null)
+            serverTextMeshPro.gameObject.SetActive(false);
     }
 
-    void ShowIntro5Text()
+    void ShowServerPicture()
     {
-        if (intro5TextMeshPro != null)
+        if (serverPicture != null)
         {
-            intro5TextMeshPro.gameObject.SetActive(true);
-            StartCoroutine(StartTypingEffect(intro5TextMeshPro));
+            serverPicture.gameObject.SetActive(true); // Show the RawImage
         }
-        UpdateSkipButtonState();
     }
 
-    void HideIntro5Text()
+    void HideServerPicture()
     {
-        if (intro5TextMeshPro != null)
-            intro5TextMeshPro.gameObject.SetActive(false);
-        UpdateSkipButtonState();
+        if (serverPicture != null)
+            serverPicture.gameObject.SetActive(false); // Hide the RawImage
     }
-
-    void ShowIntro6Text()
-    {
-        if (intro6TextMeshPro != null)
-        {
-            intro6TextMeshPro.gameObject.SetActive(true);
-            StartCoroutine(StartTypingEffect(intro6TextMeshPro));
-        }
-        UpdateSkipButtonState();
-    }
-
-    void HideIntro6Text()
-    {
-        if (intro6TextMeshPro != null)
-            intro6TextMeshPro.gameObject.SetActive(false);
-        UpdateSkipButtonState();
-    }
-
-    void ShowIntro7Text()
-    {
-        if (intro7TextMeshPro != null)
-        {
-            intro7TextMeshPro.gameObject.SetActive(true);
-            StartCoroutine(StartTypingEffect(intro7TextMeshPro));
-        }
-        UpdateSkipButtonState();
-    }
-
-    void HideIntro7Text()
-    {
-        if (intro7TextMeshPro != null)
-            intro7TextMeshPro.gameObject.SetActive(false);
-        UpdateSkipButtonState();
-    }
-
-   void ShowServerText()
-{
-    if (serverTextMeshPro != null)
-    {
-        serverTextMeshPro.gameObject.SetActive(true);
-        StartCoroutine(StartTypingEffect(serverTextMeshPro));
-        PlaySound();
-    }
-    if (serverPicture != null)
-    {
-        serverPicture.gameObject.SetActive(true); // Zeige das RawImage an
-    }
-}
-
-
-void HideServerText()
-{
-    if (serverTextMeshPro != null)
-        serverTextMeshPro.gameObject.SetActive(false);
-    if (serverPicture != null)
-        serverPicture.gameObject.SetActive(false); // Verstecke das RawImage
-}
-
 
     void ShowScanText()
     {
@@ -368,6 +283,11 @@ void HideServerText()
     {
         if (scanTextMeshPro != null)
             scanTextMeshPro.gameObject.SetActive(false);
+    }
+
+    bool IsScanObjectCompleted()
+    {
+        return scanObject == null; // Example check: Object is destroyed or collected
     }
 
     void ShowNokiaText()
@@ -420,143 +340,53 @@ void HideServerText()
 
     void HideTaskTexts()
     {
-        HideServerText();
         HideScanText();
         HideNokiaText();
         HideNutellaText();
         HideE_ScooterText();
     }
 
-    void UpdateSkipButtonState()
+    void ShowCompletion()
     {
-        if (currentState == State.Intro1 || currentState == State.Intro2 || 
-            currentState == State.Intro3 || currentState == State.Intro4 || 
-            currentState == State.Intro5 || currentState == State.Intro6 || 
-            currentState == State.Intro7)
+        if (presentTimeCompletePanel != null)
+            presentTimeCompletePanel.SetActive(true);
+    }
+
+    IEnumerator StartTypingEffect(TextMeshProUGUI textComponent)
+    {
+        if (audioSource != null && typingSound != null)
+            audioSource.PlayOneShot(typingSound);
+
+        string originalText = textComponent.text;
+        textComponent.text = "";
+        foreach (char c in originalText)
         {
-            if (skipButton != null)
-                skipButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            if (skipButton != null)
-                skipButton.gameObject.SetActive(false);
+            textComponent.text += c;
+            yield return new WaitForSeconds(0.05f); // Typing speed
         }
     }
 
-    public void OnSkipButtonPressed()
+    void OnNokiaQuizStartButtonPressed()
     {
-        switch (currentState)
-        {
-            case State.Intro1:
-                currentState = State.Intro2;
-                HideIntroText();
-                ShowIntro2Text();
-                break;
-            case State.Intro2:
-                currentState = State.ServerTask;
-                HideIntro2Text();
-                ShowServerText();
-                break;
-            case State.ServerTask:
-                currentState = State.Intro3;
-                HideServerText();
-                ShowIntro3Text();
-                break;
-            case State.Intro3:
-                currentState = State.ScanTask;
-                HideIntro3Text();
-                ShowScanText();
-                break;
-            case State.ScanTask:
-                currentState = State.Intro4;
-                HideScanText();
-                ShowIntro4Text();
-                break;
-            case State.Intro4:
-                currentState = State.NokiaTask;
-                HideIntro4Text();
-                ShowNokiaText();
-                break;
-            case State.NokiaTask:
-                currentState = State.Intro5;
-                HideNokiaText();
-                ShowIntro5Text();
-                break;
-            case State.Intro5:
-                currentState = State.NutellaTask;
-                HideIntro5Text();
-                ShowNutellaText();
-                break;
-            case State.NutellaTask:
-                currentState = State.Intro6;
-                HideNutellaText();
-                ShowIntro6Text();
-                break;
-            case State.Intro6:
-                currentState = State.E_ScooterTask;
-                HideIntro6Text();
-                ShowE_ScooterText();
-                break;
-            case State.E_ScooterTask:
-                currentState = State.Intro7;
-                HideE_ScooterText();
-                ShowIntro7Text();
-                break;
-            case State.Intro7:
-                HideIntro7Text();
-                if (taskListPanel != null)
-                    taskListPanel.SetActive(false);
-                if (presentTimeCompletePanel != null)
-                    presentTimeCompletePanel.SetActive(true);
-                currentState = State.Finished;
-                break;
-        }
-
-        UpdateSkipButtonState();
+        // Logic for starting Nokia quiz
     }
 
-    public void OnNokiaQuizStartButtonPressed()
+    void CheckReferences()
     {
-        // Ensure this button only affects the Nokia task
-        if (currentState == State.NokiaTask)
+        if (serverTextMeshPro == null || scanTextMeshPro == null || nokiaTextMeshPro == null ||
+            introTextMeshPro == null || intro2TextMeshPro == null || intro3TextMeshPro == null ||
+            nutellaTextMeshPro == null || eScooterTextMeshPro == null || skipButton == null ||
+            nokiaQuizStartButton == null || audioSource == null || typingSound == null ||
+            canvas == null || panel == null || presentTimeCompletePanel == null || taskListPanel == null ||
+            serverPicture == null)
         {
-            nokiaCollected = true;
-            HideNokiaText();
-            currentState = State.Intro5;
-            ShowIntro5Text();
+            Debug.LogError("One or more references are not assigned in the inspector.");
         }
-        UpdateSkipButtonState();
-    }
-
-    IEnumerator StartTypingEffect(TextMeshProUGUI textMeshPro)
-    {
-        TypingEffect typingEffect = textMeshPro.GetComponent<TypingEffect>();
-        if (typingEffect != null)
-        {
-            yield return typingEffect.TypeText(textMeshPro.text);
-        }
-    }
-
-    bool IsScanObjectCompleted()
-    {
-        GameObject[] objectsInScene = GameObject.FindObjectsOfType<GameObject>();
-        foreach (GameObject obj in objectsInScene)
-        {
-            SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
-            if (renderer != null && renderer.sprite != null && renderer.sprite.name == "hennes_64")
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     void PlaySound()
     {
         if (audioSource != null && typingSound != null)
-        {
             audioSource.PlayOneShot(typingSound);
-        }
     }
 }
