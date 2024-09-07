@@ -22,7 +22,7 @@ public class ScanObject : MonoBehaviour
     {
         if (!isActivated && toolType == RequiredToolType)
         {
-            StartCoroutine(Activate()); // Coroutine starten
+            Activate();
             return true;
         }
         else
@@ -31,26 +31,26 @@ public class ScanObject : MonoBehaviour
         }
     }
 
-    private IEnumerator Activate() // Methode in eine Coroutine umwandeln
+    private void Activate()
     {
+
+        if (activationSoundClip != null)
+        {
+            SoundFXManager.instance.PlaySoundFXClip(activationSoundClip, transform, 1f);
+        }
         if (childObjectToActivate != null)
         {
-            if (activationSoundClip != null)
-            {
-                SoundFXManager.instance.PlaySoundFXClip(activationSoundClip, transform, 1f);
-            }
 
             childObjectToActivate.SetActive(true); // Aktiviert das Kindobjekt
         }
 
         if (destroyOriginalObject)
         {
-            yield return new WaitForSeconds(1); // Eine Sekunde warten
-            Destroy(gameObject); // Zerstört das ursprüngliche Objekt
+            Destroy(gameObject); // Zerstört das ursprüngliche Objekt sofort
         }
         else
         {
-            gameObject.SetActive(false); // Deaktiviert das ursprüngliche Objekt
+            gameObject.SetActive(false); // Deaktiviert das ursprüngliche Objekt sofort
         }
 
         isActivated = true; // Verhindert mehrfache Aktivierung

@@ -8,6 +8,7 @@ public class Harvesting : MonoBehaviour
     public Animator playerAnimator; // Referenz zum Animator des Spielers
 
     [SerializeField] private ToolType scannerToolType; // Referenz zum Scanner-ToolType
+    [SerializeField] private ToolType pickaxeToolType; // Referenz zum Pickaxe-ToolType
     [SerializeField] private GameObject scanAnimationObject; // Das Scan-Animations-Objekt
 
     public Tool Tool
@@ -63,12 +64,26 @@ public class Harvesting : MonoBehaviour
         if (scanObject != null)
         {
             // Überprüft, ob das aktuelle Tool vom Typ Scanner ist
-            if (Tool.Type == scannerToolType) 
+            if (Tool.Type == pickaxeToolType)
             {
                 // Spielt die Scan-Animation ab
                 playerAnimator.SetTrigger("scan");
             }
             scanObject.TryActivate(Tool.Type);
+        }
+        // Überprüft, ob das getroffene Objekt ein "ScanArtefact"-Objekt ist
+        ScanArtefact scanArtefact = collision.GetComponent<ScanArtefact>();
+        if (scanArtefact != null)
+        {
+            // Überprüft, ob das aktuelle Tool vom Typ Scanner ist
+            if (Tool.Type == scannerToolType)
+            {
+                // Spielt die Scan-Animation ab
+                playerAnimator.SetTrigger("scan");
+
+                // Versucht, das Artefakt zu aktivieren
+                scanArtefact.TryActivate(Tool.Type);
+            }
         }
     }
 
