@@ -1284,14 +1284,18 @@ MonoBehaviour:
   backButton: {fileID: 258471974}
   nextSceneName: SampleScene
   videoClips:
-  - {fileID: 32900000, guid: e8e49eb5539f14740889a2832f2cd802, type: 3}
-  - {fileID: 32900000, guid: 7084dfa45bd9243f1a14cecfb0480f41, type: 3}
-  - {fileID: 32900000, guid: 9d429a377a175457eb1e7cee31cf31de, type: 3}
-  - {fileID: 32900000, guid: 3998e970549f74d2aa0dda6bb43fcaa5, type: 3}
-  - {fileID: 32900000, guid: 532741142239c41eeb3fb755bb20cd06, type: 3}
-  - {fileID: 32900000, guid: 08ce20e35453b4f1abcd670e624da824, type: 3}
-  - {fileID: 32900000, guid: e2f3e07a5ff5349a3a75e429e4070964, type: 3}
-  - {fileID: 32900000, guid: 03b116cf9d7cd4d1bb4f2a4b6da104f1, type: 3}
+  - {fileID: 32900000, guid: eaa067383303f4db5878b1fcb0b23629, type: 3}
+  - {fileID: 32900000, guid: 9f4fde2fd89b14bdbaf736fbb64a3747, type: 3}
+  - {fileID: 32900000, guid: 84c2562591d08459bb73753a4a6d5121, type: 3}
+  - {fileID: 32900000, guid: f30cd0a3a586048a29657b031ded201f, type: 3}
+  - {fileID: 32900000, guid: 66d4feb5f18bb4184befa513ba0d0938, type: 3}
+  - {fileID: 32900000, guid: 4a6ff0b9b5e614f3f9b18a68d23d5e79, type: 3}
+  - {fileID: 32900000, guid: 84393735ee2be41f6818e26d88b4b71d, type: 3}
+  - {fileID: 32900000, guid: f3c451ed4aafd4044842e4c83072a521, type: 3}
+  - {fileID: 32900000, guid: 64ddacb49f764432eb31b2270f8f64e9, type: 3}
+  - {fileID: 32900000, guid: 575e8d114e7cf475f8a2ca8bc83cf0e3, type: 3}
+  - {fileID: 32900000, guid: e23185845a7be4a3480dda600dce9bc5, type: 3}
+  - {fileID: 32900000, guid: 6f95136ff4da74aefbff45cf1e832d8e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
