@@ -59,6 +59,7 @@ public class Scan : MonoBehaviour
         }
     }
 
+    //Falls Scan-Hitbox nicht von alleine verschwindet
     private IEnumerator finishFockingScanning(float delay)
     {
         yield return new WaitForSeconds(delay);
