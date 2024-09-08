@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float collisionOffset = 0.05f;
     public ContactFilter2D movementFilter;
     public SwordAttack swordAttack;
+    public Scan scan;
+    public Harvesting tool;
     public ScanObjekt scanObjekt; // Referenz auf das ScanObjekt-Skript
     public activateInfobox activateInfobox; // Referenz auf das activateInfobox-Skript
 
@@ -109,6 +111,12 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("swordAttack");
     }
 
+    void OnScan()
+    {
+        //tool.OnScanHit();//Hier ist was falsch
+        Scan();
+    }
+
     public void SwordAttack()
     {
         LockMovement();
@@ -130,10 +138,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Scan()
+    {
+        //LockMovement();
+        if (lastMovementInput.x > 0)
+        {
+            scan.AttackRight();
+        }
+        else if (lastMovementInput.x < 0)
+        {
+            scan.AttackLeft();
+        }
+        else if (lastMovementInput.y > 0)
+        {
+            scan.AttackUp();
+        }
+        else if (lastMovementInput.y < 0)
+        {
+            scan.AttackDown();
+        }
+    }
+
     public void EndSwordAttack()
     {
         UnlockMovement();
         swordAttack.StopAttack();
+    }
+
+    public void EndScan()
+    {
+        UnlockMovement();
+        scan.StopScan();
     }
 
     public void LockMovement()
@@ -167,7 +202,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Destroy(server); // Remove server object from scene
-        
+
         // Kein Achievement mehr für das Pickup, daher auskommentiert
         // AchievementManager.Instance.SetHasServer(true); // Signal AchievementManager
         // AchievementManager.Instance.ActivateObject("pickup_achievement", true); // Activate the pickup achievement object

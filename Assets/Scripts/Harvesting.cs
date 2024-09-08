@@ -6,7 +6,10 @@ public class Harvesting : MonoBehaviour
 {
     public Collider2D swordCollider;
     public Animator playerAnimator; // Referenz zum Animator des Spielers
+    private SpriteRenderer _renderer;
+    public PlayerController playerController;
 
+    [SerializeField] private Tool _tool;
     [SerializeField] private ToolType scannerToolType; // Referenz zum Scanner-ToolType
     [SerializeField] private ToolType pickaxeToolType; // Referenz zum Pickaxe-ToolType
     [SerializeField] private GameObject scanAnimationObject; // Das Scan-Animations-Objekt
@@ -39,9 +42,6 @@ public class Harvesting : MonoBehaviour
         }
     }
 
-    [SerializeField] private Tool _tool;
-    private SpriteRenderer _renderer;
-
     private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
@@ -63,14 +63,12 @@ public class Harvesting : MonoBehaviour
         ScanObject scanObject = collision.GetComponent<ScanObject>();
         if (scanObject != null)
         {
-            // Überprüft, ob das aktuelle Tool vom Typ Scanner ist
-            if (Tool.Type == pickaxeToolType)
-            {
-                // Spielt die Scan-Animation ab
-                playerAnimator.SetTrigger("scan");
-            }
             scanObject.TryActivate(Tool.Type);
         }
+    }
+
+    public void OnScanHit(Collider2D collision)
+    {
         // Überprüft, ob das getroffene Objekt ein "ScanArtefact"-Objekt ist
         ScanArtefact scanArtefact = collision.GetComponent<ScanArtefact>();
         if (scanArtefact != null)
@@ -84,6 +82,14 @@ public class Harvesting : MonoBehaviour
                 // Versucht, das Artefakt zu aktivieren
                 scanArtefact.TryActivate(Tool.Type);
             }
+            else
+            {
+                playerController.EndScan();
+            }
+        }
+        else
+        {
+            playerController.EndScan();
         }
     }
 
