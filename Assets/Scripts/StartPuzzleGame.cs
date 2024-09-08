@@ -3,17 +3,16 @@ using UnityEngine;
 public class StartPuzzleGame : MonoBehaviour
 {
     public float interactionRange = 5f;
-    public GameObject popupText03; // Das GameObject des Popup-Texts
-    public GameObject PuzzleGame; // Das GameObject des Minispiels, das im Editor zugewiesen werden muss
-    public LayerMask playerLayer; // Layer für den Spieler
+    public GameObject popupText03;
+    public GameObject PuzzleGame;
+    public LayerMask playerLayer;
 
     private bool isInRange = false;
     private bool minigameStarted = false;
-    private bool isGamePaused = false; // Variable zum Speichern des Pausenstatus
+    private bool isGamePaused = false;
 
     void Update()
     {
-        // Überprüfen, ob der Spieler im Interaktionsbereich ist
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, interactionRange, playerLayer);
         isInRange = false;
 
@@ -32,7 +31,6 @@ public class StartPuzzleGame : MonoBehaviour
             HidePopup();
         }
 
-        // Überprüfe, ob der Spieler die Interaktionstaste drückt und das Objekt in Reichweite ist
         if (isInRange && Input.GetKeyDown(KeyCode.E) && !minigameStarted)
         {
             StartMinigame();
@@ -44,12 +42,10 @@ public class StartPuzzleGame : MonoBehaviour
         Debug.Log("StartMinigame method called");
         minigameStarted = true;
 
-        // Aktiviere das PuzzleGame-GameObject
         if (PuzzleGame != null)
         {
             Debug.Log("PuzzleGame GameObject found: " + PuzzleGame.name);
             PuzzleGame.SetActive(true);
-            //PauseGame(); // Spiel pausieren, wenn das Minispiel gestartet wird
         }
         else
         {
@@ -61,7 +57,7 @@ public class StartPuzzleGame : MonoBehaviour
     {
         if (popupText03 != null)
         {
-            popupText03.SetActive(true); // Aktiviere das Popup-Text-Objekt
+            popupText03.SetActive(true);
         }
     }
 
@@ -69,20 +65,19 @@ public class StartPuzzleGame : MonoBehaviour
     {
         if (popupText03 != null)
         {
-            popupText03.SetActive(false); // Deaktiviere den Interaktionstext
+            popupText03.SetActive(false);
         }
     }
 
     void PauseGame()
     {
         isGamePaused = true;
-        Time.timeScale = 0f; // Spielzeit auf Null setzen, um das Spiel zu pausieren
+        Time.timeScale = 0f;
         Debug.Log("Game paused");
     }
 
     void OnDrawGizmosSelected()
     {
-        // Zeichne eine visuelle Darstellung des Interaktionsbereichs im Editor
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
     }

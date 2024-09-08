@@ -3,8 +3,8 @@ using UnityEngine.EventSystems;
 
 public class HoverActivation : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private GameObject targetObject;  // Das Objekt, das aktiviert/deaktiviert werden soll
-    [SerializeField] private bool activateOnHover = true;  // Ob das Objekt beim Hover aktiviert werden soll
+    [SerializeField] private GameObject targetObject;
+    [SerializeField] private bool activateOnHover = true;
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class HoverActivation : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         if (targetObject != null && activateOnHover)
         {
-            targetObject.SetActive(true);  // Zielobjekt aktivieren
+            targetObject.SetActive(true);
         }
     }
 
@@ -26,7 +26,7 @@ public class HoverActivation : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         if (targetObject != null && activateOnHover)
         {
-            targetObject.SetActive(false);  // Zielobjekt deaktivieren
+            targetObject.SetActive(false);
         }
     }
 }

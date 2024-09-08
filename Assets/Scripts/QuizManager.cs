@@ -3,13 +3,12 @@ using UnityEngine.UI;
 
 public class QuizManager : MonoBehaviour
 {
-    public Button correctAnswerButton;   // Der Button, der die korrekte Antwort darstellt
-    public Button[] wrongAnswerButtons;  // Die Buttons, die falsche Antworten darstellen
-    public GameObject rewardObject;      // Das Objekt, das nach der richtigen Antwort erscheinen soll
+    public Button correctAnswerButton;
+    public Button[] wrongAnswerButtons;
+    public GameObject rewardObject;
 
     void Start()
     {
-        // Fügen Sie jedem Button einen Listener hinzu, um auf Klicks zu reagieren
         correctAnswerButton.onClick.AddListener(() => OnCorrectButtonClick(correctAnswerButton));
         
         foreach (Button button in wrongAnswerButtons)
@@ -17,7 +16,6 @@ public class QuizManager : MonoBehaviour
             button.onClick.AddListener(() => OnWrongButtonClick(button));
         }
 
-        // Verstecken Sie das Belohnungsobjekt zu Beginn
         if (rewardObject != null)
         {
             rewardObject.SetActive(false);
@@ -26,13 +24,9 @@ public class QuizManager : MonoBehaviour
 
     void OnCorrectButtonClick(Button clickedButton)
     {
-        // Markiere den korrekten Button grün
         SetButtonColor(clickedButton, Color.green);
-
-        // Deaktiviere alle falschen Buttons
         DisableWrongButtons();
 
-        // Zeige das Belohnungsobjekt an
         if (rewardObject != null)
         {
             rewardObject.SetActive(true);
@@ -41,7 +35,6 @@ public class QuizManager : MonoBehaviour
 
     void OnWrongButtonClick(Button clickedButton)
     {
-        // Markiere den falschen Button rot
         SetButtonColor(clickedButton, Color.red);
     }
 
@@ -55,7 +48,6 @@ public class QuizManager : MonoBehaviour
 
     void SetButtonColor(Button button, Color color)
     {
-        // Ändern Sie die Farbe der Image-Komponente des Buttons
         Image buttonImage = button.GetComponent<Image>();
         if (buttonImage != null)
         {

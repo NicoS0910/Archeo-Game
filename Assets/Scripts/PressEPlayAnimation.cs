@@ -3,13 +3,13 @@ using UnityEngine;
 public class PressEPlayAnimation : MonoBehaviour
 {
     public float interactionRange = 5f;
-    public GameObject popupText02; // Das GameObject des Popup-Texts
-    public GameObject CoinGame; // Das GameObject des Minispiels, das im Editor zugewiesen werden muss
-    public Animator coinGameAnimator; // Der Animator für die Animation des Minispiels
+    public GameObject popupText02;
+    public GameObject CoinGame;
+    public Animator coinGameAnimator;
 
     private bool isInRange = false;
     private bool minigameStarted = false;
-    private bool isGamePaused = false; // Variable zum Speichern des Pausenstatus
+    private bool isGamePaused = false;
 
     void Update()
     {
@@ -61,7 +61,7 @@ public class PressEPlayAnimation : MonoBehaviour
     {
         if (popupText02 != null)
         {
-            popupText02.SetActive(true); // Aktiviere das Popup-Text-Objekt
+            popupText02.SetActive(true);
         }
     }
 
@@ -69,14 +69,14 @@ public class PressEPlayAnimation : MonoBehaviour
     {
         if (popupText02 != null)
         {
-            popupText02.SetActive(false); // Deaktiviere den Interaktionstext
+            popupText02.SetActive(false);
         }
     }
 
     void PauseGame()
     {
         isGamePaused = true;
-        Time.timeScale = 0f; // Spielzeit auf Null setzen, um das Spiel zu pausieren
+        Time.timeScale = 0f;
         Debug.Log("Game paused");
     }
 

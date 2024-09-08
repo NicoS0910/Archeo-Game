@@ -4,16 +4,16 @@ public class ScanObjekt : MonoBehaviour
 {
     public float interactionRange = 5f;
     public GameObject popupText;
-    public GameObject infoBoxObject; // Referenz auf das Info Box Objekt im Inspector
-    public Sprite newSprite; // Hier das neue Sprite im Inspector zuweisen
+    public GameObject infoBoxObject;
+    public Sprite newSprite;
 
     private bool isInRange = false;
     private SpriteRenderer spriteRenderer;
     private Sprite originalSprite;
     private bool hasServer = false;
-    private bool isGamePaused = false; // Variable zum Speichern des Pausenstatus
+    private bool isGamePaused = false;
 
-    private PlayerController playerController; // Referenz auf den PlayerController
+    private PlayerController playerController;
 
     void Start()
     {
@@ -21,7 +21,6 @@ public class ScanObjekt : MonoBehaviour
         originalSprite = spriteRenderer.sprite;
         HidePopup();
 
-        // PlayerController Komponente finden
         playerController = FindObjectOfType<PlayerController>();
         if (playerController == null)
         {
@@ -38,8 +37,6 @@ public class ScanObjekt : MonoBehaviour
             if (hasServer)
             {
                 Interact();
-                // Hier das Achievement anzeigen
-              //  AchievementManager.Instance.ActivateObject("scan_achievement", false);
             }
             else
             {
@@ -47,13 +44,11 @@ public class ScanObjekt : MonoBehaviour
             }
         }
 
-        // Check if 'F' key is pressed
         if (isInRange && Input.GetKeyDown(KeyCode.F))
         {
             ActivateInfoBox();
         }
 
-        // Check if 'S' key is pressed for scanning (neue Aufgabe)
         if (isInRange && Input.GetKeyDown(KeyCode.S))
         {
             ScanObject();
@@ -126,7 +121,7 @@ public class ScanObjekt : MonoBehaviour
             Animator animator = infoBoxObject.GetComponent<Animator>();
             if (animator != null)
             {
-                animator.SetTrigger("Show"); // Hier den entsprechenden Trigger-Namen eintragen
+                animator.SetTrigger("Show");
             }
             else
             {
@@ -139,12 +134,9 @@ public class ScanObjekt : MonoBehaviour
         }
     }
 
-    // Neue Methode zum Scannen des Objekts (zweite Aufgabe)
     void ScanObject()
     {
         Debug.Log("Object scanned!");
-        // Hier kannst du weitere Aktionen ausführen, wenn das Objekt gescannt wird
-        // Zum Beispiel: Setze einen Status, zeige eine Benachrichtigung an usw.
     }
 
     void OnDrawGizmosSelected()

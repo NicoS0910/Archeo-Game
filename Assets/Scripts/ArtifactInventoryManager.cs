@@ -3,21 +3,18 @@ using UnityEngine.UI;
 
 public class ArtifactInventoryManager : MonoBehaviour
 {
-    public GameObject inventoryUI;  // Referenz auf das Inventar UI Panel
-    private bool isGamePaused = false; // Status des Spiels (pausiert oder nicht)
+    public GameObject inventoryUI;
+    private bool isGamePaused = false;
 
     void Update()
     {
-        // Öffne/Schließe das Inventar und pausiere/fortsetze das Spiel, wenn 'i' gedrückt wird
         if (Input.GetKeyDown(KeyCode.I))
         {
             if (inventoryUI != null)
             {
-                // Inventar UI umschalten
                 inventoryUI.SetActive(!inventoryUI.activeSelf);
             }
 
-            // Spielstatus umschalten
             if (isGamePaused)
             {
                 ResumeGame();
@@ -29,18 +26,16 @@ public class ArtifactInventoryManager : MonoBehaviour
         }
     }
 
-    // Methode zum Pausieren des Spiels
     private void PauseGame()
     {
-        Time.timeScale = 0f; // Pausiere das Spiel
+        Time.timeScale = 0f;
         isGamePaused = true;
         Debug.Log("Spiel pausiert.");
     }
 
-    // Methode zum Fortsetzen des Spiels
     private void ResumeGame()
     {
-        Time.timeScale = 1f; // Setze das Spiel fort
+        Time.timeScale = 1f;
         isGamePaused = false;
         Debug.Log("Spiel fortgesetzt.");
     }

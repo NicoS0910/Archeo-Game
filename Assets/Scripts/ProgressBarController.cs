@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class ProgressBarController : MonoBehaviour
 {
-    public Image progressBarFill; // Das Image, das die Füllung der ProgressBar anzeigt
-    public GameObject[] objectsToMonitor; // Die Liste der Objekte, die überwacht werden sollen
+    public Image progressBarFill;
+    public GameObject[] objectsToMonitor;
 
     private int totalObjects;
     private int activatedObjects;
@@ -13,7 +13,7 @@ public class ProgressBarController : MonoBehaviour
     {
         totalObjects = objectsToMonitor.Length;
         activatedObjects = 0;
-        UpdateProgressBar(); // ProgressBar initialisieren
+        UpdateProgressBar();
     }
 
     void Update()
@@ -25,7 +25,6 @@ public class ProgressBarController : MonoBehaviour
     {
         activatedObjects = 0;
 
-        // Überprüft, ob jedes Objekt in der Liste aktiviert ist
         foreach (GameObject obj in objectsToMonitor)
         {
             if (obj.activeSelf)
