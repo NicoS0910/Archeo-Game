@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AchievementManager : MonoBehaviour
 {
-    // Singleton-Instanz des AchievementManagers
     private static AchievementManager instance;
     public static AchievementManager Instance
     {
@@ -24,15 +23,14 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    // Klasse für die Darstellung eines Achievements
     public class Achievement
     {
         public string id;
         public string description;
-        public GameObject activateOnPickup; // GameObject, das bei Pickup aktiviert werden soll
-        public GameObject activateOnScan;   // GameObject, das bei Scan aktiviert werden soll
-        public bool isAchieved;             // Ob das Achievement erreicht wurde
-        public bool hasServer;              // Zusätzliche Eigenschaft spezifisch für das Beispiel
+        public GameObject activateOnPickup;
+        public GameObject activateOnScan;
+        public bool isAchieved;
+        public bool hasServer;
 
         public Achievement(string id, string description, GameObject pickupObject, GameObject scanObject)
         {
@@ -45,19 +43,16 @@ public class AchievementManager : MonoBehaviour
         }
     }
 
-    // Liste aller Achievements
     public List<Achievement> achievements = new List<Achievement>();
 
-    public GameObject pickupAchievementObject; // Referenz auf das GameObject für das Pickup-Achievement
-    public GameObject scanAchievementObject;   // Referenz auf das GameObject für das Scan-Achievement
+    public GameObject pickupAchievementObject;
+    public GameObject scanAchievementObject;
 
     void Start()
     {
-        // Beispiel: Füge hier Achievements hinzu
         Achievement scanAchievement = new Achievement("scan_achievement", "You scanned an object!", null, scanAchievementObject);
         Achievement pickupAchievement = new Achievement("pickup_achievement", "You picked up an item!", pickupAchievementObject, null);
 
-        // Füge die Achievements der Liste hinzu
         achievements.Add(scanAchievement);
         achievements.Add(pickupAchievement);
     }
@@ -75,7 +70,7 @@ public class AchievementManager : MonoBehaviour
         if (objToActivate != null)
         {
             objToActivate.SetActive(true);
-            StartCoroutine(DeactivateObjectAfterDelay(objToActivate, 3f)); // Deaktiviere das Objekt nach 3 Sekunden
+            StartCoroutine(DeactivateObjectAfterDelay(objToActivate, 3f));
         }
         else
         {
@@ -89,7 +84,6 @@ public class AchievementManager : MonoBehaviour
         obj.SetActive(false);
     }
 
-    // Methode zum Überprüfen, ob ein Achievement bereits erreicht wurde
     public bool IsAchievementReached(string achievementId)
     {
         Achievement achievement = achievements.Find(a => a.id == achievementId);
@@ -100,29 +94,16 @@ public class AchievementManager : MonoBehaviour
         return false;
     }
 
-    // Methode, um den Zustand des "hasServer"-Flags im AchievementManager zu setzen
     public void SetHasServer(bool value)
     {
-        // Setze den Zustand von hasServer im entsprechenden Achievement
-        Achievement achievement = achievements.Find(a => a.id == "scan_achievement"); // Geändert auf das verbleibende Achievement
+        Achievement achievement = achievements.Find(a => a.id == "scan_achievement");
         if (achievement != null)
         {
             achievement.hasServer = value;
             if (value)
             {
-                ActivateObject("scan_achievement", false); // Aktiviere das Scan-Objekt
+                ActivateObject("scan_achievement", false);
             }
         }
-
-        // Kein Pickup Achievement mehr zu setzen, daher auskommentiert
-        // Achievement pickupAchievement = achievements.Find(a => a.id == "pickup_achievement");
-        // if (pickupAchievement != null)
-        // {
-        //     pickupAchievement.hasServer = value;
-        //     if (value)
-        //     {
-        //         ActivateObject("pickup_achievement", true); // Aktiviere das Pickup-Objekt
-        //     }
-        // }
     }
 }

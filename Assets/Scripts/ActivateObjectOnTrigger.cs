@@ -2,25 +2,23 @@ using UnityEngine;
 
 public class ActivateObjectOnTrigger : MonoBehaviour
 {
-    public GameObject targetObject; // Das Objekt, das aktiviert werden soll
-    public string playerTag = "Player"; // Der Tag, der dem Spieler zugewiesen ist
+    public GameObject targetObject;
+    public string playerTag = "Player";
 
     void Start()
     {
-        // Sicherstellen, dass das Zielobjekt zugewiesen wurde
         if (targetObject == null)
         {
             Debug.LogError("TargetObject is not assigned!");
         }
         else
         {
-            targetObject.SetActive(false); // Das Zielobjekt initial deaktivieren
+            targetObject.SetActive(false);
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Überprüfen, ob der Spieler den Trigger betritt
         if (other.CompareTag(playerTag))
         {
             ActivateObject();
@@ -31,7 +29,7 @@ public class ActivateObjectOnTrigger : MonoBehaviour
     {
         if (targetObject != null)
         {
-            targetObject.SetActive(true); // Zielobjekt aktivieren
+            targetObject.SetActive(true);
             Debug.Log("TargetObject activated!");
         }
     }

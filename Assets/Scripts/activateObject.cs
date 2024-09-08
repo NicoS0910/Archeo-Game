@@ -6,26 +6,24 @@ public class activateObject : MonoBehaviour
 {
     public float interactionRange = 5f;
     public GameObject popupText;
-    public GameObject infoBoxObject; // Referenz auf das Info Box Objekt im Inspector
-    public GameObject secondaryObject; // Referenz auf das zweite Objekt im Inspector
+    public GameObject infoBoxObject;
+    public GameObject secondaryObject;
 
     private bool isInRange = false;
-    private bool isGamePaused = false; // Variable zum Speichern des Pausenstatus
+    private bool isGamePaused = false;
 
-    private PlayerController playerController; // Referenz auf den PlayerController
+    private PlayerController playerController;
 
     void Start()
     {
         HidePopup();
 
-        // PlayerController Komponente finden
         playerController = FindObjectOfType<PlayerController>();
         if (playerController == null)
         {
             Debug.LogError("PlayerController not found in the scene!");
         }
 
-        // Sicherstellen, dass das sekundäre Objekt deaktiviert ist
         if (secondaryObject != null)
         {
             secondaryObject.SetActive(false);
@@ -54,7 +52,6 @@ public class activateObject : MonoBehaviour
         if (isInRange && Input.GetKeyDown(KeyCode.E))
         {
             ActivateSecondaryObject();
-            // Hier das Achievement anzeigen
             AchievementManager.Instance.ActivateObject("nokia_achievement", false);
         }
 
@@ -92,10 +89,9 @@ public class activateObject : MonoBehaviour
             Animator animator = infoBoxObject.GetComponent<Animator>();
             if (animator != null)
             {
-                // Überprüfe, ob die Animation nicht bereits abgespielt wird
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("nokia"))
                 {
-                    animator.SetTrigger("Show"); // Trigger "Show" im Animator auslösen
+                    animator.SetTrigger("Show");
                     PauseGame();
                 }
             }
@@ -127,28 +123,27 @@ public class activateObject : MonoBehaviour
     void PauseGame()
     {
         isGamePaused = true;
-        Time.timeScale = 0f; // Spielzeit auf Null setzen, um das Spiel zu pausieren
+        Time.timeScale = 0f;
         Debug.Log("Game paused");
 
         if (playerController != null)
         {
-            playerController.LockMovement(); // Spielerbewegung sperren
+            playerController.LockMovement();
         }
     }
 
     public void UnpauseGame()
     {
         isGamePaused = false;
-        Time.timeScale = 1f; // Spielzeit auf Eins setzen, um das Spiel fortzusetzen
+        Time.timeScale = 1f;
         Debug.Log("Game unpaused");
 
         if (playerController != null)
         {
-            playerController.UnlockMovement(); // Spielerbewegung wieder erlauben
+            playerController.UnlockMovement();
         }
     }
 
-    // Methode zum Deaktivieren des Info Box Objekts
     void DeactivateInfoBox()
     {
         if (infoBoxObject != null)
@@ -157,8 +152,6 @@ public class activateObject : MonoBehaviour
             if (animator != null)
             {
                 animator.SetTrigger("StopAnimation");
-
-                // Spiel fortsetzen, wenn die Info Box deaktiviert wird
                 UnpauseGame();
             }
             else

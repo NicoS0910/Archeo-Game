@@ -4,25 +4,22 @@ using System.Collections;
 
 public class DelayedDeactivateObjectOnClick : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject objectToDeactivate; // Referenz auf das zu deaktivierende Objekt
-    public MinigameManager minigameManager; // Referenz auf den MinigameManager
-    public float delayInSeconds = 2f; // Verzögerung in Sekunden
+    public GameObject objectToDeactivate;
+    public MinigameManager minigameManager;
+    public float delayInSeconds = 2f;
 
     void Start()
     {
-        // Versuche das Standardobjekt zu finden, falls keines zugewiesen ist
         if (objectToDeactivate == null)
         {
             objectToDeactivate = GameObject.Find("ObjectToDeactivate");
         }
 
-        // Überprüfe, ob das Objekt zugewiesen wurde
         if (objectToDeactivate == null)
         {
             Debug.LogError($"Object to deactivate not assigned and cannot be found in scene! Problem occurred on GameObject: {gameObject.name}", this);
         }
 
-        // Finde den MinigameManager, falls nicht zugewiesen
         if (minigameManager == null)
         {
             minigameManager = FindObjectOfType<MinigameManager>();
@@ -44,10 +41,7 @@ public class DelayedDeactivateObjectOnClick : MonoBehaviour, IPointerClickHandle
 
     private IEnumerator DeactivateObjectWithDelay()
     {
-        // Warte für die angegebene Zeit
         yield return new WaitForSeconds(delayInSeconds);
-
-        // Objekt deaktivieren
         DeactivateObject();
     }
 
@@ -55,9 +49,8 @@ public class DelayedDeactivateObjectOnClick : MonoBehaviour, IPointerClickHandle
     {
         if (objectToDeactivate != null)
         {
-            objectToDeactivate.SetActive(false); // Deaktiviere das Objekt
+            objectToDeactivate.SetActive(false);
 
-            // Wenn ein MinigameManager zugewiesen ist, rufe die Methode auf, um das Spiel fortzusetzen
             if (minigameManager != null)
             {
                 minigameManager.UnpauseGame();

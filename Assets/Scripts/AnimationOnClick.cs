@@ -3,21 +3,19 @@ using UnityEngine.EventSystems;
 
 public class AnimationOnClick : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject targetObject; // Das spezifische Objekt, bei dem der Trigger gesetzt werden soll
-    public string triggerName = "Hide"; // Der Name des Triggers im Animator
+    public GameObject targetObject;
+    public string triggerName = "Hide";
 
-    private Animator targetAnimator; // Referenz auf den Animator-Component des Zielobjekts
+    private Animator targetAnimator;
 
     void Start()
     {
-        // Sicherstellen, dass ein Zielobjekt zugewiesen wurde
         if (targetObject == null)
         {
             Debug.LogError("TargetObject is not assigned!");
             return;
         }
 
-        // Holen des Animator-Components vom Zielobjekt
         targetAnimator = targetObject.GetComponent<Animator>();
         if (targetAnimator == null)
         {
@@ -27,7 +25,6 @@ public class AnimationOnClick : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // Überprüfen, ob die linke Maustaste gedrückt wurde
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             TriggerAnimation();
@@ -38,7 +35,6 @@ public class AnimationOnClick : MonoBehaviour, IPointerClickHandler
     {
         if (targetAnimator != null)
         {
-            // Trigger im Animator des Zielobjekts setzen, um die Animation zu starten
             Debug.Log("Setting trigger: " + triggerName);
             targetAnimator.SetTrigger(triggerName);
         }

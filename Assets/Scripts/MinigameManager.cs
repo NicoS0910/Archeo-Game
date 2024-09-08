@@ -8,7 +8,7 @@ public class MinigameManager : MonoBehaviour
     public Transform[] coinTargetZones;
     public GameObject rewardCoin;
     public GameObject coinMinigameUI;
-    public GameObject finishButton; // Das UI-Element für den Finish-Button
+    public GameObject finishButton;
 
     public GameObject[] pieces;
     public Transform[] pieceTargetZones;
@@ -61,8 +61,7 @@ public class MinigameManager : MonoBehaviour
     {
         if (AllCoinsCorrectlyPlaced())
         {
-            ActivateFinishButton(); // Den Finish-Button aktivieren
-            //UnpauseGame();
+            ActivateFinishButton();
         }
     }
 

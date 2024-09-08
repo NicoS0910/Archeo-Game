@@ -4,18 +4,17 @@ public class activateInfobox : MonoBehaviour
 {
     public float interactionRange = 5f;
     public GameObject popupText;
-    public GameObject infoBoxObject; // Referenz auf das Info Box Objekt im Inspector
+    public GameObject infoBoxObject;
 
     private bool isInRange = false;
-    private bool isGamePaused = false; // Variable zum Speichern des Pausenstatus
+    private bool isGamePaused = false;
 
-    private PlayerController playerController; // Referenz auf den PlayerController
+    private PlayerController playerController;
 
     void Start()
     {
         HidePopup();
 
-        // PlayerController Komponente finden
         playerController = FindObjectOfType<PlayerController>();
         if (playerController == null)
         {
@@ -30,7 +29,6 @@ public class activateInfobox : MonoBehaviour
         if (isInRange && Input.GetKeyDown(KeyCode.E))
         {
             Interact();
-            // AchievementManager.Instance.ActivateObject("nokia_achievement", false); // Diese Zeile entfernen oder auskommentieren
             ActivateInfoBox();
         }
     }
@@ -75,32 +73,26 @@ public class activateInfobox : MonoBehaviour
         }
     }
 
-void ActivateInfoBox()
-{
-    
-    // Wenn infoBoxObject deaktiviert ist, aktiviere es
-    if (!infoBoxObject.activeSelf)
+    void ActivateInfoBox()
     {
-        infoBoxObject.SetActive(true);
-    }
-
-    // Animator vom infoBoxObject holen
-    Animator animator = infoBoxObject.GetComponent<Animator>();
-    if (animator != null)
-    {
-        // Überprüfen, ob der Animator derzeit nicht den Zustand "nokia" hat
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("nokia"))
+        if (!infoBoxObject.activeSelf)
         {
-            animator.SetTrigger("Show");
+            infoBoxObject.SetActive(true);
+        }
+
+        Animator animator = infoBoxObject.GetComponent<Animator>();
+        if (animator != null)
+        {
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("nokia"))
+            {
+                animator.SetTrigger("Show");
+            }
+        }
+        else
+        {
+            Debug.LogError("Animator component not found on infoBoxObject!");
         }
     }
-    else
-    {
-        Debug.LogError("Animator component not found on infoBoxObject!");
-    }
-}
-
-
 
     void PauseGame()
     {

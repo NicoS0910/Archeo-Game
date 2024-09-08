@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class DyonimusMinigame : MonoBehaviour
 {
-    public GameObject targetObject; // Das spezifische Objekt, bei dem der Trigger gesetzt werden soll
-    public string triggerName = "Hide"; // Der Name des Triggers im Animator
-    public GameObject[] targetObjects; // Die drei zu zerstörenden Objekte
+    public GameObject targetObject;
+    public string triggerName = "Hide";
+    public GameObject[] targetObjects;
 
     private int destroyedObjectsCount = 0;
-    private Animator targetAnimator; // Referenz auf den Animator-Component des Zielobjekts
+    private Animator targetAnimator;
 
     void Start()
     {

@@ -10,7 +10,6 @@ public class ToggleUIObjectsOnRightClick : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // Überprüfen, ob der Rechtsklick (MouseButton 1) verwendet wurde
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             ToggleObjects();
