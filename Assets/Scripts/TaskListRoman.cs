@@ -5,134 +5,119 @@ using UnityEngine.UI;
 
 public class TaskListRoman : MonoBehaviour
 {
-    // Referenzen zu GameObjects
-    public GameObject oilAmphoraObject; // Neue Aufgabe
-    public GameObject puzzleGameObject; // Referenz zu PuzzleGame
+    // Referenzen zu Target Objects
+    public GameObject augustusObject;
+    public GameObject coinsObject;
+    public GameObject ringObject;
+    public GameObject mosaikObject;
+    public GameObject oilAmphoraObject;
+    public GameObject venusObject;
 
-    // Referenzen zu TextMeshProUGUI
-    public TextMeshProUGUI romanTimes1TextMeshPro; // Neue TextMeshProUGUI
-    public TextMeshProUGUI romanTimes2TextMeshPro; // Neue TextMeshProUGUI
-    public TextMeshProUGUI romanTimes3TextMeshPro; // Neue TextMeshProUGUI
+    // Referenzen zu TextMeshProUGUI für jedes Target Object
+    public TextMeshProUGUI augustusTextMeshPro;
+    public TextMeshProUGUI coinsTextMeshPro;
+    public TextMeshProUGUI ringTextMeshPro;
+    public TextMeshProUGUI mosaikTextMeshPro;
+    public TextMeshProUGUI oilAmphoraTextMeshPro;
+    public TextMeshProUGUI venusTextMeshPro;
 
-    // Referenzen zu Buttons
-    public Button skipButton;
-
-    // Enum zur Zustandsverwaltung
-    private enum State
-    {
-        RomanTimes1,
-        RomanTimes2,
-        RomanTimes3,
-        Finished
-    }
-
-    private State currentState = State.RomanTimes1;
-    private bool oilAmphoraCollected = false;
+    // Referenzen zu Buttons und Panels
+    public Button finishButton;
+    public GameObject romanTimeCompletePanel;
+    public GameObject romanTaskListPanel; // Das Roman Task List Panel
 
     // Start is called before the first frame update
     void Start()
     {
-        // Sicherstellen, dass der Skip-Button funktioniert
-        if (skipButton != null)
-            skipButton.onClick.AddListener(OnSkipButtonPressed);
-
         // Initialisiere die UI-Elemente
         InitializeUI();
+
+        // Finish-Button verstecken
+        if (finishButton != null)
+            finishButton.gameObject.SetActive(false);
+
+        // Event dem Finish-Button zuweisen
+        if (finishButton != null)
+            finishButton.onClick.AddListener(OnFinishButtonPressed);
     }
 
     // Initialisiere die UI-Elemente
     void InitializeUI()
     {
-        // Alle TextMeshProUGUI-Elemente initial verstecken
-        if (romanTimes1TextMeshPro != null)
-            romanTimes1TextMeshPro.gameObject.SetActive(false);
-        if (romanTimes2TextMeshPro != null)
-            romanTimes2TextMeshPro.gameObject.SetActive(false);
-        if (romanTimes3TextMeshPro != null)
-            romanTimes3TextMeshPro.gameObject.SetActive(false);
+        // Alle TextMeshProUGUI-Elemente initial anzeigen
+        if (augustusTextMeshPro != null)
+            augustusTextMeshPro.gameObject.SetActive(true);
+        if (coinsTextMeshPro != null)
+            coinsTextMeshPro.gameObject.SetActive(true);
+        if (ringTextMeshPro != null)
+            ringTextMeshPro.gameObject.SetActive(true);
+        if (mosaikTextMeshPro != null)
+            mosaikTextMeshPro.gameObject.SetActive(true);
+        if (oilAmphoraTextMeshPro != null)
+            oilAmphoraTextMeshPro.gameObject.SetActive(true);
+        if (venusTextMeshPro != null)
+            venusTextMeshPro.gameObject.SetActive(true);
 
-        // Zeige die erste TextMeshProUGUI
-        if (romanTimes1TextMeshPro != null)
-        {
-            romanTimes1TextMeshPro.gameObject.SetActive(true);
-        }
-    }
+        // Roman Time Complete Panel und Roman Task List Panel initial verstecken
+        if (romanTimeCompletePanel != null)
+            romanTimeCompletePanel.SetActive(false);
 
-    // Methode zum Abschluss der ersten Aufgabe
-    public void CompleteOilAmphoraTask()
-    {
-        oilAmphoraCollected = true;
-        // Wechsel zu RomanTimes2
-        currentState = State.RomanTimes2;
-        if (romanTimes2TextMeshPro != null)
-            romanTimes2TextMeshPro.gameObject.SetActive(true);
-        if (romanTimes1TextMeshPro != null)
-            romanTimes1TextMeshPro.gameObject.SetActive(false);
-    }
-
-    // Methode zum Abschluss der zweiten Aufgabe
-    public void CompleteRomanTimes2Task()
-    {
-        currentState = State.RomanTimes3;
-        if (romanTimes3TextMeshPro != null)
-            romanTimes3TextMeshPro.gameObject.SetActive(true);
-        if (romanTimes2TextMeshPro != null)
-            romanTimes2TextMeshPro.gameObject.SetActive(false);
-    }
-
-    // Methode zum Abschluss der dritten Aufgabe
-    public void CompleteRomanTimes3Task()
-    {
-        currentState = State.Finished;
-        if (romanTimes3TextMeshPro != null)
-            romanTimes3TextMeshPro.gameObject.SetActive(true);
-        // Skip-Button wird versteckt
-        if (skipButton != null)
-            skipButton.gameObject.SetActive(false);
-    }
-
-    // Handler für den Skip-Button
-    void OnSkipButtonPressed()
-    {
-        switch (currentState)
-        {
-            case State.RomanTimes1:
-                if (romanTimes1TextMeshPro != null)
-                    romanTimes1TextMeshPro.gameObject.SetActive(false);
-                
-                currentState = State.RomanTimes2;
-                if (romanTimes2TextMeshPro != null)
-                    romanTimes2TextMeshPro.gameObject.SetActive(true);
-                break;
-
-            case State.RomanTimes2:
-                if (romanTimes2TextMeshPro != null)
-                    romanTimes2TextMeshPro.gameObject.SetActive(false);
-                
-                currentState = State.RomanTimes3;
-                if (romanTimes3TextMeshPro != null)
-                    romanTimes3TextMeshPro.gameObject.SetActive(true);
-                break;
-
-            case State.RomanTimes3:
-                // Der Skip-Button wird hier nicht versteckt, aber sicherstellen, dass der Button nur für RomanTimes1 und RomanTimes2 sichtbar ist.
-                if (skipButton != null)
-                    skipButton.gameObject.SetActive(false);
-                break;
-        }
+        if (romanTaskListPanel != null)
+            romanTaskListPanel.SetActive(true); // Das Roman Task List Panel wird zu Beginn angezeigt
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Überprüfen, ob das PuzzleGame-Objekt aktiv ist
-        if (puzzleGameObject != null && puzzleGameObject.activeInHierarchy)
+        // Überprüfe den Status jedes Target Objects und verstecke das jeweilige TextMeshPro, wenn das Object aktiv ist
+        if (augustusObject != null && augustusObject.activeInHierarchy && augustusTextMeshPro != null)
+            augustusTextMeshPro.gameObject.SetActive(false);
+
+        if (coinsObject != null && coinsObject.activeInHierarchy && coinsTextMeshPro != null)
+            coinsTextMeshPro.gameObject.SetActive(false);
+
+        if (ringObject != null && ringObject.activeInHierarchy && ringTextMeshPro != null)
+            ringTextMeshPro.gameObject.SetActive(false);
+
+        if (mosaikObject != null && mosaikObject.activeInHierarchy && mosaikTextMeshPro != null)
+            mosaikTextMeshPro.gameObject.SetActive(false);
+
+        if (oilAmphoraObject != null && oilAmphoraObject.activeInHierarchy && oilAmphoraTextMeshPro != null)
+            oilAmphoraTextMeshPro.gameObject.SetActive(false);
+
+        if (venusObject != null && venusObject.activeInHierarchy && venusTextMeshPro != null)
+            venusTextMeshPro.gameObject.SetActive(false);
+
+        // Prüfe, ob alle TextMeshPro deaktiviert sind, dann Finish-Button anzeigen
+        if (AllTextMeshProDeactivated() && finishButton != null)
         {
-            // Wenn RomanTimes3 sichtbar ist, verstecke es
-            if (romanTimes3TextMeshPro != null && romanTimes3TextMeshPro.gameObject.activeSelf)
-            {
-                romanTimes3TextMeshPro.gameObject.SetActive(false);
-            }
+            finishButton.gameObject.SetActive(true);
         }
+    }
+
+    // Funktion um zu überprüfen, ob alle TextMeshPros deaktiviert wurden
+    bool AllTextMeshProDeactivated()
+    {
+        return !augustusTextMeshPro.gameObject.activeInHierarchy &&
+               !coinsTextMeshPro.gameObject.activeInHierarchy &&
+               !ringTextMeshPro.gameObject.activeInHierarchy &&
+               !mosaikTextMeshPro.gameObject.activeInHierarchy &&
+               !oilAmphoraTextMeshPro.gameObject.activeInHierarchy &&
+               !venusTextMeshPro.gameObject.activeInHierarchy;
+    }
+
+    // Handler für den Finish-Button
+    void OnFinishButtonPressed()
+    {
+        // Deaktiviere den Finish-Button und zeige das Roman Time Complete Panel an
+        if (finishButton != null)
+            finishButton.gameObject.SetActive(false);
+
+        if (romanTimeCompletePanel != null)
+            romanTimeCompletePanel.SetActive(true);
+
+        // Roman Task List Panel deaktivieren
+        if (romanTaskListPanel != null)
+            romanTaskListPanel.SetActive(false);
     }
 }

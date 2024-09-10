@@ -4,9 +4,10 @@ using System.Collections;
 
 public class RomanTimeCompletePanelController : MonoBehaviour
 {
-    public GameObject romanTimeCompletePanel; // Reference to the RomanTimeComplete Panel
-    public Button completeButton; // Reference to the Button in the panel
-    public Slider progressBar; // Reference to the Slider used as a loading bar
+    public GameObject romanTimeCompletePanel; // Referenz zum Roman Time Complete Panel
+    public Button completeButton; // Referenz zum Button im Panel
+    public Slider progressBar; // Referenz zur Fortschrittsleiste
+    public GameObject medievalTasklistPanel; // Referenz zum Medieval Tasklist Panel
 
     void Start()
     {
@@ -25,6 +26,12 @@ public class RomanTimeCompletePanelController : MonoBehaviour
         if (progressBar == null)
         {
             Debug.LogError("Progress Bar reference is not assigned in the inspector.");
+            return;
+        }
+
+        if (medievalTasklistPanel == null)
+        {
+            Debug.LogError("Medieval Tasklist Panel reference is not assigned in the inspector.");
             return;
         }
 
@@ -57,11 +64,17 @@ public class RomanTimeCompletePanelController : MonoBehaviour
             yield return null;
         }
 
-        // Hide the progress bar and deactivate the panel
+        // Hide the progress bar and deactivate the Roman Time Complete Panel
         progressBar.gameObject.SetActive(false);
         if (romanTimeCompletePanel != null)
         {
             romanTimeCompletePanel.SetActive(false); // Deactivate the panel
+        }
+
+        // Activate the Medieval Tasklist Panel
+        if (medievalTasklistPanel != null)
+        {
+            medievalTasklistPanel.SetActive(true);
         }
     }
 }
