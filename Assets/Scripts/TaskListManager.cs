@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class TaskListManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class TaskListManager : MonoBehaviour
     public Button declineButton; // Der Decline-Button
     public AudioClip missionSound; // Der Sound, der bei jedem Anruf abgespielt wird
     public float retryInterval = 2.0f; // Zeitintervall in Sekunden, bis der Anruf erneut angezeigt wird
+    public GameObject presentTimeCompletePanel; // Das Panel für Present Time Complete
+    public GameObject romanTaskListPanel; // Das Roman Task List Panel
+    public Button submitButton; // Der Submit-Button
 
     private AudioSource audioSource; // AudioSource zum Abspielen von Sounds
     private bool isWaitingForResponse = false; // Zeigt an, ob wir auf eine Antwort warten
@@ -46,6 +50,21 @@ public class TaskListManager : MonoBehaviour
             Debug.LogError("MissionSound is not assigned.");
         }
 
+        if (presentTimeCompletePanel == null)
+        {
+            Debug.LogError("PresentTimeCompletePanel is not assigned.");
+        }
+
+        if (romanTaskListPanel == null)
+        {
+            Debug.LogError("RomanTaskListPanel is not assigned.");
+        }
+
+        if (submitButton == null)
+        {
+            Debug.LogError("SubmitButton is not assigned.");
+        }
+
         // Füge eine AudioSource-Komponente hinzu, wenn sie noch nicht vorhanden ist
         audioSource = gameObject.GetComponent<AudioSource>();
         if (audioSource == null)
@@ -59,6 +78,7 @@ public class TaskListManager : MonoBehaviour
         // Listener für die Buttons hinzufügen
         acceptButton.onClick.AddListener(AcceptCall);
         declineButton.onClick.AddListener(DeclineCall);
+        submitButton.onClick.AddListener(OnSubmit);
 
         // Das Anruf-Panel initial anzeigen
         ShowCallPanel();
@@ -104,5 +124,23 @@ public class TaskListManager : MonoBehaviour
         anrufPanel.SetActive(false);
         isWaitingForResponse = false; // Setze die Warte-Flagge zurück
         Invoke(nameof(ShowCallPanel), retryInterval); // Rufe die Methode nach dem angegebenen Intervall erneut auf
+    }
+
+    void OnSubmit()
+    {
+        // Starte den Coroutine, um nach 3 Sekunden das Panel zu wechseln
+        StartCoroutine(DeactivatePresentTimeCompletePanel());
+    }
+
+    IEnumerator DeactivatePresentTimeCompletePanel()
+    {
+        // Warte 3 Sekunden
+        yield return new WaitForSeconds(3.0f);
+
+        // Deaktiviere das Present Time Complete Panel
+        presentTimeCompletePanel.SetActive(false);
+
+        // Aktiviere das Roman Task List Panel
+        romanTaskListPanel.SetActive(true);
     }
 }
