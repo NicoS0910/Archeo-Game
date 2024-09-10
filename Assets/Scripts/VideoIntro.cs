@@ -20,6 +20,7 @@ public class VideoIntro : MonoBehaviour
         if (videoClips.Count > 0)
         {
             videoPlayer.clip = videoClips[currentVideoIndex];
+            videoPlayer.playbackSpeed = 2.0f; // Wiedergabegeschwindigkeit auf das Doppelte setzen
             videoPlayer.Play();
         }
 
