@@ -1,88 +1,120 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class TaskListMedieval : MonoBehaviour
 {
-    // Referenzen zu GameObjects
-    public GameObject quizObject; // Quiz-Objekt, das die zweite Aufgabe beendet
+    // Referenzen zu Target Objects
+    public GameObject swordTargetObject;
+    public GameObject monstranzTargetObject;
+    public GameObject ursulaTargetObject;
+    public GameObject akolythTargetObject;
+    public GameObject trauerdalmatikTargetObject;
+    public GameObject gewandaspangeTargetObject;
 
-    // Referenzen zu TextMeshProUGUI
-    public TextMeshProUGUI medievalTimes1TextMeshPro; // TMP für Mittelalter 1
-    public TextMeshProUGUI medievalTimes2TextMeshPro; // TMP für Mittelalter 2
+    // Referenzen zu TextMeshProUGUI für jedes Target Object
+    public TextMeshProUGUI swordTextMeshPro;
+    public TextMeshProUGUI monstranzTextMeshPro;
+    public TextMeshProUGUI ursulaTextMeshPro;
+    public TextMeshProUGUI akolythTextMeshPro;
+    public TextMeshProUGUI trauerdalmatikTextMeshPro;
+    public TextMeshProUGUI gewandaspangeTextMeshPro;
 
-    // Referenzen zu Buttons
-    public Button skipButton;
-
-    // Enum zur Zustandsverwaltung
-    private enum State
-    {
-        MedievalTimes1,
-        MedievalTimes2,
-        Finished
-    }
-
-    private State currentState = State.MedievalTimes1;
+    // Referenzen zu Buttons und Panels
+    public Button finishButton;
+    public GameObject medievalTimeCompletePanel;
+    public GameObject medievalTaskListPanel; // Das Medieval Task List Panel
 
     // Start is called before the first frame update
     void Start()
     {
-        // Sicherstellen, dass der Skip-Button funktioniert
-        if (skipButton != null)
-            skipButton.onClick.AddListener(OnSkipButtonPressed);
-
         // Initialisiere die UI-Elemente
         InitializeUI();
+
+        // Finish-Button verstecken
+        if (finishButton != null)
+            finishButton.gameObject.SetActive(false);
+
+        // Event dem Finish-Button zuweisen
+        if (finishButton != null)
+            finishButton.onClick.AddListener(OnFinishButtonPressed);
     }
 
     // Initialisiere die UI-Elemente
     void InitializeUI()
     {
-        // TMP1 wird angezeigt, TMP2 wird versteckt
-        if (medievalTimes1TextMeshPro != null)
-            medievalTimes1TextMeshPro.gameObject.SetActive(true);
+        // Alle TextMeshProUGUI-Elemente initial anzeigen
+        if (swordTextMeshPro != null)
+            swordTextMeshPro.gameObject.SetActive(true);
+        if (monstranzTextMeshPro != null)
+            monstranzTextMeshPro.gameObject.SetActive(true);
+        if (ursulaTextMeshPro != null)
+            ursulaTextMeshPro.gameObject.SetActive(true);
+        if (akolythTextMeshPro != null)
+            akolythTextMeshPro.gameObject.SetActive(true);
+        if (trauerdalmatikTextMeshPro != null)
+            trauerdalmatikTextMeshPro.gameObject.SetActive(true);
+        if (gewandaspangeTextMeshPro != null)
+            gewandaspangeTextMeshPro.gameObject.SetActive(true);
 
-        if (medievalTimes2TextMeshPro != null)
-            medievalTimes2TextMeshPro.gameObject.SetActive(false);
+        // Panels initial verstecken
+        if (medievalTimeCompletePanel != null)
+            medievalTimeCompletePanel.SetActive(false);
 
-        // Skip-Button wird nur bei TMP1 angezeigt
-        if (skipButton != null)
-            skipButton.gameObject.SetActive(true);
-    }
-
-    // Handler für den Skip-Button
-    void OnSkipButtonPressed()
-    {
-        if (currentState == State.MedievalTimes1)
-        {
-            // TMP1 wird versteckt, TMP2 wird angezeigt
-            if (medievalTimes1TextMeshPro != null)
-                medievalTimes1TextMeshPro.gameObject.SetActive(false);
-
-            currentState = State.MedievalTimes2;
-
-            if (medievalTimes2TextMeshPro != null)
-                medievalTimes2TextMeshPro.gameObject.SetActive(true);
-
-            // Skip-Button wird für TMP2 deaktiviert
-            if (skipButton != null)
-                skipButton.gameObject.SetActive(false);
-        }
+        if (medievalTaskListPanel != null)
+            medievalTaskListPanel.SetActive(true); // Das Medieval Task List Panel wird zu Beginn angezeigt
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Überprüfen, ob das Quiz-Objekt aktiv ist
-        if (quizObject != null && quizObject.activeSelf && currentState == State.MedievalTimes2)
-        {
-            // TMP2 wird versteckt, wenn das Quiz-Objekt aktiv wird
-            if (medievalTimes2TextMeshPro != null)
-                medievalTimes2TextMeshPro.gameObject.SetActive(false);
+        // Überprüfe den Status jedes Target Objects und verstecke das jeweilige TextMeshPro, wenn das Object aktiv ist
+        if (swordTargetObject != null && swordTargetObject.activeInHierarchy && swordTextMeshPro != null)
+            swordTextMeshPro.gameObject.SetActive(false);
 
-            currentState = State.Finished;
+        if (monstranzTargetObject != null && monstranzTargetObject.activeInHierarchy && monstranzTextMeshPro != null)
+            monstranzTextMeshPro.gameObject.SetActive(false);
+
+        if (ursulaTargetObject != null && ursulaTargetObject.activeInHierarchy && ursulaTextMeshPro != null)
+            ursulaTextMeshPro.gameObject.SetActive(false);
+
+        if (akolythTargetObject != null && akolythTargetObject.activeInHierarchy && akolythTextMeshPro != null)
+            akolythTextMeshPro.gameObject.SetActive(false);
+
+        if (trauerdalmatikTargetObject != null && trauerdalmatikTargetObject.activeInHierarchy && trauerdalmatikTextMeshPro != null)
+            trauerdalmatikTextMeshPro.gameObject.SetActive(false);
+
+        if (gewandaspangeTargetObject != null && gewandaspangeTargetObject.activeInHierarchy && gewandaspangeTextMeshPro != null)
+            gewandaspangeTextMeshPro.gameObject.SetActive(false);
+
+        // Prüfe, ob alle TextMeshPro deaktiviert sind, dann Finish-Button anzeigen
+        if (AllTextMeshProDeactivated() && finishButton != null)
+        {
+            finishButton.gameObject.SetActive(true);
         }
+    }
+
+    // Funktion um zu überprüfen, ob alle TextMeshPros deaktiviert wurden
+    bool AllTextMeshProDeactivated()
+    {
+        return !swordTextMeshPro.gameObject.activeInHierarchy &&
+               !monstranzTextMeshPro.gameObject.activeInHierarchy &&
+               !ursulaTextMeshPro.gameObject.activeInHierarchy &&
+               !akolythTextMeshPro.gameObject.activeInHierarchy &&
+               !trauerdalmatikTextMeshPro.gameObject.activeInHierarchy &&
+               !gewandaspangeTextMeshPro.gameObject.activeInHierarchy;
+    }
+
+    // Handler für den Finish-Button
+    void OnFinishButtonPressed()
+    {
+        // Deaktiviere das aktuelle Panel
+        if (medievalTaskListPanel != null)
+            medievalTaskListPanel.SetActive(false);
+
+        // Zeige das Medieval Time Complete Panel an
+        if (medievalTimeCompletePanel != null)
+            medievalTimeCompletePanel.SetActive(true);
     }
 }
