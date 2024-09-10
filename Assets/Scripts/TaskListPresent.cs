@@ -346,7 +346,7 @@ public class TaskListPresent : MonoBehaviour
     {
         nokiaTextMeshPro?.gameObject.SetActive(true);
         StartCoroutine(StartTypingEffect(nokiaTextMeshPro));
-        PlaySound();
+       // PlaySound();
     }
 
     void HideNokiaText()
@@ -358,7 +358,7 @@ public class TaskListPresent : MonoBehaviour
     {
         nutellaTextMeshPro?.gameObject.SetActive(true);
         StartCoroutine(StartTypingEffect(nutellaTextMeshPro));
-        PlaySound();
+       // PlaySound();
         nutellaTextActivated = true; // Track activation
     }
 
@@ -392,7 +392,7 @@ public class TaskListPresent : MonoBehaviour
     {
         costumeTextMeshPro?.gameObject.SetActive(true);
         StartCoroutine(StartTypingEffect(costumeTextMeshPro));
-        PlaySound();
+        //PlaySound();
         costumeTextActivated = true; // Track activation
     }
 
@@ -490,7 +490,7 @@ public class TaskListPresent : MonoBehaviour
     {
         intro5TextMeshPro?.gameObject.SetActive(true);
         StartCoroutine(StartTypingEffect(intro5TextMeshPro));
-        PlaySound();
+       // PlaySound();
         UpdateSkipButtonState();
     }
 
@@ -506,7 +506,7 @@ public class TaskListPresent : MonoBehaviour
         scarfTextMeshPro?.gameObject.SetActive(true);
         StartCoroutine(StartTypingEffect(costumeTextMeshPro));
         StartCoroutine(StartTypingEffect(scarfTextMeshPro));
-        PlaySound();
+       // PlaySound();
     }
 
     void CheckReferences()

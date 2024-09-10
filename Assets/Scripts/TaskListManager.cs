@@ -86,20 +86,7 @@ public class TaskListManager : MonoBehaviour
 
     void Update()
     {
-        // Überprüfe, ob die Space-Taste gedrückt wurde
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Wenn das Task-Liste-Panel sichtbar ist, verstecke es
-            if (taskListPanel.activeSelf)
-            {
-                taskListPanel.SetActive(false);
-            }
-            // Ansonsten, zeige es nur, wenn das Anruf-Panel nicht sichtbar ist
-            else if (!anrufPanel.activeSelf)
-            {
-                taskListPanel.SetActive(true);
-            }
-        }
+        // Entfernt die Überprüfung für die Space-Taste
     }
 
     void ShowCallPanel()
