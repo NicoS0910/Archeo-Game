@@ -426,8 +426,7 @@ public class TaskListPresent : MonoBehaviour
         if (presentTimeCompletePanel != null)
             presentTimeCompletePanel.SetActive(true);
     }
-
-   void OnFinishButtonClicked()
+void OnFinishButtonClicked()
 {
     // Deaktiviere das Panel
     if (panel != null)
@@ -440,6 +439,11 @@ public class TaskListPresent : MonoBehaviour
     // Optionale Überprüfung auf das Finish Button sichtbar
     finishButton.gameObject.SetActive(false);
 }
+
+
+
+
+
 
 
     IEnumerator StartTypingEffect(TextMeshProUGUI textComponent)
