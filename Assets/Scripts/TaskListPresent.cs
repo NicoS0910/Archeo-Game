@@ -426,19 +426,19 @@ public class TaskListPresent : MonoBehaviour
         if (presentTimeCompletePanel != null)
             presentTimeCompletePanel.SetActive(true);
     }
-void OnFinishButtonClicked()
-{
-    // Deaktiviere das Panel
-    if (panel != null)
-        panel.SetActive(false);
+    void OnFinishButtonClicked()
+    {
+        // Deaktiviere das Panel
+        if (panel != null)
+            panel.SetActive(false);
 
-    // Zeige das Present Time Complete Panel
-    if (presentTimeCompletePanel != null)
-        presentTimeCompletePanel.SetActive(true);
+        // Zeige das Present Time Complete Panel
+        if (presentTimeCompletePanel != null)
+            presentTimeCompletePanel.SetActive(true);
 
-    // Optionale Überprüfung auf das Finish Button sichtbar
-    finishButton.gameObject.SetActive(false);
-}
+        // Optionale Überprüfung auf das Finish Button sichtbar
+        finishButton.gameObject.SetActive(false);
+    }
 
 
 
