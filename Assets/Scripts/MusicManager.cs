@@ -4,57 +4,73 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-
     private AudioSource _audiosource;
     public AudioClip[] songs;
     public float volume;
-    [SerializeField] private float _songsPlayed;
+    [SerializeField] private int _songsPlayed; // Geändert zu int
     [SerializeField] private bool[] _beenPlayed;
-    // Start is called before the first frame update
+
     void Start()
     {
         _audiosource = GetComponent<AudioSource>();
-
         _beenPlayed = new bool[songs.Length];
 
-        if(!_audiosource.isPlaying)
+        // Starte den ersten Song
+        ChangeSong(Random.Range(0, songs.Length));
+    }
+
+    void Update()
+    {
+        _audiosource.volume = volume;
+
+        // Springe zum nächsten Song bei Leertastendruck
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Stoppe den aktuellen Song und spiele den nächsten
+            _audiosource.Stop();
+            ChangeSong(Random.Range(0, songs.Length));
+        }
+
+        // Überprüfen, ob der aktuelle Song zu Ende ist
+        if (!_audiosource.isPlaying)
         {
             ChangeSong(Random.Range(0, songs.Length));
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeSong(int songPicked)
     {
-        _audiosource.volume = volume;
-
-        //if(!_audiosource.isPlaying || Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    ChangeSong(Random.Range(0, songs.Length));
-        //}
-
-        if (_songsPlayed==songs.Length)
+        // Wenn alle Songs gespielt wurden, setze die Liste zurück
+        if (_songsPlayed >= songs.Length)
         {
-            _songsPlayed = 0;
-            for(int i=0;i<songs.Length;i++)
-            {
-                if(i==songs.Length)
-                break;
-                else _beenPlayed[i] = false;
-            }
+            ResetPlaylist();
+        }
+
+        // Suche einen ungespielten Song
+        int attempts = 0;
+        while (_beenPlayed[songPicked] && attempts < songs.Length)
+        {
+            songPicked = Random.Range(0, songs.Length);
+            attempts++;
+        }
+
+        // Spiele den Song, falls er noch nicht gespielt wurde
+        if (!_beenPlayed[songPicked])
+        {
+            _songsPlayed++;
+            _beenPlayed[songPicked] = true;
+            _audiosource.clip = songs[songPicked];
+            _audiosource.Play();
         }
     }
 
-    public void ChangeSong(int songPicked){
-        if(!_beenPlayed[songPicked])
-        {  
-        _songsPlayed++;
-        _beenPlayed[songPicked] = true;
-        _audiosource.clip = songs[songPicked];
-        _audiosource.Play();
-        }
-        else {
-            _audiosource.Stop();
+    private void ResetPlaylist()
+    {
+        // Setzt die gespielten Songs zurück, um die Playlist zu wiederholen
+        _songsPlayed = 0;
+        for (int i = 0; i < _beenPlayed.Length; i++)
+        {
+            _beenPlayed[i] = false;
         }
     }
 }
