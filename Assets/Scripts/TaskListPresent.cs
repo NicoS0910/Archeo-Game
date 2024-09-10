@@ -11,6 +11,7 @@ public class TaskListPresent : MonoBehaviour
     public GameObject nutellaObject;
     public GameObject scarfObject;
     public GameObject costumeObject;
+    public GameObject scannerBox;
     public RawImage serverPicture;
     public TextMeshProUGUI serverTextMeshPro;
     public TextMeshProUGUI scanTextMeshPro;
@@ -132,6 +133,7 @@ public class TaskListPresent : MonoBehaviour
                     HideServerPicture();
                     currentState = State.ScanTask;
                     ShowScanText();
+                    ActivateScannerBox(); //Scanner auswählbar machen
                 }
                 break;
             case State.ScanTask:
@@ -507,6 +509,11 @@ public class TaskListPresent : MonoBehaviour
         StartCoroutine(StartTypingEffect(costumeTextMeshPro));
         StartCoroutine(StartTypingEffect(scarfTextMeshPro));
        // PlaySound();
+    }
+
+    void ActivateScannerBox()
+    {
+        scannerBox.SetActive(true);
     }
 
     void CheckReferences()

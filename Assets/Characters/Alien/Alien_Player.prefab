@@ -360,8 +360,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Resources>k__BackingField:
-    m_keys: []
-    m_values: 
+    m_keys:
+    - {fileID: 11400000, guid: cec68a91db1cfb64aae5751215a06309, type: 2}
+    - {fileID: 11400000, guid: 5c95a330cfa22c1419251ec3911dffda, type: 2}
+    m_values: 0000000000000000
 --- !u!114 &2059833448942136514
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,11 +6,14 @@ public class QuizManager : MonoBehaviour
     public Button correctAnswerButton;
     public Button[] wrongAnswerButtons;
     public GameObject rewardObject;
+    public Inventory inventory;
+    public Resource scorePoints;
+    private bool isClicked = false;
 
     void Start()
     {
         correctAnswerButton.onClick.AddListener(() => OnCorrectButtonClick(correctAnswerButton));
-        
+
         foreach (Button button in wrongAnswerButtons)
         {
             button.onClick.AddListener(() => OnWrongButtonClick(button));
@@ -24,18 +27,27 @@ public class QuizManager : MonoBehaviour
 
     void OnCorrectButtonClick(Button clickedButton)
     {
-        SetButtonColor(clickedButton, Color.green);
-        DisableWrongButtons();
-
-        if (rewardObject != null)
+        if (isClicked == false)
         {
-            rewardObject.SetActive(true);
+            SetButtonColor(clickedButton, Color.green);
+            DisableWrongButtons();
+            isClicked = true;
+            inventory.AddResources(scorePoints, 100);
+            Debug.Log("Correct Button clicked");
+
+            if (rewardObject != null)
+            {
+                rewardObject.SetActive(true);
+            }
+        } else {
+            Debug.Log("Correct Button already clicked");
         }
     }
 
     void OnWrongButtonClick(Button clickedButton)
     {
         SetButtonColor(clickedButton, Color.red);
+        inventory.AddResources(scorePoints, -30);
     }
 
     void DisableWrongButtons()
