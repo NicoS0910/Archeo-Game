@@ -20,6 +20,10 @@ public class MinigameManager : MonoBehaviour
 
     private PlayerController playerController;
     private bool isGamePaused = false;
+    public Inventory inventory;
+    public Resource scorePoints;
+    private bool coinGameisFinished = false;
+    private bool puzzleGameIsFinished = false;
 
     void Start()
     {
@@ -69,6 +73,15 @@ public class MinigameManager : MonoBehaviour
     {
         if (finishButton != null)
         {
+            if (coinGameisFinished == false)
+            {
+                inventory.AddResources(scorePoints, 100);
+                coinGameisFinished = true;
+            }
+            else
+            {
+                Debug.Log("Minigame already finished.");
+            }
             finishButton.SetActive(true);
             Debug.Log("Finish button activated.");
         }
@@ -105,6 +118,16 @@ public class MinigameManager : MonoBehaviour
         if (AllPiecesCorrectlyPlaced())
         {
             Debug.Log("All puzzle pieces correctly placed.");
+
+            if (puzzleGameIsFinished == false)
+            {
+                inventory.AddResources(scorePoints, 100);
+                puzzleGameIsFinished = true;
+            }
+            else
+            {
+                Debug.Log("Minigame already finished.");
+            }
 
             if (specialObject != null)
             {

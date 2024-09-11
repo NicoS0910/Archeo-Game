@@ -107,7 +107,6 @@ GameObject:
   - component: {fileID: 5659017456265019422}
   - component: {fileID: 7727610564506308300}
   - component: {fileID: 3100692234244064230}
-  - component: {fileID: 7600129952610024422}
   - component: {fileID: 2059833448942136514}
   - component: {fileID: 7300307968300358280}
   - component: {fileID: 8673192723572837618}
@@ -347,23 +346,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7600129952610024422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3635855257827819841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40fad3ff89900e043a6a6a3f0420e659, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Resources>k__BackingField:
-    m_keys:
-    - {fileID: 11400000, guid: cec68a91db1cfb64aae5751215a06309, type: 2}
-    - {fileID: 11400000, guid: 5c95a330cfa22c1419251ec3911dffda, type: 2}
-    m_values: 0000000000000000
 --- !u!114 &2059833448942136514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d13d8b56ecb2e142acaf96a21004d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Inventory>k__BackingField: {fileID: 7600129952610024422}
+  <Inventory>k__BackingField: {fileID: 0}
 --- !u!114 &7300307968300358280
 MonoBehaviour:
   m_ObjectHideFlags: 0

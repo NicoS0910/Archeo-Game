@@ -3,6 +3,7 @@ using UnityEngine;
 public class FinishPopUp : MonoBehaviour
 {
     [SerializeField] private GameObject _objectToActivate; // Das Objekt, das aktiviert werden soll
+    public Resource scorePoints;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,6 +14,15 @@ public class FinishPopUp : MonoBehaviour
             if (_objectToActivate != null)
             {
                 _objectToActivate.SetActive(true);
+            }
+
+            if (Inventory.instance != null)
+            {
+                Inventory.instance.AddResources(scorePoints, 100); //Score wird erhöht
+            }
+            else
+            {
+                Debug.LogWarning("Inventory instance is missing!");
             }
 
             // Spiel pausieren

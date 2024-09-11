@@ -23,14 +23,6 @@ public class MusicManager : MonoBehaviour
     {
         _audiosource.volume = volume;
 
-        // Springe zum nächsten Song bei Leertastendruck
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Stoppe den aktuellen Song und spiele den nächsten
-            _audiosource.Stop();
-            ChangeSong(Random.Range(0, songs.Length));
-        }
-
         // Überprüfen, ob der aktuelle Song zu Ende ist
         if (!_audiosource.isPlaying)
         {
