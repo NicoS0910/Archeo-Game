@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
             }
 
             _gameOverCanvas.SetActive(true);
+            Destroy(gameObject);
             Time.timeScale = 0f;
         }
     }
