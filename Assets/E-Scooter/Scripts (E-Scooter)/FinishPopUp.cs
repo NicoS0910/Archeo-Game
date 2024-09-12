@@ -4,6 +4,7 @@ public class FinishPopUp : MonoBehaviour
 {
     [SerializeField] private GameObject _objectToActivate;
     public Resource scorePoints;
+    public GameManager gameManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,6 +14,8 @@ public class FinishPopUp : MonoBehaviour
             {
                 _objectToActivate.SetActive(true);
             }
+
+            gameManager.EndScooterMinigame();
 
             if (Inventory.instance != null)
             {

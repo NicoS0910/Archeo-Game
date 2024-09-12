@@ -380,6 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectToActivate: {fileID: 1335844312}
   scorePoints: {fileID: 11400000, guid: cec68a91db1cfb64aae5751215a06309, type: 2}
+  gameManager: {fileID: 703368575}
 --- !u!61 &303858194
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4190,7 +4191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToActivate: {fileID: 1335844312}
-  scorePoints: {fileID: 0}
+  scorePoints: {fileID: 11400000, guid: cec68a91db1cfb64aae5751215a06309, type: 2}
+  gameManager: {fileID: 0}
 --- !u!212 &1685542593
 SpriteRenderer:
   m_ObjectHideFlags: 0
