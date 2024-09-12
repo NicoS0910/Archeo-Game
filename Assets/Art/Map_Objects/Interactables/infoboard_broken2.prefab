@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9007361223144763793}
   - component: {fileID: 6312644791827669606}
   - component: {fileID: 8320631765638386182}
+  - component: {fileID: 5466019157393963501}
   m_Layer: 0
   m_Name: infoboard_broken2
   m_TagString: Untagged
@@ -130,3 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.42022133, y: 0.06833446}
   m_EdgeRadius: 0
+--- !u!114 &5466019157393963501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656815174930768154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50c494962c7454d4ca51b7a8275a799d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRange: 0.3
+  popupText: {fileID: 0}
+  infoBoxObject: {fileID: 0}
