@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/E-Scooter (entdrosselt).unity
     guid: cda8da908f88b3d4db804d8cdc2d7a90
+  - enabled: 1
+    path: Assets/Scenes/Win_Outro.unity
+    guid: 10779c23a607c46df87ce8a0a900b473
+  - enabled: 1
+    path: Assets/Scenes/Loose_outro.unity
+    guid: 7b0f8570c8f8b45599f1201bb32c73f2
   m_configObjects: {}
