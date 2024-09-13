@@ -23,6 +23,9 @@ public class TaskListRoman : MonoBehaviour
     public TextMeshProUGUI venusTextMeshPro;
     public TextMeshProUGUI fortunaTextMeshPro;
 
+    // Neue Titel-Textkomponente
+    public TextMeshProUGUI titelTextMeshPro;
+
     // Referenzen zu Buttons und Panels
     public Button finishButton;
     public GameObject romanTimeCompletePanel;
@@ -61,6 +64,10 @@ public class TaskListRoman : MonoBehaviour
             venusTextMeshPro.gameObject.SetActive(true);
         if (fortunaTextMeshPro != null)
             fortunaTextMeshPro.gameObject.SetActive(true);
+
+        // Titel-Text anzeigen
+        if (titelTextMeshPro != null)
+            titelTextMeshPro.gameObject.SetActive(true);
 
         // Roman Time Complete Panel und Roman Task List Panel initial verstecken
         if (romanTimeCompletePanel != null)
@@ -127,5 +134,9 @@ public class TaskListRoman : MonoBehaviour
         // Roman Task List Panel deaktivieren
         if (romanTaskListPanel != null)
             romanTaskListPanel.SetActive(false);
+
+        // Titel-Text deaktivieren
+        if (titelTextMeshPro != null)
+            titelTextMeshPro.gameObject.SetActive(false);
     }
 }

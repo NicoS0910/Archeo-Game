@@ -23,6 +23,9 @@ public class TaskListMedieval : MonoBehaviour
     public TextMeshProUGUI gewandaspangeTextMeshPro;
     public TextMeshProUGUI coinsTextMeshPro; // Neues Coins TextMeshPro
 
+    // Neue Titel-Textkomponente
+    public TextMeshProUGUI titelTextMeshPro;
+
     // Referenzen zu Buttons und Panels
     public Button finishButton;
     public GameObject medievalTimeCompletePanel;
@@ -61,6 +64,10 @@ public class TaskListMedieval : MonoBehaviour
             gewandaspangeTextMeshPro.gameObject.SetActive(true);
         if (coinsTextMeshPro != null) // Coins TextMeshPro initial anzeigen
             coinsTextMeshPro.gameObject.SetActive(true);
+
+        // Titel-Text anzeigen
+        if (titelTextMeshPro != null)
+            titelTextMeshPro.gameObject.SetActive(true);
 
         // Panels initial verstecken
         if (medievalTimeCompletePanel != null)
@@ -124,5 +131,9 @@ public class TaskListMedieval : MonoBehaviour
         // Zeige das Medieval Time Complete Panel an
         if (medievalTimeCompletePanel != null)
             medievalTimeCompletePanel.SetActive(true);
+
+        // Titel-Text deaktivieren
+        if (titelTextMeshPro != null)
+            titelTextMeshPro.gameObject.SetActive(false);
     }
 }
