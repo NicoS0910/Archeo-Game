@@ -32,7 +32,10 @@ public class Harvestable : MonoBehaviour
         if (amountToSpawn > 0)
         {
             SoundFXManager.instance.PlaySoundFXClip(harvestSoundClip, transform, 1f);
-            ResourceEmitPS.Emit(amountToSpawn);
+            if (ResourceEmitPS != null)
+            {
+                ResourceEmitPS.Emit(amountToSpawn);
+            }
             _amountHarvested += amountToSpawn;
         }
 

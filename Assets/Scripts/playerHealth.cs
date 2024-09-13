@@ -17,6 +17,8 @@ public class PlayerHealth : MonoBehaviour
     // private Color originalColor;
     // private Renderer playerRenderer;
     private bool isRegenerating = false;
+    public Inventory inventory;
+    public Resource scorePoints;
 
     void Start()
     {
@@ -71,6 +73,7 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("damage", false);
         animator.SetBool("Defeated", true);
         playerController.LockMovement();
+        inventory.AddResources(scorePoints, -20);
     }
 
     // private IEnumerator FlashRed()

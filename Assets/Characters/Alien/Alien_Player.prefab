@@ -390,6 +390,8 @@ MonoBehaviour:
   regenerationDelay: 5
   respawnPosition: {x: -1.084, y: -1.705, z: 0}
   damageSoundClip: {fileID: 8300000, guid: 7e05fc5bfdce7734d858eafabbcfd656, type: 3}
+  inventory: {fileID: 0}
+  scorePoints: {fileID: 11400000, guid: cec68a91db1cfb64aae5751215a06309, type: 2}
 --- !u!114 &662925294549239512
 MonoBehaviour:
   m_ObjectHideFlags: 0
