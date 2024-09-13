@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 5006678701391703479}
   - component: {fileID: 8633298063849431513}
   - component: {fileID: 2234119614460869501}
+  - component: {fileID: 7202463917185590528}
   m_Layer: 0
   m_Name: Dyonisiomiuioiuuis 1
   m_TagString: Untagged
@@ -338,6 +339,33 @@ PolygonCollider2D:
       - {x: 0.37, y: -0.29}
       - {x: 0.38, y: -0.21}
   m_UseDelaunayMesh: 0
+--- !u!50 &7202463917185590528
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951375987992191907}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5244499596095609602
 GameObject:
   m_ObjectHideFlags: 0
