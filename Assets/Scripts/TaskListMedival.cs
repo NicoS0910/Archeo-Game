@@ -12,6 +12,7 @@ public class TaskListMedieval : MonoBehaviour
     public GameObject akolythTargetObject;
     public GameObject trauerdalmatikTargetObject;
     public GameObject gewandaspangeTargetObject;
+    public GameObject coinsTargetObject; // Neues Coin-Object
 
     // Referenzen zu TextMeshProUGUI für jedes Target Object
     public TextMeshProUGUI swordTextMeshPro;
@@ -20,6 +21,7 @@ public class TaskListMedieval : MonoBehaviour
     public TextMeshProUGUI akolythTextMeshPro;
     public TextMeshProUGUI trauerdalmatikTextMeshPro;
     public TextMeshProUGUI gewandaspangeTextMeshPro;
+    public TextMeshProUGUI coinsTextMeshPro; // Neues Coins TextMeshPro
 
     // Referenzen zu Buttons und Panels
     public Button finishButton;
@@ -57,6 +59,8 @@ public class TaskListMedieval : MonoBehaviour
             trauerdalmatikTextMeshPro.gameObject.SetActive(true);
         if (gewandaspangeTextMeshPro != null)
             gewandaspangeTextMeshPro.gameObject.SetActive(true);
+        if (coinsTextMeshPro != null) // Coins TextMeshPro initial anzeigen
+            coinsTextMeshPro.gameObject.SetActive(true);
 
         // Panels initial verstecken
         if (medievalTimeCompletePanel != null)
@@ -88,6 +92,9 @@ public class TaskListMedieval : MonoBehaviour
         if (gewandaspangeTargetObject != null && gewandaspangeTargetObject.activeInHierarchy && gewandaspangeTextMeshPro != null)
             gewandaspangeTextMeshPro.gameObject.SetActive(false);
 
+        if (coinsTargetObject != null && coinsTargetObject.activeInHierarchy && coinsTextMeshPro != null) // Coins Logik
+            coinsTextMeshPro.gameObject.SetActive(false);
+
         // Prüfe, ob alle TextMeshPro deaktiviert sind, dann Finish-Button anzeigen
         if (AllTextMeshProDeactivated() && finishButton != null)
         {
@@ -103,7 +110,8 @@ public class TaskListMedieval : MonoBehaviour
                !ursulaTextMeshPro.gameObject.activeInHierarchy &&
                !akolythTextMeshPro.gameObject.activeInHierarchy &&
                !trauerdalmatikTextMeshPro.gameObject.activeInHierarchy &&
-               !gewandaspangeTextMeshPro.gameObject.activeInHierarchy;
+               !gewandaspangeTextMeshPro.gameObject.activeInHierarchy &&
+               !coinsTextMeshPro.gameObject.activeInHierarchy; // Coins TextMeshPro prüfen
     }
 
     // Handler für den Finish-Button

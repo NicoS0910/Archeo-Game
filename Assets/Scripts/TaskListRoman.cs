@@ -7,19 +7,21 @@ public class TaskListRoman : MonoBehaviour
 {
     // Referenzen zu Target Objects
     public GameObject augustusObject;
-    public GameObject coinsObject;
+    public GameObject glassObject;
     public GameObject ringObject;
     public GameObject mosaikObject;
     public GameObject oilAmphoraObject;
     public GameObject venusObject;
+    public GameObject fortunaObject;
 
     // Referenzen zu TextMeshProUGUI für jedes Target Object
     public TextMeshProUGUI augustusTextMeshPro;
-    public TextMeshProUGUI coinsTextMeshPro;
+    public TextMeshProUGUI glassTextMeshPro;
     public TextMeshProUGUI ringTextMeshPro;
     public TextMeshProUGUI mosaikTextMeshPro;
     public TextMeshProUGUI oilAmphoraTextMeshPro;
     public TextMeshProUGUI venusTextMeshPro;
+    public TextMeshProUGUI fortunaTextMeshPro;
 
     // Referenzen zu Buttons und Panels
     public Button finishButton;
@@ -47,8 +49,8 @@ public class TaskListRoman : MonoBehaviour
         // Alle TextMeshProUGUI-Elemente initial anzeigen
         if (augustusTextMeshPro != null)
             augustusTextMeshPro.gameObject.SetActive(true);
-        if (coinsTextMeshPro != null)
-            coinsTextMeshPro.gameObject.SetActive(true);
+        if (glassTextMeshPro != null)
+            glassTextMeshPro.gameObject.SetActive(true);
         if (ringTextMeshPro != null)
             ringTextMeshPro.gameObject.SetActive(true);
         if (mosaikTextMeshPro != null)
@@ -57,6 +59,8 @@ public class TaskListRoman : MonoBehaviour
             oilAmphoraTextMeshPro.gameObject.SetActive(true);
         if (venusTextMeshPro != null)
             venusTextMeshPro.gameObject.SetActive(true);
+        if (fortunaTextMeshPro != null)
+            fortunaTextMeshPro.gameObject.SetActive(true);
 
         // Roman Time Complete Panel und Roman Task List Panel initial verstecken
         if (romanTimeCompletePanel != null)
@@ -73,8 +77,8 @@ public class TaskListRoman : MonoBehaviour
         if (augustusObject != null && augustusObject.activeInHierarchy && augustusTextMeshPro != null)
             augustusTextMeshPro.gameObject.SetActive(false);
 
-        if (coinsObject != null && coinsObject.activeInHierarchy && coinsTextMeshPro != null)
-            coinsTextMeshPro.gameObject.SetActive(false);
+        if (glassObject != null && glassObject.activeInHierarchy && glassTextMeshPro != null)
+            glassTextMeshPro.gameObject.SetActive(false);
 
         if (ringObject != null && ringObject.activeInHierarchy && ringTextMeshPro != null)
             ringTextMeshPro.gameObject.SetActive(false);
@@ -88,6 +92,9 @@ public class TaskListRoman : MonoBehaviour
         if (venusObject != null && venusObject.activeInHierarchy && venusTextMeshPro != null)
             venusTextMeshPro.gameObject.SetActive(false);
 
+        if (fortunaObject != null && fortunaObject.activeInHierarchy && fortunaTextMeshPro != null)
+            fortunaTextMeshPro.gameObject.SetActive(false);
+
         // Prüfe, ob alle TextMeshPro deaktiviert sind, dann Finish-Button anzeigen
         if (AllTextMeshProDeactivated() && finishButton != null)
         {
@@ -99,11 +106,12 @@ public class TaskListRoman : MonoBehaviour
     bool AllTextMeshProDeactivated()
     {
         return !augustusTextMeshPro.gameObject.activeInHierarchy &&
-               !coinsTextMeshPro.gameObject.activeInHierarchy &&
+               !glassTextMeshPro.gameObject.activeInHierarchy &&
                !ringTextMeshPro.gameObject.activeInHierarchy &&
                !mosaikTextMeshPro.gameObject.activeInHierarchy &&
                !oilAmphoraTextMeshPro.gameObject.activeInHierarchy &&
-               !venusTextMeshPro.gameObject.activeInHierarchy;
+               !venusTextMeshPro.gameObject.activeInHierarchy &&
+               !fortunaTextMeshPro.gameObject.activeInHierarchy;
     }
 
     // Handler für den Finish-Button
