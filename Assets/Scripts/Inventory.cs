@@ -78,6 +78,11 @@ public class Inventory : MonoBehaviour
                 // Wechsel zur Win_Outro Szene
                 SceneManager.LoadScene("Win_Outro");
             }
+            else
+            {
+                // Wechsel zur Loose_outro Szene, wenn der Punktestand weniger als 1500 ist
+                SceneManager.LoadScene("Loose_outro");
+            }
         }
         else
         {
