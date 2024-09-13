@@ -30,6 +30,7 @@ public class TaskListRoman : MonoBehaviour
     public Button finishButton;
     public GameObject romanTimeCompletePanel;
     public GameObject romanTaskListPanel; // Das Roman Task List Panel
+    public GameObject barriereDom;
 
     // Start is called before the first frame update
     void Start()
@@ -138,5 +139,7 @@ public class TaskListRoman : MonoBehaviour
         // Titel-Text deaktivieren
         if (titelTextMeshPro != null)
             titelTextMeshPro.gameObject.SetActive(false);
+
+        barriereDom.SetActive(false);
     }
 }

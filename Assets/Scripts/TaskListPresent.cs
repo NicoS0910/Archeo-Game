@@ -37,6 +37,7 @@ public class TaskListPresent : MonoBehaviour
     public GameObject panel;
     public GameObject presentTimeCompletePanel;
     public GameObject taskListPanel;
+    public GameObject barriereNeumarkt;
 
     private enum State
     {
@@ -440,6 +441,7 @@ public class TaskListPresent : MonoBehaviour
 
         // Optionale Überprüfung auf das Finish Button sichtbar
         finishButton.gameObject.SetActive(false);
+        barriereNeumarkt.SetActive(false);
     }
 
 
