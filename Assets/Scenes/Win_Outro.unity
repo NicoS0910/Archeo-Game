@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Medieval Period
+  m_text: 'Medieval Period:
 
     The findings from the Medieval era reveal a time
     in human history when religious rituals played a significant role. The artifacts
@@ -548,7 +548,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8f45392b6cfda1847a35707b9ffaae90, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public float regenerationDelay = 5f;
     public Vector3 respawnPosition;
     [SerializeField] private AudioClip damageSoundClip;
+    [SerializeField] private AudioClip deathSoundClip;
 
     // // Neue Variablen für den Farbeffekt
     // [SerializeField] private Color damageColor = Color.red;
@@ -70,6 +71,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
+        SoundFXManager.instance.PlaySoundFXClip(deathSoundClip, transform, 1f);
         animator.SetBool("damage", false);
         animator.SetBool("Defeated", true);
         playerController.LockMovement();

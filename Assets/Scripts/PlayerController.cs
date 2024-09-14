@@ -169,6 +169,7 @@ public class PlayerController : MonoBehaviour
     {
         UnlockMovement();
         scan.StopScan();
+        animator.ResetTrigger("scan");
     }
 
     public void LockMovement()

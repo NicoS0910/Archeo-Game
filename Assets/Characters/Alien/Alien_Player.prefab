@@ -389,7 +389,7 @@ MonoBehaviour:
   playerController: {fileID: 4392030938972290760}
   regenerationDelay: 5
   respawnPosition: {x: -1.084, y: -1.705, z: 0}
-  damageSoundClip: {fileID: 8300000, guid: 7e05fc5bfdce7734d858eafabbcfd656, type: 3}
+  damageSoundClip: {fileID: 8300000, guid: ad0b0c15b4d794e4da2d360eff0b98c8, type: 3}
   inventory: {fileID: 0}
   scorePoints: {fileID: 11400000, guid: cec68a91db1cfb64aae5751215a06309, type: 2}
 --- !u!114 &662925294549239512
@@ -470,7 +470,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0414553, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -481,7 +481,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.3}
+  m_Size: {x: 0.31708938, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &191177299085397169
 MonoBehaviour:
